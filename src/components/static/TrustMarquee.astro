@@ -1,0 +1,21 @@
+---
+const apis = ['INPI', 'Pappers', 'BODACC', 'OpenSanctions', 'DG Trésor', 'PEP', 'Infogreffe', 'Vérification IBAN', 'OFAC', 'INSEE', 'Sirene', 'Banque de France'];
+const list = [...apis, ...apis];
+---
+<section class="border-y border-slate-200 dark:border-white/[.06] bg-white/40 dark:bg-white/[.02] py-7">
+  <div class="max-w-[1280px] mx-auto px-6">
+    <div class="text-center mb-5">
+      <span class="text-[11px] uppercase tracking-[.18em] font-semibold text-slate-500 dark:text-slate-400">Connecté en temps réel à</span>
+    </div>
+    <div class="marquee-mask overflow-hidden">
+      <div class="flex gap-8 marquee-track" style="width:max-content">
+        {list.map(a => (
+          <div class="flex items-center gap-2 text-[14px] font-semibold text-slate-700 dark:text-slate-300 whitespace-nowrap">
+            <span class="w-1.5 h-1.5 rounded-full" style="background:var(--grimy)"></span>
+            {a}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

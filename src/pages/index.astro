@@ -1,0 +1,191 @@
+---
+import '../styles/global.css';
+
+// Static components (zero JS)
+import Hero from '../components/static/Hero.astro';
+import TrustMarquee from '../components/static/TrustMarquee.astro';
+import SecurityRow from '../components/static/SecurityRow.astro';
+import BeforeAfter from '../components/static/BeforeAfter.astro';
+import LettreSection from '../components/static/LettreSection.astro';
+import FeatureGrid from '../components/static/FeatureGrid.astro';
+import Testimonial from '../components/static/Testimonial.astro';
+import Pricing from '../components/static/Pricing.astro';
+import FAQ from '../components/static/FAQ.astro';
+import FinalCTA from '../components/static/FinalCTA.astro';
+import Footer from '../components/static/Footer.astro';
+
+// Interactive components (hydrated)
+import TopNav from '../components/interactive/TopNav.tsx';
+import HeroDemo from '../components/interactive/HeroDemo.tsx';
+import DashboardSection from '../components/interactive/DashboardSection.tsx';
+import ScreeningDemo from '../components/interactive/ScreeningDemo.tsx';
+import BeforeAfterSlider from '../components/interactive/BeforeAfterSlider.tsx';
+import LettreDemo from '../components/interactive/LettreDemo.tsx';
+import PricingToggle from '../components/interactive/PricingToggle.tsx';
+import ScrollProgress from '../components/interactive/ScrollProgress.tsx';
+import BackToTop from '../components/interactive/BackToTop.tsx';
+import LiveToast from '../components/interactive/LiveToast.tsx';
+import StickyMobileCTA from '../components/interactive/StickyMobileCTA.tsx';
+import Confetti from '../components/interactive/Confetti.tsx';
+import FinalCTACursor from '../components/interactive/FinalCTACursor.tsx';
+
+const title = 'GRIMY. — La conformité LCB-FT, sans prise de tête';
+const description = 'La plateforme anti-blanchiment pensée pour les cabinets d\'expertise comptable. Vérification des clients en 3 secondes, lettres de mission, revue périodique — un seul outil, tarifs affichés, prêt en 12 minutes.';
+const url = 'https://grimy.fr';
+const ogImage = `${url}/og-grimy.png`;
+
+const faqItems = [
+  { q: 'Êtes-vous conformes à la norme NPLAB ?', a: "Oui. GRIMY couvre l'intégralité des obligations de la norme NPLAB de l'OEC : identification du client, vigilance proportionnée, manuel interne LAB, revues périodiques, conservation 5 ans." },
+  { q: 'Comment se passe la migration depuis un autre outil ?', a: "Vous importez vos clients via un fichier CSV ou nos connecteurs cabinet (ACD, RCA). GRIMY récupère automatiquement les données réglementaires depuis l'INPI. Délai moyen : 30 minutes pour 100 clients." },
+  { q: 'Mes données sont-elles en France ?', a: "Oui. Hébergement OVHcloud Roubaix, chiffrement AES-256 au repos, TLS 1.3 en transit. Certification ISO 27001 et hébergeur de données de santé (HDS)." },
+  { q: 'Puis-je essayer sans carte bancaire ?', a: "Oui. 14 jours d'essai complet sans aucun engagement. Aucune information de paiement requise." },
+  { q: 'Que se passe-t-il si je dépasse le quota de clients ?', a: "Vous êtes notifié à 80% du quota. À 100%, GRIMY continue de fonctionner pour les clients existants. Vous pouvez upgrader d'un clic." },
+  { q: 'Comment se passe la prise en main ?', a: "Tout est intégré au produit, en moins de 15 minutes. Pour les cabinets de plus de 10 utilisateurs, un accompagnant dédié vous aide." },
+];
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/grimy-favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/grimy-favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/grimy-favicon-192.png" />
+    <link rel="apple-touch-icon" href="/grimy-favicon-192.png" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={url} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="GRIMY." />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- JSON-LD: SoftwareApplication -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "GRIMY",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": url,
+      "description": description,
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": "19",
+        "highPrice": "199",
+        "priceCurrency": "EUR",
+        "offerCount": "3"
+      }
+    })} />
+
+    <!-- JSON-LD: Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "GRIMY SAS",
+      "url": url,
+      "logo": `${url}/grimy-logo-light.png`,
+      "sameAs": [],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      }
+    })} />
+
+    <!-- JSON-LD: WebSite -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "GRIMY.",
+      "url": url,
+      "description": description,
+      "inLanguage": "fr-FR"
+    })} />
+
+    <!-- JSON-LD: FAQPage -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqItems.map(item => ({
+        "@type": "Question",
+        "name": item.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.a
+        }
+      }))
+    })} />
+
+    <script is:inline>
+      if (localStorage.getItem('grimy-theme') === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+    </script>
+  </head>
+  <body class="text-slate-900 dark:text-slate-100 overflow-x-hidden">
+    <!-- Skip link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded-lg focus:shadow-lg focus:text-slate-900 focus:text-sm focus:font-semibold">
+      Aller au contenu principal
+    </a>
+
+    <div class="min-h-screen">
+      <ScrollProgress client:idle />
+      <TopNav client:load />
+
+      <main id="main-content">
+        <Hero>
+          <HeroDemo client:visible />
+        </Hero>
+
+        <TrustMarquee />
+        <SecurityRow />
+
+        <DashboardSection client:visible />
+        <ScreeningDemo client:visible />
+
+        <BeforeAfter>
+          <BeforeAfterSlider client:visible />
+        </BeforeAfter>
+
+        <LettreSection>
+          <LettreDemo client:visible />
+        </LettreSection>
+
+        <FeatureGrid />
+        <Testimonial />
+
+        <Pricing>
+          <PricingToggle slot="toggle" client:visible />
+        </Pricing>
+
+        <FAQ />
+
+        <FinalCTA>
+          <FinalCTACursor client:visible />
+        </FinalCTA>
+      </main>
+
+      <Footer />
+
+      <BackToTop client:idle />
+      <LiveToast client:idle />
+      <StickyMobileCTA client:idle />
+      <Confetti client:idle />
+    </div>
+  </body>
+</html>

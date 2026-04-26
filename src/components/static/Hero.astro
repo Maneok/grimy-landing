@@ -1,0 +1,94 @@
+---
+---
+<section class="relative overflow-hidden hero-bg-light pt-10 pb-14">
+  <div class="absolute inset-0 grain pointer-events-none opacity-50"></div>
+  <div class="absolute inset-x-0 top-0 h-[640px] grid-anim pointer-events-none"></div>
+
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    {Array.from({ length: 8 }).map((_, i) => (
+      <span class="absolute w-1 h-1 rounded-full particle"
+        style={`background:var(--grimy); left:${10 + i * 11}%; bottom:0; animation-delay:${i * 0.7}s; animation-duration:${4 + (i % 3)}s; opacity:.4`} />
+    ))}
+  </div>
+
+  <div class="max-w-[1280px] mx-auto px-6 pt-8 relative grid lg:grid-cols-12 gap-10 items-center">
+    <!-- LEFT -->
+    <div class="lg:col-span-6">
+      <div class="reveal inline-flex items-center gap-2 text-[12px] font-medium text-slate-700 dark:text-slate-300 bg-white/70 dark:bg-white/[.04] backdrop-blur border border-slate-200 dark:border-white/[.08] rounded-full pl-1 pr-3 py-1 mb-6">
+        <span class="text-[10px] font-bold uppercase tracking-wider text-white px-2 py-0.5 rounded-full" style="background:var(--grimy-dark)">NEW</span>
+        <span>Conforme arrêté du 6 janvier 2021 — Norme NPLAB</span>
+      </div>
+
+      <h1 class="reveal wordmark text-[clamp(38px,4.6vw,56px)] leading-[1.05] tracking-[-.045em] text-slate-900 dark:text-white text-balance" id="hero-headline">
+        La conformité<br/>LCB-FT,<br/>
+        <span class="relative inline-block">
+          <span class="dash-under inline-block" id="hero-rotator">sans prise de tête</span>
+          <span class="grimy-dot"></span>
+        </span>
+      </h1>
+
+      <p class="reveal mt-6 text-[18px] leading-[1.55] text-slate-600 dark:text-slate-300 max-w-xl">
+        La plateforme anti-blanchiment pensée pour les cabinets d'expertise comptable.
+        Vérification des clients en 3 secondes, lettres de mission, revue périodique et gestion des alertes — un seul outil,
+        tarifs affichés, prêt en 12 minutes.
+      </p>
+
+      <div class="reveal mt-8 flex flex-wrap items-center gap-3">
+        <a href="https://app.grimy.fr" class="inline-flex items-center gap-2 text-[15px] font-semibold text-white px-5 py-3 rounded-lg btn-magnetic">
+          Essayer gratuitement
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <button id="hero-video-btn" aria-label="Voir la démo vidéo" class="group inline-flex items-center gap-2 text-[15px] font-medium text-slate-800 dark:text-slate-200 bg-white/60 dark:bg-white/[.04] backdrop-blur border border-slate-300 dark:border-white/[.08] px-5 py-3 rounded-lg hover:bg-white dark:hover:bg-white/[.06] transition-all">
+          <span class="w-6 h-6 rounded-full flex items-center justify-center text-white" style="background:var(--grimy-dark)">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          Voir la démo (1 min 30)
+        </button>
+      </div>
+
+      <!-- Trust avatars -->
+      <div class="reveal mt-7 flex items-center gap-3.5">
+        <div class="flex -space-x-2">
+          {[
+            { bg: '#0F766E', i: 'VC' }, { bg: '#1E40AF', i: 'MD' }, { bg: '#7C2D12', i: 'PL' },
+            { bg: '#831843', i: 'SR' }, { bg: '#3730A3', i: 'JT' },
+          ].map((a, idx) => (
+            <div class="w-8 h-8 rounded-full ring-2 ring-[#F4F3EE] dark:ring-[#0B1220] flex items-center justify-center text-[10.5px] font-bold text-white"
+              style={`background:${a.bg}; z-index:${5 - idx}`}>{a.i}</div>
+          ))}
+          <div class="w-8 h-8 rounded-full ring-2 ring-[#F4F3EE] dark:ring-[#0B1220] flex items-center justify-center text-[10px] font-bold text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-white/[.08]">{/* TODO_GRIMY_NUMBERS */}+335</div>
+        </div>
+        <div class="flex flex-col leading-tight">
+          <div class="flex items-center gap-1 text-amber-500">
+            {Array.from({ length: 5 }).map(() => (
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 21 12 16.51 5.79 21l2.39-7.15L2 9.36h7.61L12 2z"/></svg>
+            ))}
+            <span class="text-[12px] font-semibold text-slate-700 dark:text-slate-200 ml-1.5 num">{/* TODO_GRIMY_NUMBERS */}4,9/5</span>
+          </div>
+          <div class="text-[11.5px] text-slate-500 dark:text-slate-400 mt-0.5">{/* TODO_GRIMY_NUMBERS */}340 cabinets nous font confiance</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="reveal mt-9 grid grid-cols-3 gap-x-6 max-w-md" id="hero-stats">
+        <div>
+          <div class="num text-[28px] font-bold text-slate-900 dark:text-white tracking-tight">12 min</div>
+          <div class="text-[12px] text-slate-500 dark:text-slate-400">installation</div>
+        </div>
+        <div>
+          <div class="num text-[28px] font-bold text-slate-900 dark:text-white tracking-tight">9 sources</div>
+          <div class="text-[12px] text-slate-500 dark:text-slate-400">vérifiées en 3 s</div>
+        </div>
+        <div>
+          <div class="num text-[28px] font-bold text-slate-900 dark:text-white tracking-tight">&euro;19</div>
+          <div class="text-[12px] text-slate-500 dark:text-slate-400">/cabinet/mois</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — HeroDemo.tsx will be slotted -->
+    <div class="lg:col-span-6 reveal">
+      <slot />
+    </div>
+  </div>
+</section>

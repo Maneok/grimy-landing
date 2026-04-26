@@ -1,0 +1,57 @@
+---
+interface Props {
+  annual?: boolean;
+}
+const { annual = true } = Astro.props;
+
+const plans = [
+  { name: 'Solo', monthly: 24, annual: 19, desc: 'Indépendants & micro-cabinets', users: '1 utilisateur', clients: '25 clients', features: ['Tableau de bord','Lettres de mission illimitées','Vérification 9 sources','Revues périodiques','Support email'], cta: 'Démarrer', featured: false },
+  { name: 'Cabinet', monthly: 99, annual: 79, desc: 'La majorité de nos clients', users: '5 utilisateurs', clients: '150 clients', features: ['Tout Solo, plus :','Documents illimités','Revues automatiques','Multi-utilisateurs','Support prioritaire'], cta: 'Démarrer', featured: true },
+  { name: 'Groupe', monthly: 249, annual: 199, desc: 'Cabinets multi-sites', users: '20 utilisateurs', clients: 'Illimité', features: ['Tout Cabinet, plus :','Connexion unique (SSO)','Connecteurs sur mesure','Accompagnant dédié','Service garanti 99,9 %'], cta: 'Nous contacter', featured: false },
+];
+
+const checkSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>';
+---
+<section id="tarifs" class="max-w-[1280px] mx-auto px-6 py-24">
+  <div class="text-center mb-10 reveal">
+    <div class="text-[12px] font-semibold uppercase tracking-[.18em] mb-3" style="color:var(--grimy-dark)">05 — Tarifs publics</div>
+    <h2 class="wordmark text-[44px] leading-[1.05] tracking-[-.035em] text-slate-900 dark:text-white">Sans démo obligatoire. Sans devis caché.</h2>
+    <p class="mt-4 text-[16px] text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Prix par cabinet, pas par utilisateur. Annulable à tout moment. 14 jours d'essai sans CB.</p>
+    <slot name="toggle" />
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-5" id="pricing-cards" data-annual={annual ? 'true' : 'false'}>
+    {plans.map((p, i) => (
+      <div class={`reveal relative rounded-2xl p-7 border mock-shadow card-lift ${p.featured ? 'border-transparent text-white' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-white/[.06]'}`}
+        style={p.featured ? 'background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);' : ''}>
+        {p.featured && (
+          <span class="absolute -top-2.5 left-7 text-[10.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md text-slate-900" style="background:var(--grimy)">Le plus choisi</span>
+        )}
+        <div class={`text-[16px] font-semibold tracking-tight ${p.featured ? 'text-white' : 'text-slate-900 dark:text-white'}`}>{p.name}</div>
+        <div class={`text-[13px] mt-0.5 ${p.featured ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>{p.desc}</div>
+        <div class="mt-6 mb-1 flex items-baseline gap-1">
+          <span class={`num text-[44px] font-bold tracking-tight ${p.featured ? 'text-white' : 'text-slate-900 dark:text-white'}`}
+            data-monthly={p.monthly} data-annual={p.annual}>
+            &euro;{annual ? p.annual : p.monthly}
+          </span>
+          <span class={`text-[13px] ${p.featured ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>/cabinet/mois</span>
+        </div>
+        <div class={`text-[12px] mb-6 ${p.featured ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
+          HT &middot; facturation {annual ? 'annuelle' : 'mensuelle'} &middot; {p.users} &middot; {p.clients}
+        </div>
+        <a href="https://app.grimy.fr" class={`block text-center text-[14px] font-semibold py-2.5 rounded-lg mb-6 transition ${p.featured ? 'text-slate-900 hover:opacity-90' : 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90'}`}
+          style={p.featured ? 'background:var(--grimy)' : ''}>
+          {p.cta}
+        </a>
+        <ul class="space-y-2.5">
+          {p.features.map(f => (
+            <li class={`flex items-start gap-2 text-[13.5px] ${p.featured ? 'text-slate-200' : 'text-slate-700 dark:text-slate-300'}`}>
+              <span class="mt-[3px] flex-shrink-0" style={p.featured ? 'color:var(--grimy)' : 'color:var(--grimy-dark)'} set:html={checkSvg} />
+              <span>{f}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

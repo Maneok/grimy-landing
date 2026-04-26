@@ -14,6 +14,11 @@ import FAQ from '../components/static/FAQ.astro';
 import FinalCTA from '../components/static/FinalCTA.astro';
 import Footer from '../components/static/Footer.astro';
 
+// Static components converted from React (zero JS framework)
+import ScrollProgress from '../components/static/ScrollProgress.astro';
+import BackToTopBtn from '../components/static/BackToTop.astro';
+import StickyMobileCTABar from '../components/static/StickyMobileCTA.astro';
+
 // Interactive components (hydrated)
 import TopNav from '../components/interactive/TopNav.tsx';
 import HeroDemo from '../components/interactive/HeroDemo.tsx';
@@ -22,10 +27,7 @@ import ScreeningDemo from '../components/interactive/ScreeningDemo.tsx';
 import BeforeAfterSlider from '../components/interactive/BeforeAfterSlider.tsx';
 import LettreDemo from '../components/interactive/LettreDemo.tsx';
 import PricingToggle from '../components/interactive/PricingToggle.tsx';
-import ScrollProgress from '../components/interactive/ScrollProgress.tsx';
-import BackToTop from '../components/interactive/BackToTop.tsx';
 import LiveToast from '../components/interactive/LiveToast.tsx';
-import StickyMobileCTA from '../components/interactive/StickyMobileCTA.tsx';
 import Confetti from '../components/interactive/Confetti.tsx';
 import FinalCTACursor from '../components/interactive/FinalCTACursor.tsx';
 
@@ -144,7 +146,7 @@ const faqItems = [
     </a>
 
     <div class="min-h-screen">
-      <ScrollProgress client:idle />
+      <ScrollProgress />
       <TopNav client:load />
 
       <main id="main-content">
@@ -170,21 +172,21 @@ const faqItems = [
         <Testimonial />
 
         <Pricing>
-          <PricingToggle slot="toggle" client:visible />
+          <PricingToggle slot="toggle" client:idle />
         </Pricing>
 
         <FAQ />
 
         <FinalCTA>
-          <FinalCTACursor client:visible />
+          <FinalCTACursor client:idle />
         </FinalCTA>
       </main>
 
       <Footer />
 
-      <BackToTop client:idle />
+      <BackToTopBtn />
       <LiveToast client:idle />
-      <StickyMobileCTA client:idle />
+      <StickyMobileCTABar />
       <Confetti client:idle />
     </div>
   </body>

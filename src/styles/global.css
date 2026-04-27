@@ -165,8 +165,13 @@ body {
 @keyframes bar-fill { from { width: 0%; } }
 .bar-fill { animation: bar-fill 1.2s cubic-bezier(.2,.7,.2,1) forwards; }
 
-@keyframes highlight-row { 0% { background: rgba(0,200,150,.18); } 100% { background: transparent; } }
-.highlight-row { animation: highlight-row 1.4s ease-out; }
+@keyframes highlight-row-fade { 0% { opacity: 1; } 100% { opacity: 0; } }
+.highlight-row { position: relative; }
+.highlight-row::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(0,200,150,.18);
+  animation: highlight-row-fade 1.4s ease-out forwards;
+}
 
 @keyframes orbit-1 { from { transform: rotate(0deg) translateX(140px) rotate(0deg); } to { transform: rotate(360deg) translateX(140px) rotate(-360deg); } }
 @keyframes orbit-2 { from { transform: rotate(0deg) translateX(200px) rotate(0deg); } to { transform: rotate(-360deg) translateX(200px) rotate(360deg); } }
@@ -282,9 +287,13 @@ body {
 /* ============================================================
    Table
    ============================================================ */
-tr.row-hover { transition: background .25s; }
-tr.row-hover:hover { background: rgba(0,200,150,.06); }
-.dark tr.row-hover:hover { background: rgba(0,232,170,.05); }
+tr.row-hover { position: relative; }
+tr.row-hover::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: rgba(0,200,150,.06); opacity: 0; transition: opacity .25s;
+}
+tr.row-hover:hover::after { opacity: 1; }
+.dark tr.row-hover::after { background: rgba(0,232,170,.05); }
 
 /* ============================================================
    Lettre de mission
@@ -444,14 +453,17 @@ tr.row-hover:hover { background: rgba(0,200,150,.06); }
   12%      { transform: translate3d(0, 110px, 0) rotate(-3deg); opacity: 1; }
   18%      { opacity: 0; }
 }
-@keyframes ged-row-fill {
-  0%, 100% { opacity: 0.4; background: transparent; border-color: transparent; }
-  18%      { opacity: 0.4; background: transparent; border-color: transparent; }
-  22%      { opacity: 1; background: color-mix(in oklab, var(--grimy) 6%, transparent); border-color: color-mix(in oklab, var(--grimy) 20%, transparent); }
+@keyframes ged-row-opacity {
+  0%, 18%, 100% { opacity: 0.4; }
+  22%           { opacity: 1; }
 }
-@keyframes ged-badge-show {
-  0%, 90%  { background: transparent; color: #94a3b8; border: 1px solid #cbd5e1; }
-  95%, 100% { background: var(--grimy); color: #0F172A; border: 1px solid transparent; }
+@keyframes ged-row-bg {
+  0%, 18%, 100% { opacity: 0; }
+  22%           { opacity: 1; }
+}
+@keyframes ged-badge-opacity {
+  0%, 90%, 100% { opacity: 0; }
+  95%           { opacity: 1; }
 }
 
 .ged-falling-doc {
@@ -460,16 +472,37 @@ tr.row-hover:hover { background: rgba(0,200,150,.06); }
   transform: translate3d(-50%, -40px, 0);
 }
 .ged-row {
-  animation: ged-row-fill 9s ease-in-out infinite;
-  border-color: transparent; background: transparent; opacity: 0.4;
+  position: relative;
+  animation: ged-row-opacity 9s ease-in-out infinite;
+  opacity: 0.4;
+}
+.ged-row::before {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+  background: color-mix(in oklab, var(--grimy) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--grimy) 20%, transparent);
+  opacity: 0;
+  animation: ged-row-bg 9s ease-in-out infinite;
 }
 .ged-badge {
-  animation: ged-badge-show 9s ease-in-out infinite;
-  background: transparent; color: #94a3b8; border: 1px solid #cbd5e1;
+  position: relative;
+  color: #94a3b8; border: 1px solid #cbd5e1;
 }
+.ged-badge::before {
+  content: ''; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none;
+  background: var(--grimy);
+  border-radius: 9999px;
+  opacity: 0;
+  animation: ged-badge-opacity 9s ease-in-out infinite;
+  z-index: -1;
+}
+.ged-badge.ged-badge { animation: ged-badge-opacity 9s ease-in-out infinite; opacity: 1; }
 .ged-card:not(.in-view) .ged-falling-doc,
 .ged-card:not(.in-view) .ged-row,
-.ged-card:not(.in-view) .ged-badge { animation-play-state: paused; }
+.ged-card:not(.in-view) .ged-row::before,
+.ged-card:not(.in-view) .ged-badge,
+.ged-card:not(.in-view) .ged-badge::before { animation-play-state: paused; }
+.ged-row::before { animation-delay: inherit; }
+.ged-badge::before { animation-delay: inherit; }
 
 /* ============================================================
    Alertes — CSS-driven slide-in
@@ -499,8 +532,10 @@ tr.row-hover:hover { background: rgba(0,200,150,.06); }
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   .ged-falling-doc { animation: none; opacity: 0; }
-  .ged-row { animation: none; opacity: 1; background: color-mix(in oklab, var(--grimy) 6%, transparent); border-color: color-mix(in oklab, var(--grimy) 20%, transparent); }
-  .ged-badge { animation: none; background: var(--grimy); color: #0F172A; }
+  .ged-row { animation: none; opacity: 1; }
+  .ged-row::before { animation: none; opacity: 1; }
+  .ged-badge { animation: none; }
+  .ged-badge::before { animation: none; opacity: 1; }
   .alerte-toast { animation: none; opacity: 1; transform: none; }
   .hero-rotator-phrase { animation: none; }
   .hero-rotator-phrase:first-child { opacity: 1; }

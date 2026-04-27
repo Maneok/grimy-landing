@@ -11,10 +11,20 @@ export default defineConfig({
   output: 'static',
   compressHTML: true,
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: 'always',
   },
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      cssMinify: 'lightningcss',
+      rollupOptions: {
+        output: {
+          manualChunks: (id) => {
+            if (id.includes('node_modules/react')) return 'react-vendor';
+          },
+        },
+      },
+    },
   },
   integrations: [react(), sitemap()],
 });

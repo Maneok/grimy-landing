@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const phrases = ['sans prise de tête', 'sans paperasse', 'sans stress', 'sans doute'];
+const phrases = ['sans stress', 'sans paperasse', 'sans prise de tête', 'sans doute'];
 
 export default function HeroPhraseRotator() {
   const [idx, setIdx] = useState(0);

@@ -74,6 +74,7 @@ export default function HeroDemo() {
             <div className="flex-1 relative">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
               <input
+                aria-label="Numéro SIREN à vérifier"
                 value={siren}
                 onChange={(e) => setSiren(e.target.value)}
                 className="num w-full pl-9 pr-3 py-2.5 text-[13.5px] bg-slate-50 dark:bg-white/[.04] border border-slate-200 dark:border-white/[.08] rounded-lg text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:border-transparent"

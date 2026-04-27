@@ -141,7 +141,7 @@ export default function ScreeningDemo() {
 
             <div className="relative mt-3 pt-3 border-t border-slate-200 dark:border-white/[.06] flex items-center justify-between gap-4" style={{ opacity: entered ? 1 : 0, transform: entered ? 'translateY(0)' : 'translateY(8px)', transition: 'all .4s cubic-bezier(.2,.7,.2,1) .7s' }}>
               <div>
-                <div className="text-[10px] uppercase tracking-[.2em] font-bold text-slate-400 dark:text-slate-500">Score pondéré</div>
+                <div className="text-[10px] uppercase tracking-[.2em] font-bold text-slate-600 dark:text-slate-500">Score pondéré</div>
                 <div className="flex items-baseline gap-1.5">
                   <div className="text-[26px] font-black tracking-tight text-slate-900 dark:text-white num leading-none">{weighted}<span className="text-[13px] text-slate-400">/100</span></div>
                   {simActive && weighted !== baseWeighted && (
@@ -150,7 +150,7 @@ export default function ScreeningDemo() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-[10px] uppercase tracking-[.2em] font-bold text-slate-400 dark:text-slate-500">Vigilance</div>
+                <div className="text-[10px] uppercase tracking-[.2em] font-bold text-slate-600 dark:text-slate-500">Vigilance</div>
                 <div className="text-[15px] font-bold flex items-center gap-1.5 justify-end" style={{ color: vigilance.color }}>
                   <span className="w-1.5 h-1.5 rounded-full" style={{ background: vigilance.color }} />{vigilance.label}
                 </div>

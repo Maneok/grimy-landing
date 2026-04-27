@@ -367,15 +367,15 @@ tr.row-hover:hover { background: rgba(0,200,150,.06); }
 @keyframes radar-vertex-pop { from { transform: scale(0); opacity: 0; } 70% { transform: scale(1.4); } to { transform: scale(1); opacity: 1; } }
 @keyframes radar-label-rise { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .radar-ring { stroke-dasharray: 1400; opacity: 0; }
-.radar-ring.in { animation: radar-ring-draw 700ms cubic-bezier(.2,.7,.2,1) forwards; }
+.radar-ring.in { animation: radar-ring-draw 300ms cubic-bezier(.2,.7,.2,1) forwards; }
 .radar-spoke { stroke-dasharray: 175; opacity: 0; }
-.radar-spoke.in { animation: radar-spoke-draw 600ms cubic-bezier(.2,.7,.2,1) forwards; }
+.radar-spoke.in { animation: radar-spoke-draw 250ms cubic-bezier(.2,.7,.2,1) forwards; }
 .radar-poly { transform-origin: 240px 240px; transform: scale(.05); opacity: 0; }
-.radar-poly.in { animation: radar-poly-in 800ms cubic-bezier(.2,.8,.2,1) forwards; }
+.radar-poly.in { animation: radar-poly-in 350ms cubic-bezier(.2,.8,.2,1) forwards; }
 .radar-vertex { transform-origin: center; transform: scale(0); opacity: 0; transform-box: fill-box; }
-.radar-vertex.in { animation: radar-vertex-pop 480ms cubic-bezier(.2,.8,.2,1.2) forwards; }
+.radar-vertex.in { animation: radar-vertex-pop 250ms cubic-bezier(.2,.8,.2,1.2) forwards; }
 .radar-label { opacity: 0; transform: translateY(8px); }
-.radar-label.in { animation: radar-label-rise 500ms cubic-bezier(.2,.7,.2,1) forwards; }
+.radar-label.in { animation: radar-label-rise 250ms cubic-bezier(.2,.7,.2,1) forwards; }
 
 /* ============================================================
    Final CTA cursor

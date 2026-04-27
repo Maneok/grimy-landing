@@ -94,7 +94,7 @@ export default function ScreeningDemo() {
         {/* RADAR */}
         <div className="lg:col-span-7 lg:order-2 reveal h-full" ref={radarRef}>
           <div className="relative h-[480px] flex flex-col" style={{ minHeight: 480 }}>
-            <div className="absolute pointer-events-none" style={{ left: '50%', top: '52%', width: 440, height: 440, transform: 'translate(-50%,-50%)', background: 'radial-gradient(circle, color-mix(in oklab, var(--grimy) 38%, transparent) 0%, transparent 60%)', filter: 'blur(50px)', opacity: entered ? 0.65 : 0, transition: 'opacity 1.2s ease' }} />
+            <div className="absolute pointer-events-none" style={{ left: '50%', top: '52%', width: 440, height: 440, transform: 'translate(-50%,-50%)', background: 'radial-gradient(circle, color-mix(in oklab, var(--grimy) 38%, transparent) 0%, transparent 60%)', filter: 'blur(50px)', opacity: entered ? 0.65 : 0, transition: 'opacity .5s ease' }} />
             <div className="relative flex items-center justify-between mb-2 px-1">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 live-pulse" />
@@ -112,16 +112,16 @@ export default function ScreeningDemo() {
               </defs>
               {[0.25, 0.5, 0.75, 1].map((k, gi) => {
                 const pts = RISK_AXES.map((_, i) => pt(i, R * k).join(',')).join(' ');
-                return <polygon key={gi} points={pts} fill="none" stroke="currentColor" strokeWidth=".7" className={'text-slate-300 dark:text-white/10 radar-ring' + (entered ? ' in' : '')} style={{ animationDelay: (80 + (3 - gi) * 110) + 'ms' }} />;
+                return <polygon key={gi} points={pts} fill="none" stroke="currentColor" strokeWidth=".7" className={'text-slate-300 dark:text-white/10 radar-ring' + (entered ? ' in' : '')} style={{ animationDelay: (30 + (3 - gi) * 45) + 'ms' }} />;
               })}
-              {RISK_AXES.map((_, i) => { const [x, y] = pt(i, R); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="currentColor" strokeWidth=".8" className={'text-slate-300 dark:text-white/10 radar-spoke' + (entered ? ' in' : '')} style={{ animationDelay: (480 + i * 90) + 'ms' }} />; })}
+              {RISK_AXES.map((_, i) => { const [x, y] = pt(i, R); return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="currentColor" strokeWidth=".8" className={'text-slate-300 dark:text-white/10 radar-spoke' + (entered ? ' in' : '')} style={{ animationDelay: (190 + i * 36) + 'ms' }} />; })}
               {showBenchmark && <polygon points={benchPoly} fill="url(#benchFill)" stroke="#94a3b8" strokeWidth="1.2" strokeDasharray="4 3" strokeLinejoin="round" style={{ opacity: entered ? 0.7 : 0, transition: 'opacity .4s ease' }} />}
-              <polygon points={polygon} fill="url(#webFill)" stroke="var(--grimy-dark)" strokeWidth="2" strokeLinejoin="round" className={'radar-poly' + (entered ? ' in' : '')} style={{ animationDelay: '950ms', transition: entered ? 'all .35s ease' : 'none' }} />
+              <polygon points={polygon} fill="url(#webFill)" stroke="var(--grimy-dark)" strokeWidth="2" strokeLinejoin="round" className={'radar-poly' + (entered ? ' in' : '')} style={{ animationDelay: '380ms', transition: entered ? 'all .35s ease' : 'none' }} />
               {RISK_AXES.map((ax, i) => {
                 const [x, y] = pt(i, (eff(ax.id) / 100) * R);
                 const isSel = selected === ax.id;
                 return (
-                  <g key={i} onClick={() => setSelected(ax.id)} onMouseEnter={() => setHover(ax.id)} onMouseLeave={() => setHover(null)} className={'radar-vertex' + (entered ? ' in' : '')} style={{ cursor: 'pointer', animationDelay: (1200 + i * 110) + 'ms' }}>
+                  <g key={i} onClick={() => setSelected(ax.id)} onMouseEnter={() => setHover(ax.id)} onMouseLeave={() => setHover(null)} className={'radar-vertex' + (entered ? ' in' : '')} style={{ cursor: 'pointer', animationDelay: (480 + i * 45) + 'ms' }}>
                     <circle cx={x} cy={y} r={isSel ? 7 : hover === ax.id ? 6 : 5} fill={ax.grimy ? 'var(--grimy)' : 'white'} stroke="var(--grimy-dark)" strokeWidth={isSel ? 2.5 : 2} />
                   </g>
                 );
@@ -131,7 +131,7 @@ export default function ScreeningDemo() {
                 const isSel = selected === ax.id;
                 const anchor = lx < cx - 8 ? 'end' : lx > cx + 8 ? 'start' : 'middle';
                 return (
-                  <text key={i} x={lx} y={ly} textAnchor={anchor} fontSize="13" fontWeight={isSel ? 800 : 700} fill={ax.grimy || isSel ? 'var(--grimy-dark)' : 'currentColor'} className={'radar-label' + (entered ? ' in' : '')} style={{ cursor: 'pointer', animationDelay: (1320 + i * 100) + 'ms' }} onClick={() => setSelected(ax.id)}>
+                  <text key={i} x={lx} y={ly} textAnchor={anchor} fontSize="13" fontWeight={isSel ? 800 : 700} fill={ax.grimy || isSel ? 'var(--grimy-dark)' : 'currentColor'} className={'radar-label' + (entered ? ' in' : '')} style={{ cursor: 'pointer', animationDelay: (530 + i * 40) + 'ms' }} onClick={() => setSelected(ax.id)}>
                     {ax.name}
                   </text>
                 );
@@ -139,7 +139,7 @@ export default function ScreeningDemo() {
               <circle cx={cx} cy={cy} r="3" fill="var(--grimy-dark)" style={{ opacity: entered ? 1 : 0, transition: 'opacity .4s ease 900ms' }} />
             </svg>
 
-            <div className="relative mt-3 pt-3 border-t border-slate-200 dark:border-white/[.06] flex items-center justify-between gap-4" style={{ opacity: entered ? 1 : 0, transform: entered ? 'translateY(0)' : 'translateY(8px)', transition: 'all .6s cubic-bezier(.2,.7,.2,1) 1.7s' }}>
+            <div className="relative mt-3 pt-3 border-t border-slate-200 dark:border-white/[.06] flex items-center justify-between gap-4" style={{ opacity: entered ? 1 : 0, transform: entered ? 'translateY(0)' : 'translateY(8px)', transition: 'all .4s cubic-bezier(.2,.7,.2,1) .7s' }}>
               <div>
                 <div className="text-[10px] uppercase tracking-[.2em] font-bold text-slate-400 dark:text-slate-500">Score pondéré</div>
                 <div className="flex items-baseline gap-1.5">

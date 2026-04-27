@@ -1,20 +1,22 @@
-import { useEffect, useState } from 'react';
-
 const phrases = ['sans stress', 'sans paperasse', 'sans prise de tête', 'sans doute'];
 
 export default function HeroPhraseRotator() {
-  const [idx, setIdx] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIdx((i) => (i + 1) % phrases.length);
-    }, 2600);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <span key={idx} className="dash-under count-flip inline-block">
-      {phrases[idx]}
+    <span className="hero-rotator-wrapper relative inline-block" aria-live="polite">
+      {phrases.map((phrase, i) => (
+        <span
+          key={i}
+          className="hero-rotator-phrase dash-under inline-block absolute left-0 top-0 whitespace-nowrap"
+          style={{
+            animationDelay: `${i * 2.6}s`,
+            willChange: 'opacity, transform',
+          }}
+        >
+          {phrase}
+        </span>
+      ))}
+      {/* Reserve space with longest phrase */}
+      <span className="invisible whitespace-nowrap">sans prise de tête</span>
     </span>
   );
 }

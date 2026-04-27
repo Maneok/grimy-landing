@@ -1,63 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 const alertes = [
-  { id: 1, type: 'critical', label: 'OFAC', text: 'Sanction détectée — DUPONT SARL', time: "à l'instant", color: '#ef4444' },
-  { id: 2, type: 'warning', label: 'Dirigeant', text: 'Changement — CARRELAGES MOREAU', time: 'il y a 2 min', color: '#f59e0b' },
-  { id: 3, type: 'success', label: 'Revue', text: 'Revue OK — Pharmacie Place', time: 'il y a 5 min', color: '#10b981' },
+  { id: 1, label: 'OFAC', text: 'Sanction détectée — DUPONT SARL', time: "à l'instant", color: '#ef4444', delay: 0.4, critical: true },
+  { id: 2, label: 'Dirigeant', text: 'Changement — CARRELAGES MOREAU', time: 'il y a 2 min', color: '#f59e0b', delay: 1.1, critical: false },
+  { id: 3, label: 'Revue', text: 'Revue OK — Pharmacie Place', time: 'il y a 5 min', color: '#10b981', delay: 1.8, critical: false },
 ];
 
 export default function AlertesLive() {
-  const [visible, setVisible] = useState<number[]>([]);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    let timeouts: number[] = [];
-
-    const cycle = () => {
-      setVisible([]);
-
-      alertes.forEach((_, i) => {
-        timeouts.push(window.setTimeout(() => {
-          setVisible((prev) => [...prev, i]);
-        }, i * 700 + 400));
-      });
-
-      timeouts.push(window.setTimeout(cycle, 6000));
-    };
-
-    cycle();
-    return () => timeouts.forEach(clearTimeout);
+    if (!ref.current) return;
+    const el = ref.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => { el.classList.toggle('in-view', entry.isIntersecting); },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <div className="space-y-2">
+    <div ref={ref} className="alertes-card space-y-2">
       <div className="flex items-center justify-between mb-3">
         <span className="text-[10px] uppercase tracking-[.18em] font-bold text-slate-400 dark:text-slate-500">
           Activité en direct
         </span>
         <span className="flex items-center gap-1 text-[11px] font-bold text-red-600 dark:text-red-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+          <span className="w-1.5 h-1.5 rounded-full bg-red-500" style={{ animation: 'critical-pulse 1.4s ease-in-out infinite' }} />
           1 critique
         </span>
       </div>
 
       <div className="space-y-2">
-        {alertes.map((alerte, i) => (
+        {alertes.map((alerte) => (
           <div
             key={alerte.id}
-            className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-50/80 dark:bg-white/[.02] border border-slate-200 dark:border-white/[.06] transition-all"
+            className="alerte-toast flex items-start gap-2 p-2.5 rounded-lg bg-slate-50/80 dark:bg-white/[.02] border border-slate-200 dark:border-white/[.06]"
             style={{
-              opacity: visible.includes(i) ? 1 : 0,
-              transform: visible.includes(i) ? 'translateX(0)' : 'translateX(20px)',
-              transition: 'all 400ms cubic-bezier(.2,.7,.2,1)',
+              animationDelay: `${alerte.delay}s`,
               borderLeftWidth: '3px',
               borderLeftColor: alerte.color,
+              willChange: 'transform, opacity',
             }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full shrink-0 mt-1.5"
               style={{
                 background: alerte.color,
-                animation: alerte.type === 'critical' ? 'critical-pulse 1.4s ease-in-out infinite' : 'none',
+                animation: alerte.critical ? 'critical-pulse 1.4s ease-in-out infinite' : 'none',
               }}
             />
             <div className="flex-1 min-w-0">

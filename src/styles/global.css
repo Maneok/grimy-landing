@@ -434,3 +434,74 @@ tr.row-hover:hover { background: rgba(0,200,150,.06); }
   0% { transform: scale(1); opacity: 0.6; }
   100% { transform: scale(1.8); opacity: 0; }
 }
+
+/* ============================================================
+   GED auto — CSS-driven animations (GPU-composited)
+   ============================================================ */
+@keyframes ged-fall {
+  0%, 100% { transform: translate3d(0, -40px, 0) rotate(-15deg); opacity: 0; }
+  5%       { transform: translate3d(0, -40px, 0) rotate(-15deg); opacity: 0; }
+  12%      { transform: translate3d(0, 110px, 0) rotate(-3deg); opacity: 1; }
+  18%      { opacity: 0; }
+}
+@keyframes ged-row-fill {
+  0%, 100% { opacity: 0.4; background: transparent; border-color: transparent; }
+  18%      { opacity: 0.4; background: transparent; border-color: transparent; }
+  22%      { opacity: 1; background: color-mix(in oklab, var(--grimy) 6%, transparent); border-color: color-mix(in oklab, var(--grimy) 20%, transparent); }
+}
+@keyframes ged-badge-show {
+  0%, 90%  { background: transparent; color: #94a3b8; border: 1px solid #cbd5e1; }
+  95%, 100% { background: var(--grimy); color: #0F172A; border: 1px solid transparent; }
+}
+
+.ged-falling-doc {
+  animation: ged-fall 9s ease-in-out infinite;
+  top: 0; left: 50%;
+  transform: translate3d(-50%, -40px, 0);
+}
+.ged-row {
+  animation: ged-row-fill 9s ease-in-out infinite;
+  border-color: transparent; background: transparent; opacity: 0.4;
+}
+.ged-badge {
+  animation: ged-badge-show 9s ease-in-out infinite;
+  background: transparent; color: #94a3b8; border: 1px solid #cbd5e1;
+}
+.ged-card:not(.in-view) .ged-falling-doc,
+.ged-card:not(.in-view) .ged-row,
+.ged-card:not(.in-view) .ged-badge { animation-play-state: paused; }
+
+/* ============================================================
+   Alertes — CSS-driven slide-in
+   ============================================================ */
+@keyframes alerte-slide-in {
+  0%, 100% { opacity: 0; transform: translate3d(20px, 0, 0); }
+  8%, 90%  { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.alerte-toast { animation: alerte-slide-in 8s ease-in-out infinite; opacity: 0; }
+.alertes-card:not(.in-view) .alerte-toast { animation-play-state: paused; }
+
+/* ============================================================
+   Hero phrase rotator — pure CSS cycle
+   ============================================================ */
+@keyframes hero-phrase-cycle {
+  0%, 22%  { opacity: 1; transform: translate3d(0, 0, 0); }
+  25%, 97% { opacity: 0; transform: translate3d(0, -8px, 0); }
+  100%     { opacity: 0; transform: translate3d(0, -8px, 0); }
+}
+.hero-rotator-phrase {
+  animation: hero-phrase-cycle 10.4s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* ============================================================
+   prefers-reduced-motion overrides for new animations
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ged-falling-doc { animation: none; opacity: 0; }
+  .ged-row { animation: none; opacity: 1; background: color-mix(in oklab, var(--grimy) 6%, transparent); border-color: color-mix(in oklab, var(--grimy) 20%, transparent); }
+  .ged-badge { animation: none; background: var(--grimy); color: #0F172A; }
+  .alerte-toast { animation: none; opacity: 1; transform: none; }
+  .hero-rotator-phrase { animation: none; }
+  .hero-rotator-phrase:first-child { opacity: 1; }
+}

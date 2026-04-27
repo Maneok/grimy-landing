@@ -167,7 +167,7 @@ export default function ScreeningDemo() {
                 {RISK_AXES.map(ax => {
                   const isSel = selected === ax.id;
                   return (
-                    <button key={ax.id} onClick={() => setSelected(ax.id)} className={`relative px-2.5 py-1 rounded-md font-semibold transition-all ${isSel ? 'text-white dark:text-slate-900' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[.05]'}`} style={isSel ? { background: ax.grimy ? 'var(--grimy)' : '#0f172a' } : {}}>
+                    <button key={ax.id} onClick={() => setSelected(ax.id)} className={`relative px-2.5 py-1 rounded-md font-semibold transition-all ${isSel ? '' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/[.05]'}`} style={isSel ? { background: ax.grimy ? 'var(--grimy)' : '#0f172a', color: ax.grimy ? '#0F172A' : '#ffffff' } : {}}>
                       {ax.name}
                       {ax.grimy && !isSel && <span className="absolute top-0.5 right-0.5 w-1 h-1 rounded-full" style={{ background: 'var(--grimy)' }} />}
                     </button>

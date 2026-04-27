@@ -134,7 +134,8 @@ const faqItems = [
     })} />
 
     <script is:inline>
-      if (localStorage.getItem('grimy-theme') === 'dark') {
+      const theme = localStorage.getItem('grimy-theme');
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.classList.add('dark');
       }
     </script>

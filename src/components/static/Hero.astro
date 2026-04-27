@@ -1,4 +1,5 @@
 ---
+import HeroPhraseRotator from '../interactive/HeroPhraseRotator.tsx';
 ---
 <section class="relative overflow-hidden hero-bg-light pt-10 pb-14">
   <div class="absolute inset-0 grain pointer-events-none opacity-50"></div>
@@ -22,7 +23,7 @@
       <h1 class="reveal wordmark text-[clamp(38px,4.6vw,56px)] leading-[1.05] tracking-[-.045em] text-slate-900 dark:text-white text-balance" id="hero-headline">
         La conformité<br/>LCB-FT,<br/>
         <span class="relative inline-block">
-          <span class="dash-under inline-block" id="hero-rotator">sans prise de tête</span>
+          <HeroPhraseRotator client:load />
           <span class="grimy-dot"></span>
         </span>
       </h1>

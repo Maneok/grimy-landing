@@ -26,7 +26,7 @@ export default function TopNav() {
     ['Vérification', '#screening'],
     ['Lettre de mission', '#lettre'],
     ['Tarifs', '#tarifs'],
-    ['Ressources', '#'],
+    ['FAQ', '#faq'],
   ];
 
   return (

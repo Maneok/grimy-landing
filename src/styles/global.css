@@ -540,4 +540,47 @@ tr.row-hover:hover::after { opacity: 1; }
   .alerte-toast { animation: none; opacity: 1; transform: none; }
   .hero-rotator-phrase { animation: none; }
   .hero-rotator-phrase:first-child { opacity: 1; }
+  .lettre-chip { animation: none; opacity: 1; transform: scale(1); }
+  .lettre-bar { animation: none; width: var(--bar-width, 100%); }
+  .lettre-highlight { animation: none; width: var(--bar-width, 100%); opacity: 1; }
 }
+
+/* ============================================================
+   Lettre de mission — interior build animation (CSS-only GPU)
+   ============================================================ */
+@keyframes lettre-chip-pop {
+  0%, 100% { opacity: 0; transform: scale(0.5) translate3d(0, 0, 0); }
+  3%       { opacity: 0; transform: scale(0.5) translate3d(0, 0, 0); }
+  10%      { opacity: 1; transform: scale(1.1) translate3d(0, 0, 0); }
+  14%, 95% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
+}
+@keyframes lettre-bar-fill {
+  0%, 100% { width: 0; }
+  10%      { width: 0; }
+  20%, 95% { width: var(--bar-width, 100%); }
+}
+@keyframes lettre-highlight-fill {
+  0%, 100% { width: 0; opacity: 0.4; }
+  35%      { width: 0; opacity: 0.4; }
+  48%, 95% { width: var(--bar-width, 100%); opacity: 1; }
+}
+
+.lettre-chip {
+  opacity: 0; transform: scale(0.5);
+  animation: lettre-chip-pop 12s cubic-bezier(.34, 1.56, .64, 1) infinite;
+  will-change: transform, opacity;
+}
+.lettre-bar {
+  width: 0;
+  animation: lettre-bar-fill 12s cubic-bezier(.4, 0, .2, 1) infinite;
+  will-change: width;
+}
+.lettre-highlight {
+  width: 0;
+  animation: lettre-highlight-fill 12s cubic-bezier(.4, 0, .2, 1) infinite;
+  will-change: width, opacity;
+}
+
+.paper-tilt:not(.in-view) .lettre-chip,
+.paper-tilt:not(.in-view) .lettre-bar,
+.paper-tilt:not(.in-view) .lettre-highlight { animation-play-state: paused; }

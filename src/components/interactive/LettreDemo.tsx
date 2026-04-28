@@ -35,6 +35,18 @@ export default function LettreDemo() {
   const mm = String(Math.floor(elapsed / 60)).padStart(2, '0');
   const ss = String(elapsed % 60).padStart(2, '0');
 
+  // Pause animations when off-screen
+  useEffect(() => {
+    if (!paperRef.current) return;
+    const el = paperRef.current;
+    const observer = new IntersectionObserver(
+      ([entry]) => { el.classList.toggle('in-view', entry.isIntersecting); },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   function onMove(e: React.MouseEvent) {
     const r = paperRef.current?.getBoundingClientRect();
     if (!r) return;
@@ -95,17 +107,29 @@ export default function LettreDemo() {
               <div className="text-[20px] font-bold tracking-tight text-slate-900 leading-tight mb-1">{page.title}</div>
               <div className="text-[11px] text-slate-500 mb-2 num">{tpl.client} &middot; SIREN {tpl.siren}</div>
               <div className="flex flex-wrap gap-1 mb-5">
-                {['SIREN', 'Raison sociale', 'Capital', 'Dirigeant'].map(c => (
-                  <span key={c} className="text-[8.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 inline-flex items-center gap-1"><CheckIcon />{c}</span>
+                {['SIREN', 'Raison sociale', 'Capital', 'Dirigeant'].map((c, i) => (
+                  <span key={c} className="lettre-chip text-[8.5px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-700 inline-flex items-center gap-1" style={{ animationDelay: `${0.3 + i * 0.3}s` }}><CheckIcon />{c}</span>
                 ))}
               </div>
-              <div className="space-y-2 mb-5">{page.widths.map((w, i) => <div key={i} className="h-[6px] rounded-full bg-slate-200" style={{ width: `${w}%` }} />)}</div>
+              <div className="space-y-2 mb-5">{page.widths.map((w, i) => (
+                <div key={i} className="relative h-[6px] rounded-full bg-slate-100 overflow-hidden" style={{ width: `${w}%` }}>
+                  <div className="lettre-bar absolute inset-y-0 left-0 bg-slate-300 rounded-full" style={{ ['--bar-width' as string]: '100%', animationDelay: `${1.5 + i * 0.7}s` }} />
+                </div>
+              ))}</div>
               <div className="relative mb-6">
                 <div className="text-[10px] font-bold text-slate-700 mb-1.5">{page.section}</div>
-                <div className="space-y-1.5">{[100, 88].map((w, i) => <div key={i} className="h-[5px] rounded-full bg-amber-200/70" style={{ width: `${w}%` }} />)}</div>
+                <div className="space-y-1.5">{[100, 88].map((w, i) => (
+                  <div key={i} className="relative h-[5px] rounded-full bg-amber-100 overflow-hidden" style={{ width: `${w}%` }}>
+                    <div className="lettre-highlight absolute inset-y-0 left-0 bg-amber-300 rounded-full" style={{ ['--bar-width' as string]: '100%', animationDelay: `${5.0 + i * 0.7}s` }} />
+                  </div>
+                ))}</div>
                 <div className="absolute margin-note hidden md:block" style={{ right: -52, top: -8, width: 100 }}>Clause obligatoire LCB-FT</div>
               </div>
-              <div className="space-y-2 mb-7">{[94, 78].map((w, i) => <div key={i} className="h-[6px] rounded-full bg-slate-200" style={{ width: `${w}%` }} />)}</div>
+              <div className="space-y-2 mb-7">{[94, 78].map((w, i) => (
+                <div key={i} className="relative h-[6px] rounded-full bg-slate-100 overflow-hidden" style={{ width: `${w}%` }}>
+                  <div className="lettre-bar absolute inset-y-0 left-0 bg-slate-300 rounded-full" style={{ ['--bar-width' as string]: '100%', animationDelay: `${7.0 + i * 0.7}s` }} />
+                </div>
+              ))}</div>
               <div className="pt-4 border-t border-slate-200 flex items-end justify-between">
                 <div>
                   <svg width="120" height="42" viewBox="0 0 120 42" className="sign-trace -mb-1.5"><path d="M5 28 Q 18 8, 30 22 T 54 26 Q 66 14, 78 28 T 110 24" fill="none" stroke="#0F172A" strokeWidth="2" strokeLinecap="round" /></svg>

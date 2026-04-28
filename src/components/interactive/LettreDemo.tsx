@@ -90,24 +90,16 @@ export default function LettreDemo() {
           <div ref={paperRef} onMouseMove={onMove} onMouseLeave={onLeave} className="relative paper-tilt paper-grain rounded-2xl bg-white dark:bg-slate-50 overflow-hidden" style={{ aspectRatio: '1 / 1.32', maxWidth: 460, '--tx': `${tilt.x}deg`, '--ty': `${tilt.y}deg`, boxShadow: '0 40px 60px -20px rgba(15,23,42,.35), 0 30px 60px -30px rgba(15,23,42,.4), 0 0 0 1px rgba(15,23,42,.06)' } as React.CSSProperties}>
             <div className="absolute inset-0 flex items-center justify-center watermark">GRIMY</div>
             <div className="binder-holes"><span className="binder-hole" /><span className="binder-hole" /><span className="binder-hole" /></div>
-            <div className="absolute top-7 right-6 stamp-signed">
+            <div className="absolute top-7 right-6">
               <div
-                className="relative rounded-full px-5 py-2.5 font-black text-[16px] tracking-[.25em] num backdrop-blur-sm"
+                className="rounded-full px-4 py-1.5 font-bold text-[13px] tracking-[.22em] num"
                 style={{
                   color: 'var(--grimy-dark)',
-                  background: 'rgba(255,255,255,0.95)',
-                  border: '3.5px solid var(--grimy-dark)',
-                  boxShadow: '0 0 0 2px rgba(255,255,255,0.6), 0 8px 22px -4px color-mix(in oklab, var(--grimy) 45%, transparent), inset 0 0 14px color-mix(in oklab, var(--grimy) 10%, transparent)',
+                  background: 'transparent',
+                  border: '1.5px solid var(--grimy-dark)',
                 }}
               >
                 SIGNÉ
-                <span
-                  className="absolute -top-1.5 -right-1.5 w-3.5 h-3.5 rounded-full"
-                  style={{
-                    background: 'var(--grimy-dark)',
-                    boxShadow: '0 0 0 2px white, 0 0 10px color-mix(in oklab, var(--grimy) 70%, transparent)',
-                  }}
-                />
               </div>
             </div>
             <div className="relative px-9 pt-9 pb-3 flex items-center gap-2 ml-8">
@@ -117,7 +109,6 @@ export default function LettreDemo() {
                   {i < 2 && <div className={`flex-1 h-px ${i < 2 ? 'bg-emerald-300' : 'bg-slate-200'}`} style={{ maxWidth: 40 }} />}
                 </span>
               ))}
-              <span className="ml-auto text-[10px] uppercase tracking-[.18em] font-bold text-slate-400 num">3 / 3</span>
             </div>
             <div className="relative px-10 pt-2 pb-9 pl-16 text-slate-800">
               <div className="text-[9px] tracking-[.32em] text-slate-400 font-bold mb-3">{tpl.name.toUpperCase()}</div>

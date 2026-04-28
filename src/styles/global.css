@@ -584,3 +584,18 @@ tr.row-hover:hover::after { opacity: 1; }
 .paper-tilt:not(.in-view) .lettre-chip,
 .paper-tilt:not(.in-view) .lettre-bar,
 .paper-tilt:not(.in-view) .lettre-highlight { animation-play-state: paused; }
+
+/* ============================================================
+   Profession badges — hover lift
+   ============================================================ */
+.profession-badge {
+  transition: transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
+  will-change: transform;
+}
+.profession-badge:hover {
+  transform: translate3d(0, -1px, 0);
+  box-shadow: 0 4px 12px -4px rgba(15,23,42,.15);
+}
+.dark .profession-badge:hover {
+  box-shadow: 0 4px 12px -4px rgba(0,0,0,.4);
+}

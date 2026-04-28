@@ -109,7 +109,7 @@ export default function DashboardSection() {
         <div className="lg:col-span-7 reveal">
           <div className="text-[12px] font-semibold uppercase tracking-[.18em] mb-3" style={{ color: 'var(--grimy-dark)' }}>01 — Tableau de bord</div>
           <h2 className="wordmark text-[44px] leading-[1.05] tracking-[-.035em] text-slate-900 dark:text-white text-balance">
-            100 clients sous les yeux. Aucun radar à cocher.
+            100 clients sous les yeux, en 1 clic.
           </h2>
         </div>
         <div className="lg:col-span-5 reveal">

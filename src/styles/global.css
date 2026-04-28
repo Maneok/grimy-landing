@@ -588,27 +588,29 @@ tr.row-hover:hover::after { opacity: 1; }
    Profession badges — hover lift
    ============================================================ */
 .profession-badge {
-  transition: transform .2s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
+  position: relative;
+  transition: transform .2s cubic-bezier(.2,.7,.2,1);
   will-change: transform;
 }
-.profession-badge:hover {
-  transform: translate3d(0, -1px, 0);
+.profession-badge::after {
+  content: ''; position: absolute; inset: 0; border-radius: 9999px;
   box-shadow: 0 4px 12px -4px rgba(15,23,42,.15);
+  opacity: 0; transition: opacity .2s ease; pointer-events: none;
 }
-.dark .profession-badge:hover {
-  box-shadow: 0 4px 12px -4px rgba(0,0,0,.4);
-}
+.profession-badge:hover { transform: translate3d(0, -1px, 0); }
+.profession-badge:hover::after { opacity: 1; }
+.dark .profession-badge::after { box-shadow: 0 4px 12px -4px rgba(0,0,0,.4); }
 
 /* ============================================================
    Hero star pulse
    ============================================================ */
 @keyframes hero-star-pulse {
-  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 transparent); }
-  50% { transform: scale(1.15) rotate(8deg); filter: drop-shadow(0 0 6px color-mix(in oklab, var(--grimy) 55%, transparent)); }
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.15) rotate(8deg); }
 }
 .hero-star-pulse {
   animation: hero-star-pulse 2.4s ease-in-out infinite;
-  will-change: transform, filter;
+  will-change: transform;
   transform-origin: center;
 }
 @media (prefers-reduced-motion: reduce) {

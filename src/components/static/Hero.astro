@@ -79,25 +79,22 @@ import HeroPhraseRotator from '../interactive/HeroPhraseRotator.tsx';
       </div>
 
       <!-- Trust avatars -->
-      <div class="reveal mt-7 flex items-center gap-3.5">
+      <div class="reveal mt-8 flex items-center gap-3">
         <div class="flex -space-x-2">
           {[
-            { bg: '#0F766E', i: 'VC' }, { bg: '#1E40AF', i: 'MD' }, { bg: '#7C2D12', i: 'PL' },
-            { bg: '#831843', i: 'SR' }, { bg: '#3730A3', i: 'JT' },
+            { bg: '#3b82f6', i: 'JM' }, { bg: '#a855f7', i: 'SF' }, { bg: '#f59e0b', i: 'LP' },
+            { bg: 'var(--grimy-dark)', i: 'AB' }, { bg: '#ef4444', i: 'MC' },
           ].map((a, idx) => (
-            <div class="w-8 h-8 rounded-full ring-2 ring-[#F4F3EE] dark:ring-[#0B1220] flex items-center justify-center text-[10.5px] font-bold text-white"
+            <div class="w-8 h-8 rounded-full ring-2 ring-[#F4F3EE] dark:ring-[#0B1220] flex items-center justify-center text-[10px] font-bold text-white"
               style={`background:${a.bg}; z-index:${5 - idx}`}>{a.i}</div>
           ))}
-          <div class="w-8 h-8 rounded-full ring-2 ring-[#F4F3EE] dark:ring-[#0B1220] flex items-center justify-center text-[10px] font-bold text-slate-700 dark:text-slate-200 bg-slate-200 dark:bg-white/[.08]">{/* TODO_GRIMY_NUMBERS */}+335</div>
         </div>
-        <div class="flex flex-col leading-tight">
-          <div class="flex items-center gap-1 text-amber-500">
-            {Array.from({ length: 5 }).map(() => (
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.39 7.36H22l-6.18 4.49L18.21 21 12 16.51 5.79 21l2.39-7.15L2 9.36h7.61L12 2z"/></svg>
-            ))}
-            <span class="text-[12px] font-semibold text-slate-700 dark:text-slate-200 ml-1.5 num">{/* TODO_GRIMY_NUMBERS */}4,9/5</span>
+        <div class="text-[12.5px]">
+          <div class="font-bold text-slate-700 dark:text-slate-200 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full mint-pulse" style="background:var(--grimy-dark)"></span>
+            Beta privée
           </div>
-          <div class="text-[11.5px] text-slate-600 dark:text-slate-400 mt-0.5">{/* TODO_GRIMY_NUMBERS */}340 cabinets nous font confiance</div>
+          <div class="text-slate-600 dark:text-slate-400">Premiers cabinets en accompagnement</div>
         </div>
       </div>
 

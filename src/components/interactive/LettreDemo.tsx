@@ -216,7 +216,7 @@ export default function LettreDemo() {
               </div>
             </div>
             <div className="mt-2 text-[12px] text-slate-500 dark:text-slate-400">
-              <span className="num font-bold text-slate-900 dark:text-white">1 247</span> lettres signées cette semaine
+              Lancement beta — Premiers signataires
             </div>
           </div>
         </div>

@@ -449,31 +449,32 @@ tr.row-hover:hover::after { opacity: 1; }
    ============================================================ */
 @keyframes ged-fall {
   0%, 100% { transform: translate3d(0, -40px, 0) rotate(-15deg); opacity: 0; }
-  5%       { transform: translate3d(0, -40px, 0) rotate(-15deg); opacity: 0; }
-  12%      { transform: translate3d(0, 110px, 0) rotate(-3deg); opacity: 1; }
-  18%      { opacity: 0; }
+  3%       { transform: translate3d(0, -40px, 0) rotate(-15deg); opacity: 0; }
+  9%       { transform: translate3d(0, 110px, 0) rotate(-3deg); opacity: 1; }
+  11%      { opacity: 1; }
+  14%      { opacity: 0; }
 }
 @keyframes ged-row-opacity {
-  0%, 18%, 100% { opacity: 0.4; }
-  22%           { opacity: 1; }
+  0%, 9%, 100% { opacity: 0.4; }
+  11%          { opacity: 1; }
 }
 @keyframes ged-row-bg {
-  0%, 18%, 100% { opacity: 0; }
-  22%           { opacity: 1; }
+  0%, 9%, 100% { opacity: 0; }
+  11%          { opacity: 1; }
 }
 @keyframes ged-badge-opacity {
-  0%, 90%, 100% { opacity: 0; }
-  95%           { opacity: 1; }
+  0%, 76%, 100% { opacity: 0; }
+  80%           { opacity: 1; }
 }
 
 .ged-falling-doc {
-  animation: ged-fall 9s ease-in-out infinite;
+  animation: ged-fall 6.5s ease-in-out infinite;
   top: 0; left: 50%;
   transform: translate3d(-50%, -40px, 0);
 }
 .ged-row {
   position: relative;
-  animation: ged-row-opacity 9s ease-in-out infinite;
+  animation: ged-row-opacity 6.5s ease-in-out infinite;
   opacity: 0.4;
 }
 .ged-row::before {
@@ -481,7 +482,7 @@ tr.row-hover:hover::after { opacity: 1; }
   background: color-mix(in oklab, var(--grimy) 6%, transparent);
   border: 1px solid color-mix(in oklab, var(--grimy) 20%, transparent);
   opacity: 0;
-  animation: ged-row-bg 9s ease-in-out infinite;
+  animation: ged-row-bg 6.5s ease-in-out infinite;
 }
 .ged-badge {
   position: relative;
@@ -492,10 +493,10 @@ tr.row-hover:hover::after { opacity: 1; }
   background: var(--grimy);
   border-radius: 9999px;
   opacity: 0;
-  animation: ged-badge-opacity 9s ease-in-out infinite;
+  animation: ged-badge-opacity 6.5s ease-in-out infinite;
   z-index: -1;
 }
-.ged-badge.ged-badge { animation: ged-badge-opacity 9s ease-in-out infinite; opacity: 1; }
+.ged-badge.ged-badge { animation: ged-badge-opacity 6.5s ease-in-out infinite; opacity: 1; }
 .ged-card:not(.in-view) .ged-falling-doc,
 .ged-card:not(.in-view) .ged-row,
 .ged-card:not(.in-view) .ged-row::before,

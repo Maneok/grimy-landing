@@ -2,10 +2,10 @@ import { useEffect, useRef } from 'react';
 
 const documents = [
   { id: 'kbis', label: 'KBIS', color: '#475569', filename: 'KBIS_Hotel_Belle_Vue.pdf', delay: 0 },
-  { id: 'cni', label: 'CNI', color: '#3b82f6', filename: 'CNI_Dirigeant.pdf', delay: 1.5 },
-  { id: 'rib', label: 'RIB', color: '#a855f7', filename: 'RIB_Belle_Vue.pdf', delay: 3 },
-  { id: 'pdf', label: 'PDF', color: '#dc2626', filename: 'Statuts_SAS.pdf', delay: 4.5 },
-  { id: 'rbe', label: 'RBE', color: 'var(--grimy-dark)', filename: 'Beneficiaires_RBE.pdf', delay: 6 },
+  { id: 'cni', label: 'CNI', color: '#3b82f6', filename: 'CNI_Dirigeant.pdf', delay: 1.0 },
+  { id: 'rib', label: 'RIB', color: '#a855f7', filename: 'RIB_Belle_Vue.pdf', delay: 2.0 },
+  { id: 'pdf', label: 'PDF', color: '#dc2626', filename: 'Statuts_SAS.pdf', delay: 3.0 },
+  { id: 'rbe', label: 'RBE', color: 'var(--grimy-dark)', filename: 'Beneficiaires_RBE.pdf', delay: 4.0 },
 ];
 
 export default function GedAutoCard() {
@@ -67,7 +67,7 @@ export default function GedAutoCard() {
         <div className="space-y-1.5">
           {documents.map((doc) => (
             <div key={doc.id} className="ged-row flex items-center gap-2 px-2 py-1.5 rounded-md border"
-              style={{ animationDelay: `${doc.delay + 0.7}s`, willChange: 'opacity, transform' }}>
+              style={{ animationDelay: `${doc.delay + 0.55}s`, willChange: 'opacity, transform' }}>
               <span className="w-7 h-5 rounded-sm flex items-center justify-center text-[8px] font-black text-white shrink-0"
                 style={{ background: doc.color }}>
                 {doc.label}

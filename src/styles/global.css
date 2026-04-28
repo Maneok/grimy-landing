@@ -162,8 +162,8 @@ body {
 @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
 .shimmer { background: linear-gradient(90deg, transparent 25%, rgba(0,200,150,.18) 50%, transparent 75%); background-size: 200% 100%; animation: shimmer 1.4s ease-in-out infinite; }
 
-@keyframes bar-fill { from { width: 0%; } }
-.bar-fill { animation: bar-fill 1.2s cubic-bezier(.2,.7,.2,1) forwards; }
+@keyframes bar-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.bar-fill { animation: bar-fill 1.2s cubic-bezier(.2,.7,.2,1) forwards; transform-origin: left; will-change: transform; }
 
 @keyframes highlight-row-fade { 0% { opacity: 1; } 100% { opacity: 0; } }
 .highlight-row { position: relative; }
@@ -190,10 +190,9 @@ body {
 @keyframes save-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 .save-dot { animation: save-pulse 1.6s ease-in-out infinite; }
 
-@keyframes compare-fill-manual { from { width: 0; } to { width: 100%; } }
-@keyframes compare-fill-grimy { from { width: 0; } to { width: 5%; } }
-.compare-manual { animation: compare-fill-manual 1.4s cubic-bezier(.2,.7,.2,1) .4s both; }
-.compare-grimy { animation: compare-fill-grimy 1s cubic-bezier(.2,.7,.2,1) 1.6s both; }
+@keyframes compare-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.compare-manual { animation: compare-fill 1.4s cubic-bezier(.2,.7,.2,1) .4s both; transform-origin: left; will-change: transform; }
+.compare-grimy { animation: compare-fill 1s cubic-bezier(.2,.7,.2,1) 1.6s both; transform-origin: left; will-change: transform; }
 
 @keyframes sign-trace { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
 .sign-trace path { stroke-dasharray: 400; stroke-dashoffset: 400; animation: sign-trace 1.4s ease-in-out 4.7s forwards; }
@@ -541,8 +540,8 @@ tr.row-hover:hover::after { opacity: 1; }
   .hero-rotator-phrase { animation: none; }
   .hero-rotator-phrase:first-child { opacity: 1; }
   .lettre-chip { animation: none; opacity: 1; transform: scale(1); }
-  .lettre-bar { animation: none; width: var(--bar-width, 100%); }
-  .lettre-highlight { animation: none; width: var(--bar-width, 100%); opacity: 1; }
+  .lettre-bar { animation: none; transform: scaleX(1); }
+  .lettre-highlight { animation: none; transform: scaleX(1); opacity: 1; }
 }
 
 /* ============================================================
@@ -555,14 +554,14 @@ tr.row-hover:hover::after { opacity: 1; }
   14%, 95% { opacity: 1; transform: scale(1) translate3d(0, 0, 0); }
 }
 @keyframes lettre-bar-fill {
-  0%, 100% { width: 0; }
-  10%      { width: 0; }
-  20%, 95% { width: var(--bar-width, 100%); }
+  0%, 100% { transform: scaleX(0); }
+  10%      { transform: scaleX(0); }
+  20%, 95% { transform: scaleX(1); }
 }
 @keyframes lettre-highlight-fill {
-  0%, 100% { width: 0; opacity: 0.4; }
-  35%      { width: 0; opacity: 0.4; }
-  48%, 95% { width: var(--bar-width, 100%); opacity: 1; }
+  0%, 100% { transform: scaleX(0); opacity: 0.4; }
+  35%      { transform: scaleX(0); opacity: 0.4; }
+  48%, 95% { transform: scaleX(1); opacity: 1; }
 }
 
 .lettre-chip {
@@ -571,14 +570,14 @@ tr.row-hover:hover::after { opacity: 1; }
   will-change: transform, opacity;
 }
 .lettre-bar {
-  width: 0;
+  transform: scaleX(0); transform-origin: left;
   animation: lettre-bar-fill 7s cubic-bezier(.4, 0, .2, 1) infinite;
-  will-change: width;
+  will-change: transform;
 }
 .lettre-highlight {
-  width: 0;
+  transform: scaleX(0); transform-origin: left;
   animation: lettre-highlight-fill 7s cubic-bezier(.4, 0, .2, 1) infinite;
-  will-change: width, opacity;
+  will-change: transform, opacity;
 }
 
 .paper-tilt:not(.in-view) .lettre-chip,

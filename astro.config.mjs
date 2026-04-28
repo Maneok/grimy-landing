@@ -17,10 +17,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       cssMinify: 'lightningcss',
+      target: 'es2020',
       rollupOptions: {
         output: {
           manualChunks: (id) => {
-            if (id.includes('node_modules/react')) return 'react-vendor';
+            if (id.includes('node_modules/react-dom')) return 'react-dom';
+            if (id.includes('node_modules/react/') || id.includes('node_modules/react/jsx-runtime')) return 'react';
           },
         },
       },

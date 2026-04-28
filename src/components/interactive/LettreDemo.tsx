@@ -216,7 +216,7 @@ export default function LettreDemo() {
               </div>
             </div>
             <div className="mt-2 text-[12px] text-slate-500 dark:text-slate-400">
-              Lancement beta — Premiers signataires
+              Plateforme LCB-FT — Pour cabinets exigeants
             </div>
           </div>
         </div>

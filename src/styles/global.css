@@ -599,3 +599,19 @@ tr.row-hover:hover::after { opacity: 1; }
 .dark .profession-badge:hover {
   box-shadow: 0 4px 12px -4px rgba(0,0,0,.4);
 }
+
+/* ============================================================
+   Hero star pulse
+   ============================================================ */
+@keyframes hero-star-pulse {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 transparent); }
+  50% { transform: scale(1.15) rotate(8deg); filter: drop-shadow(0 0 6px color-mix(in oklab, var(--grimy) 55%, transparent)); }
+}
+.hero-star-pulse {
+  animation: hero-star-pulse 2.4s ease-in-out infinite;
+  will-change: transform, filter;
+  transform-origin: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-star-pulse { animation: none; }
+}

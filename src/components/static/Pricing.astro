@@ -39,7 +39,7 @@ const checkSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" st
         <div class={`text-[12px] mb-6 ${p.featured ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
           HT &middot; facturation {annual ? 'annuelle' : 'mensuelle'} &middot; {p.users} &middot; {p.clients}
         </div>
-        <a href="https://app.grimy.fr" class={`block text-center text-[14px] font-semibold py-2.5 rounded-lg mb-6 transition ${p.featured ? 'text-slate-900 hover:opacity-90' : 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90'}`}
+        <a href={p.cta === 'Nous contacter' ? 'mailto:contact@grimy.fr' : 'https://app.grimy.fr/auth'} class={`block text-center text-[14px] font-semibold py-2.5 rounded-lg mb-6 transition ${p.featured ? 'text-slate-900 hover:opacity-90' : 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90'}`}
           style={p.featured ? 'background:var(--grimy)' : ''}>
           {p.cta}
         </a>

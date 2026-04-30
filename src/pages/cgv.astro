@@ -1,0 +1,108 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+---
+<BaseLayout title="CGV — Conditions Générales de Vente — GRIMY" description="Conditions Générales de Vente de GRIMY SAS — abonnements, tarification, facturation et remboursements.">
+  <main class="max-w-3xl mx-auto px-6 py-20">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Conditions Générales de Vente</h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 mb-12">Version en vigueur — avril 2026</p>
+
+    <section class="prose prose-slate dark:prose-invert max-w-none space-y-10 text-slate-600 dark:text-slate-300">
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 1 — Champ d'application</h2>
+        <p>Les présentes Conditions Générales de Vente (ci-après « CGV ») régissent les relations commerciales entre GRIMY SAS (ci-après « GRIMY ») et tout Cabinet souscrivant à un abonnement payant sur la plateforme app.grimy.fr. Toute souscription implique l'acceptation pleine et entière des présentes CGV ainsi que des Conditions Générales d'Utilisation.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 2 — Plans et tarification</h2>
+        <p>GRIMY propose les plans d'abonnement suivants (tarifs HT) :</p>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-100 dark:bg-white/5">
+                <th class="text-left p-3 font-semibold text-slate-800 dark:text-slate-200">Plan</th>
+                <th class="text-left p-3 font-semibold text-slate-800 dark:text-slate-200">Mensuel</th>
+                <th class="text-left p-3 font-semibold text-slate-800 dark:text-slate-200">Annuel</th>
+                <th class="text-left p-3 font-semibold text-slate-800 dark:text-slate-200">Utilisateurs</th>
+                <th class="text-left p-3 font-semibold text-slate-800 dark:text-slate-200">Clients</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 dark:divide-white/10">
+              <tr>
+                <td class="p-3">Solo</td>
+                <td class="p-3">59 € HT/mois</td>
+                <td class="p-3">49 € HT/mois</td>
+                <td class="p-3">1</td>
+                <td class="p-3">25</td>
+              </tr>
+              <tr>
+                <td class="p-3">Cabinet</td>
+                <td class="p-3">95 € HT/mois</td>
+                <td class="p-3">79 € HT/mois</td>
+                <td class="p-3">5</td>
+                <td class="p-3">150</td>
+              </tr>
+              <tr>
+                <td class="p-3">Groupe</td>
+                <td class="p-3" colspan="2">Sur devis — à partir de 199 € HT/mois</td>
+                <td class="p-3">20</td>
+                <td class="p-3">Illimité</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-4">Les tarifs sont exprimés hors taxes. La TVA applicable est celle en vigueur au moment de la facturation (actuellement 20 % en France). GRIMY se réserve le droit de modifier ses tarifs avec un préavis de 60 jours.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 3 — Essai gratuit</h2>
+        <p>Tout nouveau Cabinet bénéficie d'une période d'essai gratuit de <strong>14 jours</strong>, sans engagement et sans nécessité de renseigner un moyen de paiement. À l'issue de cette période :</p>
+        <ul class="mt-3 space-y-1">
+          <li>En l'absence de souscription : l'accès aux fonctionnalités est suspendu. Les données saisies restent accessibles en lecture seule et exportables pendant 30 jours supplémentaires.</li>
+          <li>En cas de souscription : l'abonnement prend effet immédiatement, sans double facturation.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 4 — Souscription et facturation</h2>
+        <p><strong>4.1 Souscription.</strong> La souscription est réalisée en ligne, par carte bancaire, via notre prestataire de paiement sécurisé Stripe. Aucune donnée de paiement n'est stockée sur les serveurs de GRIMY.</p>
+        <p class="mt-3"><strong>4.2 Facturation annuelle.</strong> Pour les abonnements annuels, la totalité du montant annuel est facturée à la souscription. Une facture conforme aux exigences fiscales françaises est émise immédiatement et disponible dans l'espace facturation du Cabinet.</p>
+        <p class="mt-3"><strong>4.3 Facturation mensuelle.</strong> Pour les abonnements mensuels, le prélèvement est effectué à date fixe chaque mois. En cas d'échec de prélèvement, GRIMY procède à deux nouvelles tentatives avant suspension du service.</p>
+        <p class="mt-3"><strong>4.4 Quotas.</strong> En cas de dépassement du quota de clients d'un plan, le Cabinet est notifié à 80 % du quota. Le dépassement à 100 % bloque uniquement l'ajout de nouveaux clients — les fonctionnalités existantes restent actives. Un upgrade de plan est possible à tout moment sans interruption de service.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 5 — Résiliation et remboursement</h2>
+        <p><strong>5.1 Résiliation par le Cabinet.</strong> Le Cabinet peut résilier son abonnement à tout moment depuis les paramètres de son compte. La résiliation prend effet à la fin de la période en cours (mois ou année selon le plan).</p>
+        <p class="mt-3"><strong>5.2 Remboursement.</strong> Les abonnements annuels ne sont pas remboursables, sauf en cas de manquement grave de GRIMY à ses obligations. Pour les abonnements mensuels, aucun remboursement n'est dû pour le mois en cours.</p>
+        <p class="mt-3"><strong>5.3 Résiliation par GRIMY.</strong> GRIMY peut résilier un abonnement en cas de non-paiement persistant, d'utilisation frauduleuse ou de violation des CGU, avec un préavis de 15 jours sauf cas de force majeure ou violation grave.</p>
+        <p class="mt-3"><strong>5.4 Export des données.</strong> Quelle que soit la cause de résiliation, le Cabinet dispose d'un délai de 30 jours pour exporter l'intégralité de ses données. Passé ce délai, les données sont supprimées définitivement.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 6 — Upgrade et downgrade</h2>
+        <p>Un upgrade de plan est effectif immédiatement, avec facturation proratisée. Un downgrade est effectif à la prochaine échéance de facturation. Si le nombre de clients actifs dépasse le quota du plan inférieur, le downgrade sera bloqué jusqu'à réduction du portefeuille.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 7 — Garantie de service (SLA)</h2>
+        <p>GRIMY s'engage à une disponibilité cible de la Plateforme de <strong>99,5 %</strong> par mois civil (hors maintenances planifiées). En cas d'indisponibilité avérée supérieure à ce seuil, GRIMY offrira un avoir calculé proportionnellement à la durée d'indisponibilité sur la prochaine facturation. Le plan Groupe bénéficie d'un SLA renforcé de 99,9 % défini contractuellement.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 8 — Droit de rétractation</h2>
+        <p>Conformément à l'article L.221-28 du Code de la consommation, le droit de rétractation de 14 jours ne s'applique pas aux services numériques dont l'exécution a commencé avec l'accord préalable du consommateur. L'accès immédiat à la Plateforme après souscription vaut renonciation au droit de rétractation. Toutefois, GRIMY accordera un remboursement à titre commercial dans les 48 heures suivant une première souscription payante si aucune fonctionnalité n'a été utilisée.</p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-slate-900 dark:text-white mb-4">Article 9 — Droit applicable</h2>
+        <p>Les présentes CGV sont soumises au droit français. Tout litige relatif à leur interprétation ou exécution sera soumis aux tribunaux compétents de Paris, sauf disposition légale contraire applicable au consommateur.</p>
+      </div>
+
+      <div class="border-t border-slate-200 dark:border-white/10 pt-8">
+        <p class="text-sm text-slate-500">Pour toute question relative à la facturation : <a href="mailto:contact@grimy.fr" class="text-indigo-600 hover:underline">contact@grimy.fr</a></p>
+      </div>
+
+    </section>
+  </main>
+</BaseLayout>

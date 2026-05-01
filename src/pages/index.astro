@@ -7,7 +7,6 @@ import TrustMarquee from '../components/static/TrustMarquee.astro';
 import BeforeAfter from '../components/static/BeforeAfter.astro';
 import LettreSection from '../components/static/LettreSection.astro';
 import FeatureGrid from '../components/static/FeatureGrid.astro';
-import Testimonial from '../components/static/Testimonial.astro';
 import Pricing from '../components/static/Pricing.astro';
 import FAQ from '../components/static/FAQ.astro';
 import FinalCTA from '../components/static/FinalCTA.astro';
@@ -173,7 +172,6 @@ const faqItems = [
         </LettreSection>
 
         <FeatureGrid />
-        <Testimonial />
 
         <Pricing>
           <PricingToggle slot="toggle" client:idle />
@@ -193,33 +191,5 @@ const faqItems = [
       <StickyMobileCTABar />
       <Confetti client:idle />
     </div>
-    <script is:inline>
-    // Charger le compteur founding members depuis Supabase
-    (async () => {
-      try {
-        const r = await fetch(
-          'https://szjcmepjuxlvnkqbxqqr.supabase.co/rest/v1/grimy_config?key=eq.founding_members_count&select=value',
-          { headers: { 'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN6amNtZXBqdXhsdm5rcWJ4cXFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI4MjE3OTIsImV4cCI6MjA4ODM5Nzc5Mn0.Y1pAtDUdUTxm0ixzHN0NU4AprBMivvR8lZTnmKJvahk' } }
-        );
-        const data = await r.json();
-        if (data && data[0]) {
-          const count = parseInt(data[0].value) || 17;
-          const el = document.getElementById('founding-count');
-          if (el) el.textContent = count;
-          // Mettre à jour le text "X places restantes"
-          const remaining = document.querySelectorAll('[data-founding-remaining]');
-          remaining.forEach(el => el.textContent = (100 - count) + ' places restantes');
-          // Mettre à jour le SVG stroke-dashoffset (326.7 = circumference, 17/100 = 17%)
-          const circle = document.querySelector('#founding-circle');
-          if (circle) {
-            const pct = count / 100;
-            const dash = 326.7 * pct;
-            const offset = 326.7 - dash;
-            circle.setAttribute('stroke-dashoffset', offset);
-          }
-        }
-      } catch (e) { /* silencieux */ }
-    })();
-  </script>
 </body>
 </html>

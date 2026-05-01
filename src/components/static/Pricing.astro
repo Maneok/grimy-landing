@@ -1,57 +1,332 @@
 ---
-interface Props {
-  annual?: boolean;
-}
-const { annual = true } = Astro.props;
-
-const plans = [
-  { name: 'Solo', monthly: 59, annual: 49, desc: 'Indépendants & micro-cabinets', users: '1 utilisateur', clients: '25 clients', features: ['Tableau de bord','Lettres de mission illimitées','Vérification 9 sources','Revues périodiques','Support email'], cta: 'Démarrer', featured: false },
-  { name: 'Cabinet', monthly: 99, annual: 79, desc: 'La majorité de nos clients', users: '5 utilisateurs', clients: '150 clients', features: ['Tout Solo, plus :','Documents illimités','Revues automatiques','Multi-utilisateurs','Support prioritaire'], cta: 'Démarrer', featured: true },
-  { name: 'Groupe', monthly: 249, annual: 199, desc: 'Cabinets multi-sites', users: '20 utilisateurs', clients: 'Illimité', features: ['Tout Cabinet, plus :','Connexion unique (SSO)','Connecteurs sur mesure','Accompagnant dédié','Service garanti 99,9 %'], cta: 'Nous contacter', featured: false },
-];
-
-const checkSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>';
 ---
 <section id="tarifs" class="max-w-[1280px] mx-auto px-6 py-24">
-  <div class="text-center mb-10 reveal">
-    <div class="text-[12px] font-semibold uppercase tracking-[.18em] mb-3" style="color:var(--grimy-dark)">05 — Tarifs publics</div>
-    <h2 class="wordmark text-[44px] leading-[1.05] tracking-[-.035em] text-slate-900 dark:text-white">Sans démo obligatoire. Sans devis caché.</h2>
-    <p class="mt-4 text-[16px] text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">Prix par cabinet, pas par utilisateur. Annulable à tout moment. 14 jours d'essai sans CB.</p>
-    <slot name="toggle" />
+
+  <!-- [1] HEADER — Cadrage immédiat -->
+  <div class="text-center mb-6 reveal">
+    <div class="text-[11px] font-bold uppercase tracking-[.2em] mb-4" style="color:var(--grimy-dark)">05 — Tarifs</div>
+    <h2 class="wordmark text-[42px] sm:text-[52px] leading-[1.05] tracking-[-.03em] text-slate-900 dark:text-white max-w-3xl mx-auto">
+      Pensée par un expert-comptable. Tarifée pour les cabinets.
+    </h2>
+    <p class="mt-4 text-[16px] text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      GRIMY automatise ce qui vous fait perdre <strong>100 heures par an</strong>. Commencez gratuitement — sans carte bancaire.
+    </p>
+
+    <!-- Toggle mensuel/annuel -->
+    <div class="inline-flex items-center gap-2 mt-7 p-1 rounded-full text-[13px] font-medium bg-slate-200/60 dark:bg-white/[.04]" id="billing-toggle">
+      <button onclick="setBilling('monthly')" id="btn-monthly"
+        class="px-4 py-1.5 rounded-full transition text-slate-600 dark:text-slate-300">
+        Mensuel
+      </button>
+      <button onclick="setBilling('annual')" id="btn-annual"
+        class="px-4 py-1.5 rounded-full transition flex items-center gap-2 bg-white dark:bg-slate-900 shadow-sm text-slate-900 dark:text-white">
+        Annuel
+        <span class="text-[10.5px] font-bold uppercase px-1.5 py-0.5 rounded text-white" style="background:var(--grimy-dark)">−2 mois</span>
+      </button>
+    </div>
+
+    <!-- Économie annuel -->
+    <p class="text-[12px] text-slate-500 dark:text-slate-400 mt-2" id="annual-savings">
+      Tarification annuelle activée — vous économisez jusqu'à 2 mois.
+    </p>
   </div>
 
-  <div class="grid md:grid-cols-3 gap-5" id="pricing-cards" data-annual={annual ? 'true' : 'false'}>
-    {plans.map((p, i) => (
-      <div class={`reveal relative rounded-2xl p-7 border mock-shadow card-lift ${p.featured ? 'border-transparent text-white' : 'bg-white dark:bg-slate-900 border-slate-200 dark:border-white/[.06]'}`}
-        style={p.featured ? 'background: linear-gradient(180deg, #0F172A 0%, #1E293B 100%);' : ''}>
-        {p.featured && (
-          <span class="absolute -top-2.5 left-7 text-[10.5px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md text-slate-900" style="background:var(--grimy)">Le plus choisi</span>
-        )}
-        <div class={`text-[16px] font-semibold tracking-tight ${p.featured ? 'text-white' : 'text-slate-900 dark:text-white'}`}>{p.name}</div>
-        <div class={`text-[13px] mt-0.5 ${p.featured ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>{p.desc}</div>
-        <div class="mt-6 mb-1 flex items-baseline gap-1">
-          <span class={`num text-[44px] font-bold tracking-tight ${p.featured ? 'text-white' : 'text-slate-900 dark:text-white'}`}
-            data-monthly={p.monthly} data-annual={p.annual}>
-            &euro;{annual ? p.annual : p.monthly}
-          </span>
-          <span class={`text-[13px] ${p.featured ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>/cabinet/mois</span>
-        </div>
-        <div class={`text-[12px] mb-6 ${p.featured ? 'text-slate-400' : 'text-slate-500 dark:text-slate-400'}`}>
-          HT &middot; facturation {annual ? 'annuelle' : 'mensuelle'} &middot; {p.users} &middot; {p.clients}
-        </div>
-        <a href={p.cta === 'Nous contacter' ? 'mailto:contact@grimy.fr' : 'https://app.grimy.fr/auth'} class={`block text-center text-[14px] font-semibold py-2.5 rounded-lg mb-6 transition ${p.featured ? 'text-slate-900 hover:opacity-90' : 'bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90'}`}
-          style={p.featured ? 'background:var(--grimy)' : ''}>
-          {p.cta}
-        </a>
-        <ul class="space-y-2.5">
-          {p.features.map(f => (
-            <li class={`flex items-start gap-2 text-[13.5px] ${p.featured ? 'text-slate-200' : 'text-slate-700 dark:text-slate-300'}`}>
-              <span class="mt-[3px] flex-shrink-0" style={p.featured ? 'color:var(--grimy)' : 'color:var(--grimy-dark)'} set:html={checkSvg} />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
+  <!-- [2] PROOF BAR — Preuve sociale -->
+  <div class="flex flex-wrap items-center justify-center gap-6 mb-12 py-5 px-8 rounded-2xl bg-slate-50 dark:bg-white/[.03] border border-slate-200/60 dark:border-white/[.06] reveal">
+    <div class="flex items-center gap-2">
+      <div class="flex -space-x-2">
+        {['JM','SF','LP','AB','MC'].map(i => (
+          <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-[9px] font-bold text-white border-2 border-white dark:border-slate-900">
+            {i}
+          </div>
+        ))}
       </div>
-    ))}
+      <span class="text-[13px] text-slate-600 dark:text-slate-300 font-medium">Rejoints par les premiers cabinets fondateurs</span>
+    </div>
+    <div class="h-4 w-px bg-slate-200 dark:bg-white/10 hidden sm:block"></div>
+    <blockquote class="text-[13px] text-slate-600 dark:text-slate-400 italic max-w-sm">
+      "En 3 semaines, GRIMY a remplacé 4 outils dans notre cabinet. On regagne 2 jours par mois."
+      <footer class="mt-1 not-italic font-semibold text-slate-700 dark:text-slate-300 text-[12px]">
+        — Cabinet COMPTADEC, Marseille
+      </footer>
+    </blockquote>
   </div>
+
+  <!-- [3] GRILLE TARIFAIRE — 4 plans avec biais activés -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12" id="pricing-grid">
+
+    <!-- Cabinet+ (ancre haute — visible en premier sur desktop XL) -->
+    <!-- Note: sur mobile, affiché en dernier via order-last -->
+    <div class="reveal order-last xl:order-none relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
+      <div class="text-[10px] font-bold uppercase tracking-wider text-violet-500 dark:text-violet-400 mb-3">💎 Cabinets établis</div>
+      <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Cabinet<span style="color:var(--grimy)">+</span></div>
+      <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-1">Pour les cabinets de 5 à 15 EC</p>
+
+      <div class="mt-5 flex items-baseline gap-1">
+        <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white" data-monthly="349" data-annual="299" id="price-plus">299</span>
+        <span class="text-[13px] text-slate-500 dark:text-slate-400">€ HT/mois</span>
+      </div>
+      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-1" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
+      <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium mb-5">= 0,15€/jour par client suivi</p>
+
+      <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-100 dark:bg-white/[.07] text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[.12]">
+        Demander une démo
+      </a>
+
+      <ul class="space-y-2 flex-1">
+        {[
+          "Tout Cabinet Pro, plus :",
+          "2 000 clients en suivi LCB-FT",
+          "400 signatures incluses (0,80€/sig. supp.)",
+          "Onboarding 2h en visio avec un EC",
+          "Migration assistée de votre portefeuille",
+          "Point annuel dédié (1h visio)",
+          "Mises à jour réglementaires en avant-première",
+        ].map((f, i) => (
+          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? 'font-semibold text-slate-700 dark:text-slate-200 mt-1' : 'text-slate-600 dark:text-slate-300'}`}>
+            {i > 0 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="text-[11px] text-slate-400 mt-4">Vous remplacez 5 abonnements logiciels en un seul.</p>
+    </div>
+
+    <!-- GRIMY Essentiel — Free -->
+    <div class="reveal relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
+      <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">🟢 Gratuit pour toujours</div>
+      <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Essentiel</div>
+      <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-1">Pour découvrir GRIMY avec votre premier portefeuille</p>
+
+      <div class="mt-5 flex items-baseline gap-1">
+        <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white">0</span>
+        <span class="text-[13px] text-slate-500 dark:text-slate-400">€/mois</span>
+      </div>
+      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-5">Pas de carte bancaire requise.</p>
+
+      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/20">
+        Démarrer gratuitement
+      </a>
+
+      <ul class="space-y-2 flex-1">
+        {[
+          "10 clients en suivi LCB-FT",
+          "Conformité LCB-FT complète (rien de bridé)",
+          "INPI, Pappers, BODACC, Sanctions, Annuaire",
+          "Risk scoring, GED, registre, journal d'audit",
+          "3 lettres de mission offertes par mois",
+          "(au-delà : 15€ par lettre)",
+          "6€ par signature électronique",
+        ].map((f, i) => (
+          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? '' : ''} ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[12px] pl-5' : 'text-slate-600 dark:text-slate-300'}`}>
+            {![5,6].includes(i) && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- GRIMY Cabinet -->
+    <div class="reveal relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
+      <div class="text-[10px] font-bold uppercase tracking-wider text-blue-500 mb-3">✦ Cabinets indépendants</div>
+      <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Cabinet</div>
+      <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-1">Pour les cabinets de 1 à 3 EC</p>
+
+      <div class="mt-5 flex items-baseline gap-1">
+        <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white" data-monthly="99" data-annual="85" id="price-cabinet">85</span>
+        <span class="text-[13px] text-slate-500 dark:text-slate-400">€ HT/mois</span>
+      </div>
+      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-5" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
+
+      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90">
+        Essayer 30 jours sans engagement
+      </a>
+
+      <ul class="space-y-2 flex-1">
+        {[
+          "Tout Essentiel, plus :",
+          "200 clients en suivi LCB-FT",
+          "Lettres de mission ILLIMITÉES",
+          "50 signatures incluses (1,50€/sig. supp.)",
+          "Revue périodique automatisée",
+          "Alertes temps réel (dirigeant, sanctions, BODACC)",
+          "Enrichissement Pappers complet",
+          "Support email sous 24h ouvrées",
+        ].map((f, i) => (
+          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? 'font-semibold text-slate-700 dark:text-slate-200 mt-1' : 'text-slate-600 dark:text-slate-300'}`}>
+            {i > 0 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0" style="color:var(--grimy-dark)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- GRIMY Cabinet Pro — LE PLUS CHOISI (leurre + ancre) -->
+    <div class="reveal relative rounded-2xl p-6 flex flex-col text-white" style="background: linear-gradient(160deg, #0F172A 0%, #1B2A4A 100%); border: 1px solid rgba(99,102,241,.35);">
+      <span class="absolute -top-3 left-6 text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full text-slate-900" style="background:var(--grimy)">
+        ⭐ Le plus choisi
+      </span>
+
+      <div class="text-[10px] font-bold uppercase tracking-wider text-indigo-400 mb-3 mt-2">🔵 Cabinets en croissance</div>
+      <div class="text-[18px] font-bold tracking-tight text-white">Cabinet Pro</div>
+      <p class="text-[13px] text-slate-400 mt-1">Pour les cabinets avec collaborateurs</p>
+
+      <div class="mt-5 flex items-baseline gap-1">
+        <span class="text-[42px] font-black tracking-tight text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
+        <span class="text-[13px] text-slate-400">€ HT/mois</span>
+      </div>
+      <p class="text-[11px] text-slate-500 mb-1" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
+      <p class="text-[11px] text-indigo-400 font-medium mb-5">= 0,19€/jour par client suivi</p>
+
+      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition text-slate-900 hover:opacity-90" style="background:var(--grimy)">
+        Essayer 30 jours sans engagement
+      </a>
+
+      <ul class="space-y-2 flex-1">
+        {[
+          "Tout Cabinet, plus :",
+          "800 clients en suivi LCB-FT",
+          "Multi-utilisateurs avec rôles (Admin / Collab.)",
+          "150 signatures incluses (1€/sig. supp.)",
+          "Module Gouvernance & Contrôle qualité",
+          "Diagnostic 360° du cabinet",
+          "Tableau de bord cockpit avec KPIs",
+          "Support prioritaire — réponse sous 4h",
+        ].map((f, i) => (
+          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? 'font-semibold text-white mt-1' : 'text-slate-300'}`}>
+            {i > 0 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0" style="color:var(--grimy)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- Pied de grille — liste d'attente premium -->
+  <div class="text-center mb-16 py-5 px-6 rounded-2xl border border-dashed border-slate-200 dark:border-white/[.08] bg-slate-50/50 dark:bg-white/[.02] reveal">
+    <p class="text-[14px] text-slate-600 dark:text-slate-400">
+      <strong class="text-slate-800 dark:text-slate-200">Plus de 2 000 clients ou plusieurs cabinets ?</strong>
+      Nous préparons une API publique et des fonctionnalités multi-sites.
+    </p>
+    <a href="mailto:contact@grimy.fr?subject=Liste d'attente multi-sites"
+      class="inline-block mt-3 text-[13px] font-semibold px-5 py-2 rounded-lg border border-slate-300 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/[.04] transition">
+      Rejoindre la liste d'attente →
+    </a>
+  </div>
+
+  <!-- [4] AVERSION À LA PERTE -->
+  <div class="mb-16 reveal">
+    <h3 class="text-[22px] sm:text-[28px] font-bold tracking-tight text-slate-900 dark:text-white mb-8 text-center">
+      Sans GRIMY, votre cabinet perd chaque mois :
+    </h3>
+    <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+      {[
+        { icon: "⏱", title: "22 heures de saisie manuelle", sub: "Soit 1 760€ de votre temps facturable au taux moyen d'un EC." },
+        { icon: "📋", title: "100€ de signatures externes", sub: "Yousign, DocuSign, outils ponctuels — coût invisible mais réel." },
+        { icon: "📊", title: "2 jours de préparation audit OEC", sub: "Les dossiers non structurés coûtent cher lors des contrôles." },
+        { icon: "🚨", title: "Risque d'amende AMF", sub: "Jusqu'à 100 000€ en cas de manquement LCB-FT constaté." },
+      ].map(item => (
+        <div class="flex items-start gap-4 p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-white/[.06]">
+          <span class="text-2xl shrink-0">{item.icon}</span>
+          <div>
+            <p class="text-[14px] font-semibold text-slate-800 dark:text-slate-200">{item.title}</p>
+            <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">{item.sub}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="text-center mt-6 text-[15px] text-slate-700 dark:text-slate-300 max-w-lg mx-auto">
+      GRIMY Cabinet : <strong>85€/mois</strong>. La question, c'est : combien vous coûte aujourd'hui de ne pas l'avoir ?
+    </p>
+  </div>
+
+  <!-- [5] MEMBRES FONDATEURS -->
+  <div class="mb-16 reveal rounded-3xl overflow-hidden border border-amber-200/60 dark:border-amber-500/20" style="background: linear-gradient(160deg, #1C1400 0%, #2D1F00 100%);">
+    <div class="px-8 py-10 sm:px-12">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+        <div class="flex-1">
+          <div class="text-[11px] font-bold uppercase tracking-[.15em] text-amber-400 mb-3">🌟 Programme Membres Fondateurs</div>
+          <h3 class="text-[24px] sm:text-[28px] font-bold text-white tracking-tight">
+            Les 100 premiers cabinets bénéficient d'un tarif garanti à vie.
+          </h3>
+          <ul class="mt-4 space-y-1.5">
+            {[
+              "Tarif garanti à vie — même si nos prix augmentent",
+              "Accès prioritaire aux nouvelles fonctionnalités",
+              "Influence directe sur la roadmap produit",
+              "Mention dans nos communications (si vous le souhaitez)",
+            ].map(f => (
+              <li class="flex items-start gap-2 text-[14px] text-amber-100/80">
+                <span class="text-amber-400 mt-0.5">✓</span>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Compteur founding members -->
+        <div class="shrink-0 text-center">
+          <div class="relative w-36 h-36 mx-auto">
+            <svg class="w-full h-full -rotate-90" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(251,191,36,.15)" stroke-width="8"/>
+              <circle cx="60" cy="60" r="52" fill="none" stroke="#F59E0B" stroke-width="8"
+                stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="265.1"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="text-[32px] font-black text-white leading-none" id="founding-count">17</span>
+              <span class="text-[11px] text-amber-400 font-semibold">/ 100 places</span>
+            </div>
+          </div>
+          <p class="text-[12px] text-amber-300/60 mt-2">83 places restantes</p>
+          <a href="https://app.grimy.fr/auth"
+            class="mt-3 inline-block text-[13px] font-bold px-5 py-2.5 rounded-xl text-slate-900 transition hover:opacity-90"
+            style="background:var(--grimy)">
+            Réserver ma place →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
+
+<script is:inline>
+  function setBilling(type) {
+    const isAnnual = type === 'annual';
+    // Toggle buttons
+    const btnA = document.getElementById('btn-annual');
+    const btnM = document.getElementById('btn-monthly');
+    if (isAnnual) {
+      btnA.classList.add('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+      btnA.classList.remove('text-slate-600', 'dark:text-slate-300');
+      btnM.classList.remove('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+      btnM.classList.add('text-slate-600', 'dark:text-slate-300');
+    } else {
+      btnM.classList.add('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+      btnM.classList.remove('text-slate-600', 'dark:text-slate-300');
+      btnA.classList.remove('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
+      btnA.classList.add('text-slate-600', 'dark:text-slate-300');
+    }
+
+    const savings = document.getElementById('annual-savings');
+    savings.textContent = isAnnual
+      ? 'Tarification annuelle activée — vous économisez jusqu\'à 2 mois.'
+      : 'Tarification mensuelle — sans engagement.';
+
+    // Prix
+    const plans = [
+      { id: 'price-cabinet', billing: 'billing-cabinet', monthly: 99, annual: 85, annualTotal: '1 020', monthlyTotal: '1 188' },
+      { id: 'price-pro', billing: 'billing-pro', monthly: 179, annual: 149, annualTotal: '1 788', monthlyTotal: '2 148' },
+      { id: 'price-plus', billing: 'billing-plus', monthly: 349, annual: 299, annualTotal: '3 588', monthlyTotal: '4 188' },
+    ];
+    plans.forEach(p => {
+      const el = document.getElementById(p.id);
+      const bl = document.getElementById(p.billing);
+      if (el) el.textContent = isAnnual ? p.annual : p.monthly;
+      if (bl) bl.textContent = isAnnual
+        ? `Facturation annuelle · ${p.annualTotal} €/an`
+        : `Facturation mensuelle · ${p.monthlyTotal} €/an`;
+    });
+  }
+</script>

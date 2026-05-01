@@ -53,7 +53,7 @@
   </div>
 
   <!-- [3] GRILLE TARIFAIRE — 4 plans avec biais activés -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12" id="pricing-grid">
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12 xl:items-start" id="pricing-grid">
 
     <!-- Cabinet+ (ancre haute — visible en premier sur desktop XL) -->
     <!-- Note: sur mobile, affiché en dernier via order-last -->
@@ -66,8 +66,11 @@
         <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white" data-monthly="349" data-annual="299" id="price-plus">299</span>
         <span class="text-[13px] text-slate-500 dark:text-slate-400">€ HT/mois</span>
       </div>
-      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-1" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
-      <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium mb-5">= 0,15€/jour par client suivi</p>
+      <div class="min-h-[44px] flex flex-col justify-start">
+        <p class="text-[11px] text-slate-400 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
+        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
+      </div>
+      <div class="mb-5"></div>
 
       <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-100 dark:bg-white/[.07] text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[.12]">
         Demander une démo
@@ -102,7 +105,10 @@
         <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white">0</span>
         <span class="text-[13px] text-slate-500 dark:text-slate-400">€/mois</span>
       </div>
-      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-5">Pas de carte bancaire requise.</p>
+      <div class="min-h-[44px] flex flex-col justify-start">
+        <p class="text-[11px] text-slate-400 dark:text-slate-500">Pas de carte bancaire requise.</p>
+      </div>
+      <div class="mb-5"></div>
 
       <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/20">
         Démarrer gratuitement
@@ -136,7 +142,10 @@
         <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white" data-monthly="99" data-annual="85" id="price-cabinet">85</span>
         <span class="text-[13px] text-slate-500 dark:text-slate-400">€ HT/mois</span>
       </div>
-      <p class="text-[11px] text-slate-400 dark:text-slate-500 mb-5" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
+      <div class="min-h-[44px] flex flex-col justify-start">
+        <p class="text-[11px] text-slate-400 dark:text-slate-500" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
+      </div>
+      <div class="mb-5"></div>
 
       <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90">
         Essayer 30 jours sans engagement
@@ -175,8 +184,11 @@
         <span class="text-[42px] font-black tracking-tight text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
         <span class="text-[13px] text-slate-400">€ HT/mois</span>
       </div>
-      <p class="text-[11px] text-slate-500 mb-1" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
-      <p class="text-[11px] text-indigo-400 font-medium mb-5">= 0,19€/jour par client suivi</p>
+      <div class="min-h-[44px] flex flex-col justify-start">
+        <p class="text-[11px] text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
+        <p class="text-[11px] text-indigo-400 font-medium">= 0,19€/jour par client suivi</p>
+      </div>
+      <div class="mb-5"></div>
 
       <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition text-slate-900 hover:opacity-90" style="background:var(--grimy)">
         Essayer 30 jours sans engagement

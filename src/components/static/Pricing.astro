@@ -2,7 +2,7 @@
 ---
 <section id="tarifs" class="max-w-[1280px] mx-auto px-6 py-24">
 
-  <!-- [1] HEADER — inchangé -->
+  <!-- [1] HEADER -->
   <div class="text-center mb-6 reveal">
     <div class="text-[11px] font-bold uppercase tracking-[.2em] mb-4" style="color:var(--grimy-dark)">05 — Tarifs</div>
     <h2 class="wordmark text-[42px] sm:text-[52px] leading-[1.05] tracking-[-.03em] text-slate-900 dark:text-white max-w-3xl mx-auto">
@@ -10,22 +10,6 @@
     </h2>
     <p class="mt-4 text-[16px] text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
       GRIMY automatise ce qui vous fait perdre <strong>100 heures par an</strong>. Commencez gratuitement — sans carte bancaire.
-    </p>
-
-    <!-- Toggle mensuel/annuel — inchangé -->
-    <div class="inline-flex items-center gap-2 mt-7 p-1 rounded-full text-[13px] font-medium bg-slate-200/60 dark:bg-white/[.04]" id="billing-toggle">
-      <button onclick="setBilling('monthly')" id="btn-monthly"
-        class="px-4 py-1.5 rounded-full transition text-slate-600 dark:text-slate-300">
-        Mensuel
-      </button>
-      <button onclick="setBilling('annual')" id="btn-annual"
-        class="px-4 py-1.5 rounded-full transition flex items-center gap-2 bg-white dark:bg-slate-900 shadow-sm text-slate-900 dark:text-white">
-        Annuel
-        <span class="text-[10.5px] font-bold uppercase px-1.5 py-0.5 rounded text-white" style="background:var(--grimy-dark)">−2 mois</span>
-      </button>
-    </div>
-    <p class="text-[12px] text-slate-500 dark:text-slate-400 mt-2" id="annual-savings">
-      Tarification annuelle activée — vous économisez jusqu'à 2 mois.
     </p>
   </div>
 
@@ -46,30 +30,92 @@
     </blockquote>
   </div>
 
+  <!-- Toggle mensuel/annuel — placé juste au-dessus des cartes -->
+  <div class="flex flex-col items-center mb-6 reveal">
+    <div class="inline-flex items-center gap-2 p-1 rounded-full text-[13px] font-medium bg-slate-200/60 dark:bg-white/[.04]" id="billing-toggle">
+      <button onclick="setBilling('monthly')" id="btn-monthly"
+        class="px-4 py-1.5 rounded-full transition text-slate-600 dark:text-slate-300">
+        Mensuel
+      </button>
+      <button onclick="setBilling('annual')" id="btn-annual"
+        class="px-4 py-1.5 rounded-full transition flex items-center gap-2 bg-white dark:bg-slate-900 shadow-sm text-slate-900 dark:text-white">
+        Annuel
+        <span class="text-[10.5px] font-bold uppercase px-1.5 py-0.5 rounded text-white" style="background:var(--grimy-dark)">−2 mois</span>
+      </button>
+    </div>
+    <p class="text-[12px] text-slate-500 dark:text-slate-400 mt-2" id="annual-savings">
+      Tarification annuelle activée — vous économisez jusqu'à 2 mois.
+    </p>
+  </div>
+
   <!-- ══════════════════════════════════════════════════════
        Cartes premium — hauteurs égalisées, micro-animations sur Cabinet Pro
-       Ordre desktop : Essentiel → Cabinet → Cabinet Pro → Cabinet+
+       Ordre desktop : Cabinet+ → Essentiel → Cabinet → Cabinet Pro
   ══════════════════════════════════════════════════════ -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch pt-8 mb-8" id="pricing-grid">
 
-    <!-- 1 — ESSENTIEL -->
-    <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <!-- 1 — CABINET+ (ancre prix, à gauche sur desktop, en dernier sur mobile) -->
+    <div class="reveal order-last lg:order-none group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div class="min-h-[28px] mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">🟢 Gratuit pour toujours</span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400">💎 Cabinets établis</span>
+      </div>
+      <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Cabinet+</h3>
+      <div class="min-h-[56px] mb-6">
+        <p class="text-[13px] text-slate-600 dark:text-slate-400 leading-snug">Pour les cabinets de 5 à 15 EC</p>
+        <p class="text-[12px] italic text-slate-500 dark:text-slate-500 leading-snug mt-0.5">Notre offre la plus complète pour les cabinets exigeants.</p>
+      </div>
+
+      <div class="min-h-[80px] flex items-baseline gap-1 leading-none">
+        <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="349" data-annual="299" id="price-plus">299</span>
+        <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
+      </div>
+      <div class="min-h-[40px] mb-6">
+        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
+        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
+      </div>
+
+      <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+"
+        class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
+        Demander une démo
+      </a>
+
+      <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-slate-700 dark:text-slate-200">Tout Cabinet Pro, plus :</div>
+      <ul class="space-y-2 flex-1">
+        {[
+          "2 000 clients en suivi LCB-FT",
+          "400 signatures incluses (0,80€/sig. supp.)",
+          "Onboarding 2h en visio avec un EC",
+          "Migration assistée de votre portefeuille",
+          "Point annuel dédié (1h visio)",
+          "Mises à jour réglementaires en avant-première",
+        ].map(f => (
+          <li class="flex items-start gap-2 text-[13px] leading-snug text-slate-600 dark:text-slate-300">
+            <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-auto pt-4 text-[11px] text-slate-500 dark:text-slate-500">Vous remplacez 5 abonnements logiciels en un seul.</p>
+    </div>
+
+    <!-- 2 — ESSENTIEL -->
+    <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div class="min-h-[28px] mb-4">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-emerald-50 text-emerald-700 dark:bg-emerald-500/10 dark:text-emerald-400">🟢 Gratuit pour toujours</span>
       </div>
       <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Essentiel</h3>
-      <p class="min-h-[56px] text-sm text-slate-600 dark:text-slate-400 mb-6">Pour découvrir GRIMY avec votre premier portefeuille</p>
+      <p class="min-h-[56px] text-[13px] text-slate-600 dark:text-slate-400 leading-snug mb-6">Pour découvrir GRIMY avec votre premier portefeuille</p>
 
-      <div class="min-h-[80px] flex items-baseline gap-1.5 leading-none">
-        <span class="text-6xl font-bold tracking-tight text-slate-900 dark:text-white">0</span>
-        <span class="text-base font-medium text-slate-500 dark:text-slate-400">€/mois</span>
+      <div class="min-h-[80px] flex items-baseline gap-1 leading-none">
+        <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white">0</span>
+        <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€/mois</span>
       </div>
-      <div class="min-h-[40px] mb-6 text-xs text-slate-500 dark:text-slate-500">
+      <div class="min-h-[40px] mb-6 text-[11px] text-slate-500 dark:text-slate-500">
         Pas de carte bancaire requise.
       </div>
 
       <a href="https://app.grimy.fr/auth"
-        class="h-12 w-full mb-6 inline-flex items-center justify-center text-[14px] font-semibold rounded-xl transition border border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
+        class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
         Démarrer gratuitement
       </a>
 
@@ -84,37 +130,37 @@
           "(au-delà : 15€ par lettre)",
           "6€ par signature électronique",
         ].map((f, i) => (
-          <li class={`flex items-start gap-2 text-[13px] ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[12px] pl-5' : 'text-slate-600 dark:text-slate-300'}`}>
+          <li class={`flex items-start gap-2 leading-snug ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[11px] pl-5' : 'text-slate-600 dark:text-slate-300 text-[13px]'}`}>
             {![5,6].includes(i) && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
             <span>{f}</span>
           </li>
         ))}
       </ul>
-      <div class="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-500"></div>
+      <div class="mt-auto pt-4 text-[11px] text-slate-500 dark:text-slate-500"></div>
     </div>
 
-    <!-- 2 — CABINET -->
-    <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <!-- 3 — CABINET -->
+    <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
       <div class="min-h-[28px] mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-400">✦ Cabinets indépendants</span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-violet-50 text-violet-700 dark:bg-violet-500/10 dark:text-violet-400">✦ Cabinets indépendants</span>
       </div>
       <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Cabinet</h3>
-      <p class="min-h-[56px] text-sm text-slate-600 dark:text-slate-400 mb-6">Pour les cabinets de 1 à 3 EC</p>
+      <p class="min-h-[56px] text-[13px] text-slate-600 dark:text-slate-400 leading-snug mb-6">Pour les cabinets de 1 à 3 EC</p>
 
-      <div class="min-h-[80px] flex items-baseline gap-1.5 leading-none">
-        <span class="text-6xl font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="99" data-annual="85" id="price-cabinet">85</span>
-        <span class="text-base font-medium text-slate-500 dark:text-slate-400">€ HT/mois</span>
+      <div class="min-h-[80px] flex items-baseline gap-1 leading-none">
+        <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="99" data-annual="85" id="price-cabinet">85</span>
+        <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
       </div>
-      <div class="min-h-[40px] mb-6 text-xs text-slate-500 dark:text-slate-500" id="billing-cabinet">
+      <div class="min-h-[40px] mb-6 text-[11px] text-slate-500 dark:text-slate-500" id="billing-cabinet">
         Facturation annuelle · 1 020 €/an
       </div>
 
       <a href="https://app.grimy.fr/auth"
-        class="h-12 w-full mb-6 inline-flex items-center justify-center text-[14px] font-semibold rounded-xl transition border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
+        class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
         Essayer 30 jours sans engagement
       </a>
 
-      <div class="min-h-[32px] mb-4 text-sm font-semibold text-slate-700 dark:text-slate-200">Tout Essentiel, plus :</div>
+      <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-slate-700 dark:text-slate-200">Tout Essentiel, plus :</div>
       <ul class="space-y-2 flex-1">
         {[
           "200 clients en suivi LCB-FT",
@@ -125,20 +171,20 @@
           "Enrichissement Pappers complet",
           "Support email sous 24h ouvrées",
         ].map(f => (
-          <li class="flex items-start gap-2 text-[13px] text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2 text-[13px] leading-snug text-slate-600 dark:text-slate-300">
             <svg class="w-3.5 h-3.5 mt-[3px] shrink-0" style="color:var(--grimy-dark)" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
             <span>{f}</span>
           </li>
         ))}
       </ul>
-      <div class="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-500"></div>
+      <div class="mt-auto pt-4 text-[11px] text-slate-500 dark:text-slate-500"></div>
     </div>
 
-    <!-- 3 — CABINET PRO (vedette) -->
-    <div class="reveal group relative flex flex-col h-full rounded-2xl border-2 border-[#00C896] bg-gradient-to-b from-emerald-50/30 to-white dark:from-emerald-950/30 dark:to-slate-900 p-8 pt-10 animate-float-subtle shadow-[0_0_0_1px_rgba(0,200,150,0.1),0_8px_32px_rgba(0,200,150,0.12)] hover:shadow-[0_0_0_2px_rgba(0,200,150,0.2),0_16px_48px_rgba(0,200,150,0.25)] transition-shadow duration-500 z-10">
+    <!-- 4 — CABINET PRO (vedette) -->
+    <div class="reveal group relative flex flex-col h-full rounded-2xl border-2 border-[#00C896] bg-gradient-to-b from-emerald-50/30 to-white dark:from-emerald-950/30 dark:to-slate-900 p-7 pt-9 animate-float-subtle shadow-[0_0_0_1px_rgba(0,200,150,0.1),0_8px_32px_rgba(0,200,150,0.12)] hover:shadow-[0_0_0_2px_rgba(0,200,150,0.2),0_16px_48px_rgba(0,200,150,0.25)] transition-shadow duration-500 z-10">
       <!-- Badge flottant LE PLUS CHOISI -->
       <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-        <div class="relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#00C896] to-[#00E8AA] text-white text-xs font-bold tracking-wider shadow-lg shadow-emerald-500/30 overflow-hidden">
+        <div class="relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#00C896] to-[#00E8AA] text-white text-[11px] font-bold tracking-wider shadow-lg shadow-emerald-500/30 overflow-hidden whitespace-nowrap">
           <span class="animate-star-spin">⭐</span>
           <span>LE PLUS CHOISI</span>
           <div class="absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
@@ -146,26 +192,26 @@
       </div>
 
       <div class="min-h-[28px] mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">🔵 Cabinets en croissance</span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-400">🔵 Cabinets en croissance</span>
       </div>
       <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Cabinet Pro</h3>
-      <p class="min-h-[56px] text-sm text-slate-600 dark:text-slate-400 mb-6">Pour les cabinets avec collaborateurs</p>
+      <p class="min-h-[56px] text-[13px] text-slate-600 dark:text-slate-400 leading-snug mb-6">Pour les cabinets avec collaborateurs</p>
 
-      <div class="min-h-[80px] flex items-baseline gap-1.5 leading-none">
-        <span class="text-6xl font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
-        <span class="text-base font-medium text-slate-500 dark:text-slate-400">€ HT/mois</span>
+      <div class="min-h-[80px] flex items-baseline gap-1 leading-none">
+        <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
+        <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
       </div>
       <div class="min-h-[40px] mb-6">
-        <p class="text-xs text-slate-500 dark:text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
-        <p class="text-xs text-[#00C896] font-medium">= 0,19€/jour par client suivi</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
+        <p class="text-[11px] text-[#00C896] font-semibold">= 0,19€/jour par client suivi</p>
       </div>
 
       <a href="https://app.grimy.fr/auth"
-        class="h-12 w-full mb-6 inline-flex items-center justify-center text-[14px] font-semibold rounded-xl transition bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
+        class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
         Essayer 30 jours sans engagement
       </a>
 
-      <div class="min-h-[32px] mb-4 text-sm font-semibold text-[#00C896]">Tout Cabinet, plus :</div>
+      <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-[#00C896]">Tout Cabinet, plus :</div>
       <ul class="space-y-2 flex-1">
         {[
           "800 clients en suivi LCB-FT",
@@ -176,57 +222,13 @@
           "Tableau de bord cockpit avec KPIs",
           "Support prioritaire — réponse sous 4h",
         ].map(f => (
-          <li class="flex items-start gap-2 text-[13px] text-slate-600 dark:text-slate-300">
+          <li class="flex items-start gap-2 text-[13px] leading-snug text-slate-600 dark:text-slate-300">
             <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-[#00C896] transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" stroke-width="2.25" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
             <span>{f}</span>
           </li>
         ))}
       </ul>
-      <div class="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-500"></div>
-    </div>
-
-    <!-- 4 — CABINET+ -->
-    <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
-      <div class="min-h-[28px] mb-4">
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400">💎 Cabinets établis</span>
-      </div>
-      <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Cabinet+</h3>
-      <div class="min-h-[56px] mb-6">
-        <p class="text-sm text-slate-600 dark:text-slate-400">Pour les cabinets de 5 à 15 EC</p>
-        <p class="text-sm italic text-slate-600 dark:text-slate-400">Notre offre la plus complète pour les cabinets exigeants.</p>
-      </div>
-
-      <div class="min-h-[80px] flex items-baseline gap-1.5 leading-none">
-        <span class="text-6xl font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="349" data-annual="299" id="price-plus">299</span>
-        <span class="text-base font-medium text-slate-500 dark:text-slate-400">€ HT/mois</span>
-      </div>
-      <div class="min-h-[40px] mb-6">
-        <p class="text-xs text-slate-500 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
-        <p class="text-xs text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
-      </div>
-
-      <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+"
-        class="h-12 w-full mb-6 inline-flex items-center justify-center text-[14px] font-semibold rounded-xl transition border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
-        Demander une démo
-      </a>
-
-      <div class="min-h-[32px] mb-4 text-sm font-semibold text-slate-700 dark:text-slate-200">Tout Cabinet Pro, plus :</div>
-      <ul class="space-y-2 flex-1">
-        {[
-          "2 000 clients en suivi LCB-FT",
-          "400 signatures incluses (0,80€/sig. supp.)",
-          "Onboarding 2h en visio avec un EC",
-          "Migration assistée de votre portefeuille",
-          "Point annuel dédié (1h visio)",
-          "Mises à jour réglementaires en avant-première",
-        ].map(f => (
-          <li class="flex items-start gap-2 text-[13px] text-slate-600 dark:text-slate-300">
-            <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-      <p class="mt-auto pt-4 text-xs text-slate-500 dark:text-slate-500">Vous remplacez 5 abonnements logiciels en un seul.</p>
+      <div class="mt-auto pt-4 text-[11px] text-slate-500 dark:text-slate-500"></div>
     </div>
   </div>
 

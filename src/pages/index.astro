@@ -47,17 +47,17 @@ const faqItems = [
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/grimy-favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/grimy-favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/grimy-favicon-192.png" />
     <link rel="apple-touch-icon" href="/grimy-favicon-192.png" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={url} />
-    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -160,27 +160,27 @@ const faqItems = [
 
         <TrustMarquee />
 
-        <DashboardSection client:idle />
-        <ScreeningDemo client:idle />
+        <DashboardSection client:visible={{rootMargin: '200px'}} />
+        <ScreeningDemo client:visible={{rootMargin: '200px'}} />
 
         <BeforeAfter>
-          <BeforeAfterSlider client:idle />
+          <BeforeAfterSlider client:visible={{rootMargin: '200px'}} />
         </BeforeAfter>
 
         <LettreSection>
-          <LettreDemo client:idle />
+          <LettreDemo client:visible={{rootMargin: '200px'}} />
         </LettreSection>
 
         <FeatureGrid />
 
         <Pricing>
-          <PricingToggle slot="toggle" client:idle />
+          <PricingToggle slot="toggle" client:visible={{rootMargin: '200px'}} />
         </Pricing>
 
         <FAQ />
 
         <FinalCTA>
-          <FinalCTACursor client:idle />
+          <FinalCTACursor client:visible={{rootMargin: '200px'}} />
         </FinalCTA>
       </main>
 

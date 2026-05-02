@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Font subset backups (keep locally, not deployed)
+.font-backup/

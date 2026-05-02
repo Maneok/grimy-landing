@@ -614,3 +614,52 @@ tr.row-hover:hover::after { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .hero-star-pulse { animation: none; }
 }
+
+/* ============================================================
+   Pricing — Cabinet Pro premium micro-animations
+   ============================================================ */
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(-8px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(200%); }
+}
+
+@keyframes star-spin {
+  0%, 90%, 100% { transform: rotate(0deg) scale(1); }
+  95% { transform: rotate(20deg) scale(1.2); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(0,200,150,0.1), 0 8px 32px rgba(0,200,150,0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(0,200,150,0.25), 0 12px 40px rgba(0,200,150,0.2);
+  }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-shine {
+  animation: shine 5s ease-in-out infinite;
+}
+
+.animate-star-spin {
+  display: inline-block;
+  animation: star-spin 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-subtle,
+  .animate-shine,
+  .animate-star-spin {
+    animation: none;
+  }
+  .animate-float-subtle { transform: translateY(-8px); }
+}

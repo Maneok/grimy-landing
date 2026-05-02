@@ -135,7 +135,7 @@ body {
   0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--grimy) 50%, transparent); }
   50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--grimy) 0%, transparent); }
 }
-.mint-pulse { animation: mint-pulse 2.4s ease-in-out infinite; }
+.mint-pulse { animation: mint-pulse 2.4s ease-in-out infinite; will-change: box-shadow; }
 
 @keyframes scroll-x { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee-track { animation: scroll-x 50s linear infinite; }
@@ -201,7 +201,7 @@ body {
 .stamp-signed { animation: stamp-bounce .6s cubic-bezier(.34,1.56,.64,1) 5.5s both; }
 
 @keyframes mint-glow { 0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--grimy) 60%, transparent), 0 8px 20px -8px color-mix(in oklab, var(--grimy) 50%, transparent); } 50% { box-shadow: 0 0 0 8px color-mix(in oklab, var(--grimy) 0%, transparent), 0 8px 20px -8px color-mix(in oklab, var(--grimy) 50%, transparent); } }
-.mint-glow { animation: mint-glow 2.4s ease-in-out infinite; }
+.mint-glow { animation: mint-glow 2.4s ease-in-out infinite; will-change: box-shadow; isolation: isolate; }
 
 @keyframes chip-pop { 0% { transform: scale(.92); opacity: 0; } 60% { transform: scale(1.05); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 .chip-pop { animation: chip-pop .45s cubic-bezier(.34,1.56,.64,1) backwards; }
@@ -216,7 +216,7 @@ body {
   0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--grimy) 60%, transparent), 0 8px 22px -8px color-mix(in oklab, var(--grimy) 55%, transparent); }
   50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--grimy) 0%, transparent), 0 14px 30px -10px color-mix(in oklab, var(--grimy) 70%, transparent); }
 }
-.cta-attract { animation: cta-glow 1.8s ease-in-out infinite; }
+.cta-attract { animation: cta-glow 1.8s ease-in-out infinite; will-change: box-shadow; isolation: isolate; }
 .cta-attract:hover { animation: none; }
 
 /* ============================================================
@@ -610,6 +610,7 @@ tr.row-hover:hover::after { opacity: 1; }
   animation: hero-star-pulse 2.4s ease-in-out infinite;
   will-change: transform, filter;
   transform-origin: center;
+  isolation: isolate;
 }
 @media (prefers-reduced-motion: reduce) {
   .hero-star-pulse { animation: none; }
@@ -644,6 +645,8 @@ tr.row-hover:hover::after { opacity: 1; }
 
 .animate-float-subtle {
   animation: float-subtle 4s ease-in-out infinite, glow-pulse 3s ease-in-out infinite;
+  will-change: transform, box-shadow;
+  isolation: isolate;
 }
 
 .animate-shine {

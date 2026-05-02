@@ -2,7 +2,7 @@
 ---
 <section id="tarifs" class="max-w-[1280px] mx-auto px-6 py-24">
 
-  <!-- [1] HEADER — Cadrage immédiat -->
+  <!-- [1] HEADER — inchangé -->
   <div class="text-center mb-6 reveal">
     <div class="text-[11px] font-bold uppercase tracking-[.2em] mb-4" style="color:var(--grimy-dark)">05 — Tarifs</div>
     <h2 class="wordmark text-[42px] sm:text-[52px] leading-[1.05] tracking-[-.03em] text-slate-900 dark:text-white max-w-3xl mx-auto">
@@ -12,7 +12,7 @@
       GRIMY automatise ce qui vous fait perdre <strong>100 heures par an</strong>. Commencez gratuitement — sans carte bancaire.
     </p>
 
-    <!-- Toggle mensuel/annuel -->
+    <!-- Toggle mensuel/annuel — inchangé -->
     <div class="inline-flex items-center gap-2 mt-7 p-1 rounded-full text-[13px] font-medium bg-slate-200/60 dark:bg-white/[.04]" id="billing-toggle">
       <button onclick="setBilling('monthly')" id="btn-monthly"
         class="px-4 py-1.5 rounded-full transition text-slate-600 dark:text-slate-300">
@@ -24,21 +24,17 @@
         <span class="text-[10.5px] font-bold uppercase px-1.5 py-0.5 rounded text-white" style="background:var(--grimy-dark)">−2 mois</span>
       </button>
     </div>
-
-    <!-- Économie annuel -->
     <p class="text-[12px] text-slate-500 dark:text-slate-400 mt-2" id="annual-savings">
       Tarification annuelle activée — vous économisez jusqu'à 2 mois.
     </p>
   </div>
 
-  <!-- [2] PROOF BAR — Preuve sociale -->
+  <!-- [2] PROOF BAR — inchangée -->
   <div class="flex flex-wrap items-center justify-center gap-6 mb-12 py-5 px-8 rounded-2xl bg-slate-50 dark:bg-white/[.03] border border-slate-200/60 dark:border-white/[.06] reveal">
     <div class="flex items-center gap-2">
       <div class="flex -space-x-2">
         {['JM','SF','LP','AB','MC'].map(i => (
-          <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-[9px] font-bold text-white border-2 border-white dark:border-slate-900">
-            {i}
-          </div>
+          <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center text-[9px] font-bold text-white border-2 border-white dark:border-slate-900">{i}</div>
         ))}
       </div>
       <span class="text-[13px] text-slate-600 dark:text-slate-300 font-medium">Rejoints par les premiers cabinets fondateurs</span>
@@ -46,56 +42,19 @@
     <div class="h-4 w-px bg-slate-200 dark:bg-white/10 hidden sm:block"></div>
     <blockquote class="text-[13px] text-slate-600 dark:text-slate-400 italic max-w-sm">
       "En 3 semaines, GRIMY a remplacé 4 outils dans notre cabinet. On regagne 2 jours par mois."
-      <footer class="mt-1 not-italic font-semibold text-slate-700 dark:text-slate-300 text-[12px]">
-        — Cabinet COMPTADEC, Marseille
-      </footer>
+      <footer class="mt-1 not-italic font-semibold text-slate-700 dark:text-slate-300 text-[12px]">— Cabinet COMPTADEC, Marseille</footer>
     </blockquote>
   </div>
 
-  <!-- [3] GRILLE TARIFAIRE — 4 plans avec biais activés -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-12 xl:items-start" id="pricing-grid">
+  <!-- ══════════════════════════════════════════════════════
+       CORRECTION 1 — Ordre: Essentiel → Cabinet → Cabinet Pro → Cabinet+
+       CORRECTION 2 — Cabinet Pro renforcé (scale + shadow + badge centré)
+       CORRECTION 3 — Cabinet+ premiumisé (gradient violet)
+       CORRECTION 4 — Hiérarchie CTAs
+  ══════════════════════════════════════════════════════ -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-8 xl:items-start" id="pricing-grid">
 
-    <!-- Cabinet+ (ancre haute — visible en premier sur desktop XL) -->
-    <!-- Note: sur mobile, affiché en dernier via order-last -->
-    <div class="reveal order-last xl:order-none relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
-      <div class="text-[10px] font-bold uppercase tracking-wider text-violet-500 dark:text-violet-400 mb-3">💎 Cabinets établis</div>
-      <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Cabinet<span style="color:var(--grimy)">+</span></div>
-      <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-1">Pour les cabinets de 5 à 15 EC</p>
-
-      <div class="mt-5 flex items-baseline gap-1">
-        <span class="text-[42px] font-black tracking-tight text-slate-900 dark:text-white" data-monthly="349" data-annual="299" id="price-plus">299</span>
-        <span class="text-[13px] text-slate-500 dark:text-slate-400">€ HT/mois</span>
-      </div>
-      <div class="min-h-[44px] flex flex-col justify-start">
-        <p class="text-[11px] text-slate-400 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
-        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
-      </div>
-      <div class="mb-5"></div>
-
-      <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-100 dark:bg-white/[.07] text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/[.12]">
-        Demander une démo
-      </a>
-
-      <ul class="space-y-2 flex-1">
-        {[
-          "Tout Cabinet Pro, plus :",
-          "2 000 clients en suivi LCB-FT",
-          "400 signatures incluses (0,80€/sig. supp.)",
-          "Onboarding 2h en visio avec un EC",
-          "Migration assistée de votre portefeuille",
-          "Point annuel dédié (1h visio)",
-          "Mises à jour réglementaires en avant-première",
-        ].map((f, i) => (
-          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? 'font-semibold text-slate-700 dark:text-slate-200 mt-1' : 'text-slate-600 dark:text-slate-300'}`}>
-            {i > 0 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
-            <span>{f}</span>
-          </li>
-        ))}
-      </ul>
-      <p class="text-[11px] text-slate-400 mt-4">Vous remplacez 5 abonnements logiciels en un seul.</p>
-    </div>
-
-    <!-- GRIMY Essentiel — Free -->
+    <!-- 1 — ESSENTIEL (gratuit) -->
     <div class="reveal relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
       <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-3">🟢 Gratuit pour toujours</div>
       <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Essentiel</div>
@@ -110,7 +69,9 @@
       </div>
       <div class="mb-5"></div>
 
-      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-100 dark:hover:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/20">
+      <!-- CTA Essentiel: outline emerald -->
+      <a href="https://app.grimy.fr/auth"
+        class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition border border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
         Démarrer gratuitement
       </a>
 
@@ -124,7 +85,7 @@
           "(au-delà : 15€ par lettre)",
           "6€ par signature électronique",
         ].map((f, i) => (
-          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? '' : ''} ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[12px] pl-5' : 'text-slate-600 dark:text-slate-300'}`}>
+          <li class={`flex items-start gap-2 text-[13px] ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[12px] pl-5' : 'text-slate-600 dark:text-slate-300'}`}>
             {![5,6].includes(i) && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
             <span>{f}</span>
           </li>
@@ -132,7 +93,7 @@
       </ul>
     </div>
 
-    <!-- GRIMY Cabinet -->
+    <!-- 2 — CABINET -->
     <div class="reveal relative rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-6 flex flex-col">
       <div class="text-[10px] font-bold uppercase tracking-wider text-blue-500 mb-3">✦ Cabinets indépendants</div>
       <div class="text-[18px] font-bold tracking-tight text-slate-900 dark:text-white">Cabinet</div>
@@ -147,7 +108,9 @@
       </div>
       <div class="mb-5"></div>
 
-      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:opacity-90">
+      <!-- CTA Cabinet: outline slate -->
+      <a href="https://app.grimy.fr/auth"
+        class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
         Essayer 30 jours sans engagement
       </a>
 
@@ -170,9 +133,11 @@
       </ul>
     </div>
 
-    <!-- GRIMY Cabinet Pro — LE PLUS CHOISI (leurre + ancre) -->
-    <div class="reveal relative rounded-2xl p-6 flex flex-col text-white" style="background: linear-gradient(160deg, #0F172A 0%, #1B2A4A 100%); border: 1px solid rgba(99,102,241,.35);">
-      <span class="absolute -top-3 left-6 text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full text-slate-900" style="background:var(--grimy)">
+    <!-- 3 — CABINET PRO — CORRECTION 2: scale + shadow + badge centré -->
+    <div class="reveal relative rounded-2xl p-6 flex flex-col text-white scale-[1.04] shadow-2xl shadow-emerald-500/20 z-10"
+      style="background: linear-gradient(160deg, #0F172A 0%, #1B2A4A 100%); border: 1px solid rgba(99,102,241,.35);">
+      <!-- Badge centré et débordant -->
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10.5px] font-black uppercase tracking-wider px-3 py-1 rounded-full text-slate-900 shadow-lg" style="background:var(--grimy)">
         ⭐ Le plus choisi
       </span>
 
@@ -190,7 +155,9 @@
       </div>
       <div class="mb-5"></div>
 
-      <a href="https://app.grimy.fr/auth" class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition text-slate-900 hover:opacity-90" style="background:var(--grimy)">
+      <!-- CTA Cabinet Pro: plein vert — seul bouton rempli -->
+      <a href="https://app.grimy.fr/auth"
+        class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition bg-emerald-500 hover:bg-emerald-600 text-white shadow-md shadow-emerald-500/30">
         Essayer 30 jours sans engagement
       </a>
 
@@ -213,9 +180,56 @@
       </ul>
     </div>
 
+    <!-- 4 — CABINET+ — CORRECTION 3: gradient violet, sous-titre italic -->
+    <div class="reveal relative rounded-2xl border border-violet-200 dark:border-violet-800/50 p-6 flex flex-col"
+      style="background: linear-gradient(135deg, #f5f3ff 0%, #ffffff 50%, #faf5ff 100%);"
+      class="dark:[background:linear-gradient(135deg,rgba(46,16,101,0.4)_0%,rgb(15,23,42)_50%,rgba(46,16,101,0.3)_100%)]">
+      <div class="text-[10px] font-bold uppercase tracking-wider text-violet-600 dark:text-violet-400 mb-3">💎 Cabinets établis</div>
+      <div class="text-[18px] font-bold tracking-tight text-violet-900 dark:text-violet-100">
+        <span class="text-2xl mr-1 align-middle">💎</span>Cabinet+
+      </div>
+      <p class="text-[13px] text-violet-700 dark:text-violet-300 mt-1">Pour les cabinets de 5 à 15 EC</p>
+      <!-- Sous-titre italic -->
+      <p class="text-[13px] text-violet-700 dark:text-violet-300 italic mt-1 mb-0">Notre offre la plus complète pour les cabinets exigeants.</p>
+
+      <div class="mt-5 flex items-baseline gap-1">
+        <span class="text-[42px] font-black tracking-tight text-violet-900 dark:text-violet-100" data-monthly="349" data-annual="299" id="price-plus">299</span>
+        <span class="text-[13px] text-violet-600 dark:text-violet-400">€ HT/mois</span>
+      </div>
+      <div class="min-h-[44px] flex flex-col justify-start">
+        <p class="text-[11px] text-violet-500 dark:text-violet-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
+        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
+      </div>
+      <div class="mb-5"></div>
+
+      <!-- CTA Cabinet+: outline violet -->
+      <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+"
+        class="block text-center text-[14px] font-semibold py-2.5 rounded-xl mb-5 transition border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
+        Demander une démo
+      </a>
+
+      <ul class="space-y-2 flex-1">
+        {[
+          "Tout Cabinet Pro, plus :",
+          "2 000 clients en suivi LCB-FT",
+          "400 signatures incluses (0,80€/sig. supp.)",
+          "Onboarding 2h en visio avec un EC",
+          "Migration assistée de votre portefeuille",
+          "Point annuel dédié (1h visio)",
+          "Mises à jour réglementaires en avant-première",
+        ].map((f, i) => (
+          <li class={`flex items-start gap-2 text-[13px] ${i === 0 ? 'font-semibold text-violet-900 dark:text-violet-100 mt-1' : 'text-violet-800 dark:text-violet-200'}`}>
+            {i > 0 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-violet-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+            <span>{f}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="text-[11px] text-violet-500 dark:text-violet-500 mt-4">Vous remplacez 5 abonnements logiciels en un seul.</p>
+    </div>
+
   </div>
 
-  <!-- Pied de grille — liste d'attente premium -->
+  <!-- Pied de grille — liste d'attente premium (inchangé) -->
   <div class="text-center mb-16 py-5 px-6 rounded-2xl border border-dashed border-slate-200 dark:border-white/[.08] bg-slate-50/50 dark:bg-white/[.02] reveal">
     <p class="text-[14px] text-slate-600 dark:text-slate-400">
       <strong class="text-slate-800 dark:text-slate-200">Plus de 2 000 clients ou plusieurs cabinets ?</strong>
@@ -227,63 +241,119 @@
     </a>
   </div>
 
-  <!-- [4] AVERSION À LA PERTE -->
-  <div class="mb-16 reveal">
-    <h3 class="text-[22px] sm:text-[28px] font-bold tracking-tight text-slate-900 dark:text-white mb-8 text-center">
-      Sans GRIMY, votre cabinet perd chaque mois :
+  <!-- ══════════════════════════════════════════════════════
+       CORRECTION 5 — Section Aversion à la perte (améliorée)
+  ══════════════════════════════════════════════════════ -->
+  <div class="mb-16 reveal bg-slate-50 dark:bg-slate-900/50 rounded-3xl py-12 px-8 sm:py-16 sm:px-12">
+    <h3 class="text-[22px] sm:text-[28px] font-bold tracking-tight text-slate-900 dark:text-white mb-2 text-center">
+      Sans GRIMY., votre cabinet perd chaque mois
     </h3>
-    <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+    <p class="text-center text-slate-500 dark:text-slate-400 text-[14px] mb-10 max-w-xl mx-auto">
+      Ce que vous dépensez aujourd'hui en temps, outils éparpillés et risques non couverts.
+    </p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 max-w-5xl mx-auto">
       {[
-        { icon: "⏱", title: "22 heures de saisie manuelle", sub: "Soit 1 760€ de votre temps facturable au taux moyen d'un EC." },
-        { icon: "📋", title: "100€ de signatures externes", sub: "Yousign, DocuSign, outils ponctuels — coût invisible mais réel." },
-        { icon: "📊", title: "2 jours de préparation audit OEC", sub: "Les dossiers non structurés coûtent cher lors des contrôles." },
-        { icon: "🚨", title: "Risque d'amende AMF", sub: "Jusqu'à 100 000€ en cas de manquement LCB-FT constaté." },
+        { icon: "⏱", value: "22 heures", label: "de saisie manuelle", sub: "≈ 1 760€ de votre temps facturable", bg: "bg-slate-100 dark:bg-slate-800/60 border-slate-200 dark:border-slate-700/50" },
+        { icon: "💸", value: "100€", label: "de signatures ext.", sub: "Yousign, DocuSign, outils ponctuels", bg: "bg-amber-50 dark:bg-amber-950/30 border-amber-100 dark:border-amber-800/30" },
+        { icon: "📅", value: "2 jours/an", label: "de préparation audit", sub: "Stress, retard, risque d'oubli", bg: "bg-blue-50 dark:bg-blue-950/30 border-blue-100 dark:border-blue-800/30" },
+        { icon: "🚨", value: "100 000€", label: "d'amende possible", sub: "En cas de manquement LCB-FT constaté", bg: "bg-red-50 dark:bg-red-950/30 border-red-100 dark:border-red-800/30" },
       ].map(item => (
-        <div class="flex items-start gap-4 p-5 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-white/[.06]">
-          <span class="text-2xl shrink-0">{item.icon}</span>
+        <div class={`flex flex-col gap-3 p-5 rounded-2xl border ${item.bg}`}>
+          <span class="text-2xl">{item.icon}</span>
           <div>
-            <p class="text-[14px] font-semibold text-slate-800 dark:text-slate-200">{item.title}</p>
-            <p class="text-[13px] text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">{item.sub}</p>
+            <p class="text-[18px] sm:text-[20px] font-black tracking-tight text-slate-900 dark:text-white leading-none">{item.value}</p>
+            <p class="text-[12px] sm:text-[13px] font-semibold text-slate-700 dark:text-slate-200 mt-1">{item.label}</p>
+            <p class="text-[11px] sm:text-[12px] text-slate-500 dark:text-slate-400 mt-1 leading-snug">{item.sub}</p>
           </div>
         </div>
       ))}
     </div>
-    <p class="text-center mt-6 text-[15px] text-slate-700 dark:text-slate-300 max-w-lg mx-auto">
-      GRIMY Cabinet : <strong>85€/mois</strong>. La question, c'est : combien vous coûte aujourd'hui de ne pas l'avoir ?
+    <p class="text-center mt-10 text-[15px] sm:text-[17px] font-semibold text-slate-800 dark:text-slate-200 max-w-2xl mx-auto leading-snug">
+      GRIMY. Cabinet&nbsp;:&nbsp;<span style="color:var(--grimy-dark)" class="font-black">99€/mois</span>.
+      La vraie question, c'est combien vous coûte aujourd'hui de
+      <span class="underline decoration-red-400 underline-offset-4 font-black text-red-600 dark:text-red-400">NE PAS</span> l'avoir&nbsp;?
     </p>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════
+       CORRECTION 6 — Section Membres Fondateurs
+  ══════════════════════════════════════════════════════ -->
+  <div class="mb-4 reveal rounded-3xl border-y border-emerald-200/30 dark:border-emerald-800/20 py-16 sm:py-20 px-8 sm:px-12"
+    style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #f0fdf4 50%);">
+    <div class="max-w-3xl mx-auto text-center">
+      <h3 class="text-[24px] sm:text-[30px] font-bold tracking-tight text-slate-900 dark:text-white mb-3">
+        🌟 Programme Membres Fondateurs
+      </h3>
+      <p class="text-[15px] text-slate-600 dark:text-slate-300 mb-8 max-w-xl mx-auto">
+        Les 100 premiers cabinets qui rejoignent GRIMY. bénéficient&nbsp;:
+      </p>
+
+      <!-- Liste bénéfices -->
+      <ul class="inline-flex flex-col gap-3 text-left mb-10 mx-auto">
+        {[
+          "Tarif garanti à vie (jamais d'augmentation)",
+          "Accès prioritaire aux nouvelles fonctionnalités",
+          "Influence directe sur la roadmap produit",
+          "Mention dans nos communications (sur demande)",
+        ].map(item => (
+          <li class="flex items-center gap-3 text-[14px] text-slate-800 dark:text-slate-200">
+            <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-white">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+
+      <!-- Barre de progression 5/100 -->
+      <div class="max-w-xs mx-auto mb-6">
+        <div class="flex items-center justify-between text-[13px] mb-2">
+          <span class="text-slate-500 dark:text-slate-400">Places utilisées</span>
+          <span class="font-black text-emerald-600 dark:text-emerald-400">5 / 100</span>
+        </div>
+        <div class="w-full h-3 bg-emerald-100 dark:bg-emerald-950/50 rounded-full overflow-hidden">
+          <div class="h-full bg-emerald-500 rounded-full transition-all" style="width: 5%"></div>
+        </div>
+        <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-2">95 places encore disponibles</p>
+      </div>
+
+      <!-- CTA -->
+      <a href="https://app.grimy.fr/auth"
+        class="inline-flex items-center gap-2 text-[14px] font-bold px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white transition shadow-lg shadow-emerald-500/25">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        Réserver ma place fondateur
+      </a>
+      <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-3">Disponible sur tous les plans payants</p>
+    </div>
+  </div>
 
 </section>
 
 <script is:inline>
   function setBilling(type) {
     const isAnnual = type === 'annual';
-    // Toggle buttons
     const btnA = document.getElementById('btn-annual');
     const btnM = document.getElementById('btn-monthly');
     if (isAnnual) {
-      btnA.classList.add('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
-      btnA.classList.remove('text-slate-600', 'dark:text-slate-300');
-      btnM.classList.remove('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
-      btnM.classList.add('text-slate-600', 'dark:text-slate-300');
+      btnA.classList.add('bg-white','shadow-sm','text-slate-900','dark:text-white');
+      btnA.classList.remove('text-slate-600','dark:text-slate-300');
+      btnM.classList.remove('bg-white','shadow-sm','text-slate-900','dark:text-white');
+      btnM.classList.add('text-slate-600','dark:text-slate-300');
     } else {
-      btnM.classList.add('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
-      btnM.classList.remove('text-slate-600', 'dark:text-slate-300');
-      btnA.classList.remove('bg-white', 'dark:bg-slate-900', 'shadow-sm', 'text-slate-900', 'dark:text-white');
-      btnA.classList.add('text-slate-600', 'dark:text-slate-300');
+      btnM.classList.add('bg-white','shadow-sm','text-slate-900','dark:text-white');
+      btnM.classList.remove('text-slate-600','dark:text-slate-300');
+      btnA.classList.remove('bg-white','shadow-sm','text-slate-900','dark:text-white');
+      btnA.classList.add('text-slate-600','dark:text-slate-300');
     }
-
     const savings = document.getElementById('annual-savings');
-    savings.textContent = isAnnual
-      ? 'Tarification annuelle activée — vous économisez jusqu\'à 2 mois.'
-      : 'Tarification mensuelle — sans engagement.';
+    if (savings) savings.textContent = isAnnual
+      ? "Tarification annuelle activée — vous économisez jusqu'à 2 mois."
+      : "Tarification mensuelle — sans engagement.";
 
-    // Prix
     const plans = [
-      { id: 'price-cabinet', billing: 'billing-cabinet', monthly: 99, annual: 85, annualTotal: '1 020', monthlyTotal: '1 188' },
-      { id: 'price-pro', billing: 'billing-pro', monthly: 179, annual: 149, annualTotal: '1 788', monthlyTotal: '2 148' },
-      { id: 'price-plus', billing: 'billing-plus', monthly: 349, annual: 299, annualTotal: '3 588', monthlyTotal: '4 188' },
+      { id: 'price-cabinet', billing: 'billing-cabinet', monthly: 99,  annual: 85,  annualTotal: '1 020', monthlyTotal: '1 188' },
+      { id: 'price-pro',     billing: 'billing-pro',     monthly: 179, annual: 149, annualTotal: '1 788', monthlyTotal: '2 148' },
+      { id: 'price-plus',    billing: 'billing-plus',    monthly: 349, annual: 299, annualTotal: '3 588', monthlyTotal: '4 188' },
     ];
     plans.forEach(p => {
       const el = document.getElementById(p.id);

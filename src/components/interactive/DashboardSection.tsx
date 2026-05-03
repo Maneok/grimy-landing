@@ -72,10 +72,10 @@ function KpiCard({ label, value, sub, pct, tone }: { label: string; value: numbe
 export default function DashboardSection() {
   const baseClients = useMemo(() => [
     { name: 'CARRELAGES MOREAU SAS', siren: '821 456 789', score: 32, level: 'standard', vig: 'Standard', status: 'À jour', updated: 'il y a 3j', flag: false },
-    { name: 'Hôtel Belle-Vue', siren: '503 219 884', score: 58, level: 'standard', vig: 'Standard', status: 'À revoir', updated: 'il y a 8j', flag: true },
+    { name: 'Hôtel Belle-Vue', siren: '503 219 884', score: 58, level: 'renforcee', vig: 'Renforcée', status: 'À revoir', updated: 'il y a 8j', flag: true },
     { name: 'BERNARD CONSULTING', siren: '892 145 008', score: 24, level: 'standard', vig: 'Standard', status: 'À jour', updated: 'il y a 1j', flag: false },
     { name: 'Café des Sports — Mme Lopez', siren: '441 002 318', score: 78, level: 'renforcee', vig: 'Renforcée', status: 'En cours', updated: "aujourd'hui", flag: false },
-    { name: 'NEGOCE INTERNATIONAL FR', siren: '304 882 005', score: 64, level: 'standard', vig: 'Standard', status: 'À revoir', updated: 'il y a 2j', flag: false },
+    { name: 'NEGOCE INTERNATIONAL FR', siren: '304 882 005', score: 64, level: 'renforcee', vig: 'Renforcée', status: 'À revoir', updated: 'il y a 2j', flag: false },
     { name: 'Pharmacie de la Place', siren: '772 561 408', score: 19, level: 'standard', vig: 'Standard', status: 'À jour', updated: 'il y a 5j', flag: false },
   ], []);
 

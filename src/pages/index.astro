@@ -4,7 +4,6 @@ import '../styles/global.css';
 // Static components (zero JS)
 import Hero from '../components/static/Hero.astro';
 import TrustMarquee from '../components/static/TrustMarquee.astro';
-import BeforeAfter from '../components/static/BeforeAfter.astro';
 import LettreSection from '../components/static/LettreSection.astro';
 import FeatureGrid from '../components/static/FeatureGrid.astro';
 import Pricing from '../components/static/Pricing.astro';
@@ -22,7 +21,6 @@ import TopNav from '../components/interactive/TopNav.tsx';
 import HeroDemo from '../components/interactive/HeroDemo.tsx';
 import DashboardSection from '../components/interactive/DashboardSection.tsx';
 import ScreeningDemo from '../components/interactive/ScreeningDemo.tsx';
-import BeforeAfterSlider from '../components/interactive/BeforeAfterSlider.tsx';
 import LettreDemo from '../components/interactive/LettreDemo.tsx';
 import PricingToggle from '../components/interactive/PricingToggle.tsx';
 import LiveToast from '../components/interactive/LiveToast.tsx';
@@ -168,10 +166,6 @@ const faqItems = [
         <LettreSection>
           <LettreDemo client:visible={{rootMargin: '200px'}} />
         </LettreSection>
-
-        <BeforeAfter>
-          <BeforeAfterSlider client:visible={{rootMargin: '200px'}} />
-        </BeforeAfter>
 
         <Pricing>
           <PricingToggle slot="toggle" client:visible={{rootMargin: '200px'}} />

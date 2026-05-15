@@ -177,44 +177,41 @@ export default function HeroClientsDashboard() {
             {/* table */}
             <div className="px-3.5 xl:px-4 pb-4">
               <div className="overflow-hidden rounded-lg border border-slate-200 dark:border-white/[.06]">
-                <table className="w-full table-fixed text-[12px]">
+                <table className="w-full table-fixed text-[12.5px]">
                   <colgroup>
-                    <col className="w-[38%] sm:w-[40%] xl:w-[37%]" />
-                    <col className="hidden xl:table-column xl:w-[17%]" />
-                    <col className="w-[15%] xl:w-[12%]" />
-                    <col className="w-[22%] xl:w-[18%]" />
-                    <col className="w-[25%] xl:w-[16%]" />
+                    <col className="w-[48%] sm:w-[44%] xl:w-[42%]" />
+                    <col className="hidden xl:table-column xl:w-[20%]" />
+                    <col className="w-[18%] xl:w-[14%]" />
+                    <col className="w-[34%] sm:w-[30%] xl:w-[24%]" />
                   </colgroup>
                   <thead className="bg-slate-50 dark:bg-white/[.025]">
                     <tr className="text-left text-[10px] uppercase tracking-[.08em] text-slate-500 dark:text-slate-400 font-semibold">
-                      <th className="pl-3 pr-2 py-2 whitespace-nowrap">Client</th>
-                      <th className="px-2 py-2 whitespace-nowrap hidden xl:table-cell">SIREN</th>
-                      <th className="px-2 py-2 whitespace-nowrap">Score</th>
-                      <th className="px-2 py-2 whitespace-nowrap">Vigilance</th>
-                      <th className="pl-2 pr-3 py-2 whitespace-nowrap text-right">Statut</th>
+                      <th className="pl-2.5 pr-1.5 py-2.5 whitespace-nowrap">Client</th>
+                      <th className="px-2 py-2.5 whitespace-nowrap hidden xl:table-cell">SIREN</th>
+                      <th className="px-2 py-2.5 whitespace-nowrap">Score</th>
+                      <th className="pl-2 pr-3 py-2.5 whitespace-nowrap text-right">Vigilance</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-white/[.04]">
                     {baseClients.map((c, i) => (
                       <tr key={i} className={`row-hover ${highlight === i ? 'highlight-row' : ''}`}>
-                        <td className="pl-3 pr-2 py-2 text-slate-900 dark:text-white font-medium">
+                        <td className="pl-2.5 pr-1.5 py-2.5 text-slate-900 dark:text-white font-medium">
                           <div className="flex items-center gap-1.5 min-w-0">
+                            <span
+                              className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${statusDot[c.status]}`}
+                              aria-label={`Statut : ${c.status}`}
+                              title={c.status}
+                            />
                             <span className="truncate">{c.name}</span>
                             {c.flag && Ic.alert}
                           </div>
                         </td>
-                        <td className="px-2 py-2 text-slate-500 dark:text-slate-400 num tabular-nums whitespace-nowrap hidden xl:table-cell">{c.siren}</td>
-                        <td className="px-2 py-2 num font-semibold text-slate-700 dark:text-slate-200 tabular-nums whitespace-nowrap">
-                          <span key={scores[i]} className={highlight === i ? 'count-flip inline-block' : 'inline-block'}>{scores[i]}/100</span>
+                        <td className="px-2 py-2.5 text-slate-500 dark:text-slate-400 num tabular-nums whitespace-nowrap hidden xl:table-cell">{c.siren}</td>
+                        <td className="px-2 py-2.5 num font-semibold text-slate-700 dark:text-slate-200 tabular-nums whitespace-nowrap">
+                          <span key={scores[i]} className={highlight === i ? 'count-flip inline-block' : 'inline-block'}>{scores[i]}<span className="text-slate-400 dark:text-slate-500">/100</span></span>
                         </td>
-                        <td className="px-2 py-2">
+                        <td className="pl-2 pr-3 py-2.5 text-right">
                           <span className={`inline-block px-2 py-0.5 rounded-md text-[10.5px] font-semibold border whitespace-nowrap ${lvlPill[c.level]}`}>{c.vig}</span>
-                        </td>
-                        <td className="pl-2 pr-3 py-2 text-right">
-                          <span className="inline-flex items-center gap-1.5 text-slate-700 dark:text-slate-300 text-[11.5px] whitespace-nowrap">
-                            <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${statusDot[c.status]}`} />
-                            {c.status}
-                          </span>
                         </td>
                       </tr>
                     ))}

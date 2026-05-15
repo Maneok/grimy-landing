@@ -1,4 +1,5 @@
 import HeroDemo from './HeroDemo';
+import OfficialSourcesStrip from './OfficialSourcesStrip';
 
 export default function VerificationSection() {
   return (
@@ -55,6 +56,8 @@ export default function VerificationSection() {
           <HeroDemo />
         </div>
       </div>
+
+      <OfficialSourcesStrip />
     </section>
   );
 }

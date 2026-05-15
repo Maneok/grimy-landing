@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # Font subset backups (keep locally, not deployed)
 .font-backup/
+
+# CWV routine — daily snapshots (local history only)
+.cwv-history/

@@ -18,8 +18,8 @@ import StickyMobileCTABar from '../components/static/StickyMobileCTA.astro';
 
 // Interactive components (hydrated)
 import TopNav from '../components/interactive/TopNav.tsx';
-import HeroDemo from '../components/interactive/HeroDemo.tsx';
-import DashboardSection from '../components/interactive/DashboardSection.tsx';
+import HeroClientsDashboard from '../components/interactive/HeroClientsDashboard.tsx';
+import VerificationSection from '../components/interactive/VerificationSection.tsx';
 import ScreeningDemo from '../components/interactive/ScreeningDemo.tsx';
 import LettreDemo from '../components/interactive/LettreDemo.tsx';
 import PricingToggle from '../components/interactive/PricingToggle.tsx';
@@ -153,12 +153,12 @@ const faqItems = [
 
       <main id="main-content">
         <Hero>
-          <HeroDemo client:load />
+          <HeroClientsDashboard client:load />
         </Hero>
 
         <TrustMarquee />
 
-        <DashboardSection client:visible={{rootMargin: '200px'}} />
+        <VerificationSection client:visible={{rootMargin: '200px'}} />
         <ScreeningDemo client:visible={{rootMargin: '200px'}} />
 
         <FeatureGrid />

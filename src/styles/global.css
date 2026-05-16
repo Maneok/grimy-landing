@@ -682,3 +682,13 @@ tr.row-hover:hover::after { opacity: 1; }
   content-visibility: auto;
   contain-intrinsic-size: 1px 800px;
 }
+
+/* The hero dashboard sits under the fold on mobile (stacked layout) but
+   is critical above the fold on lg+. Apply content-visibility only when
+   the column is stacked. */
+@media (max-width: 1023px) {
+  .hero-dashboard-slot {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 720px;
+  }
+}

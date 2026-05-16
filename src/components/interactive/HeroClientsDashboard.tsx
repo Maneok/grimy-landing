@@ -1,30 +1,41 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 
 function useCountUp(target: number, duration = 1100): [React.RefObject<HTMLDivElement | null>, number] {
-  const [val, setVal] = useState(0);
+  // Initial value = target so SSR HTML already shows the final number and
+  // mobile clients (which skip hydration via client:media) keep the right value.
+  const [val, setVal] = useState(target);
   const ref = useRef<HTMLDivElement>(null);
-  const started = useRef(false);
+
   useEffect(() => {
-    let raf: number;
-    const startAnim = (t0: number) => {
-      started.current = true;
-      const tick = (t: number) => {
-        const p = Math.min((t - t0) / duration, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        setVal(target * eased);
-        if (p < 1) raf = requestAnimationFrame(tick);
-      };
-      raf = requestAnimationFrame(tick);
-    };
-    const check = () => {
-      if (started.current || !ref.current) return;
-      const r = ref.current.getBoundingClientRect();
-      if (r.top < window.innerHeight - 40 && r.bottom > 0) startAnim(performance.now());
-    };
-    check();
-    const id = setInterval(() => { if (!started.current) check(); else clearInterval(id); }, 150);
-    return () => { clearInterval(id); cancelAnimationFrame(raf); };
+    if (!ref.current) return;
+    if (typeof IntersectionObserver === 'undefined') return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let raf = 0;
+    let started = false;
+
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting && !started) {
+          started = true;
+          io.disconnect();
+          setVal(0);
+          const t0 = performance.now();
+          const tick = (t: number) => {
+            const p = Math.min((t - t0) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setVal(p < 1 ? target * eased : target);
+            if (p < 1) raf = requestAnimationFrame(tick);
+          };
+          raf = requestAnimationFrame(tick);
+        }
+      }
+    }, { rootMargin: '0px 0px -40px 0px' });
+
+    io.observe(ref.current);
+    return () => { io.disconnect(); cancelAnimationFrame(raf); };
   }, [target, duration]);
+
   return [ref, val];
 }
 

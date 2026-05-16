@@ -46,7 +46,7 @@ const faqItems = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin fetchpriority="high" />
     <link rel="icon" type="image/svg+xml" href="/grimy-favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/grimy-favicon-32.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/grimy-favicon-192.png" />
@@ -149,33 +149,43 @@ const faqItems = [
 
     <div class="min-h-screen">
       <ScrollProgress />
-      <TopNav client:load />
+      <TopNav client:idle />
 
       <main id="main-content">
         <Hero>
-          <HeroClientsDashboard client:load />
+          <HeroClientsDashboard client:media="(min-width: 1024px)" />
         </Hero>
 
         <TrustMarquee />
 
-        <VerificationSection client:visible={{rootMargin: '200px'}} />
-        <ScreeningDemo client:visible={{rootMargin: '200px'}} />
+        <div class="cv-auto">
+          <VerificationSection client:visible={{rootMargin: '200px'}} />
+        </div>
+        <div class="cv-auto">
+          <ScreeningDemo client:visible={{rootMargin: '200px'}} />
+        </div>
 
-        <FeatureGrid />
+        <div class="cv-auto"><FeatureGrid /></div>
 
-        <LettreSection>
-          <LettreDemo client:visible={{rootMargin: '200px'}} />
-        </LettreSection>
+        <div class="cv-auto">
+          <LettreSection>
+            <LettreDemo client:visible={{rootMargin: '200px'}} />
+          </LettreSection>
+        </div>
 
-        <Pricing>
-          <PricingToggle slot="toggle" client:visible={{rootMargin: '200px'}} />
-        </Pricing>
+        <div class="cv-auto">
+          <Pricing>
+            <PricingToggle slot="toggle" client:visible={{rootMargin: '200px'}} />
+          </Pricing>
+        </div>
 
-        <FAQ />
+        <div class="cv-auto"><FAQ /></div>
 
-        <FinalCTA>
-          <FinalCTACursor client:visible={{rootMargin: '200px'}} />
-        </FinalCTA>
+        <div class="cv-auto">
+          <FinalCTA>
+            <FinalCTACursor client:visible={{rootMargin: '200px'}} />
+          </FinalCTA>
+        </div>
       </main>
 
       <Footer />

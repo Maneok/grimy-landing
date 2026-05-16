@@ -116,8 +116,11 @@ import HeroPhraseRotator from '../interactive/HeroPhraseRotator.tsx';
       </div>
     </div>
 
-    <!-- RIGHT — HeroDemo.tsx will be slotted -->
-    <div class="lg:col-span-7 reveal lg:-mr-2 xl:mr-0">
+    <!-- RIGHT — HeroDemo.tsx will be slotted. Below lg the dashboard sits
+         under the fold, so content-visibility:auto lets the browser skip
+         layout/paint until the user scrolls. Above lg it's beside the
+         hero copy and must render immediately. -->
+    <div class="lg:col-span-7 reveal lg:-mr-2 xl:mr-0 hero-dashboard-slot">
       <slot />
     </div>
   </div>

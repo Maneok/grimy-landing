@@ -12,13 +12,9 @@
   font-display: swap;
   src: url("/fonts/InterVariable.woff2") format("woff2");
 }
-@font-face {
-  font-family: "Inter";
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url("/fonts/InterVariable-Italic.woff2") format("woff2");
-}
+/* Italic glyphs fall back to the browser's synthetic italic of Inter to
+   avoid shipping an extra 116 KB font that's only used in a couple of
+   below-the-fold blocks. */
 
 /* ============================================================
    Tailwind v4 Theme — GRIMY Design Tokens
@@ -414,6 +410,17 @@ tr.row-hover:hover::after { opacity: 1; }
   .save-dot, .ticker-track { animation: none !important; }
 }
 
+/* Disable expensive non-composited animations on small screens to keep
+   mobile main-thread free (box-shadow / filter / stroke-dashoffset force
+   paint or layer work every frame). */
+@media (max-width: 1023px) {
+  .mint-pulse, .mint-glow, .cta-attract, .hero-star-pulse,
+  .orbit-1, .orbit-2, .particle, .sign-trace path, .draw-stroke path,
+  .ticker-track, .save-dot, .shimmer { animation: none !important; }
+  .mint-pulse, .mint-glow, .cta-attract { box-shadow: none !important; }
+  .grimy-dot { box-shadow: none; }
+}
+
 /* ============================================================
    REÇU stamp (lettre)
    ============================================================ */
@@ -665,4 +672,13 @@ tr.row-hover:hover::after { opacity: 1; }
     animation: none;
   }
   .animate-float-subtle { transform: translateY(-8px); }
+}
+
+/* Skip layout/paint on below-the-fold sections until they're near the
+   viewport. Big win for mobile FCP/LCP since the browser doesn't process
+   ~1000 DOM nodes upfront. Each section reserves its own intrinsic
+   height to avoid layout shift when promoted. */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 800px;
 }

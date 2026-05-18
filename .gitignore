@@ -1,30 +1,24 @@
-# build output
-dist/
-# generated types
-.astro/
-
-# dependencies
-node_modules/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-
-# environment variables
-.env
-.env.production
-
-# macOS-specific files
-.DS_Store
-
-# jetbrains setting folder
-.idea/
-
-# Font subset backups (keep locally, not deployed)
-.font-backup/
 
 # CWV routine — daily snapshots (local history only)
+# Font subset backups (keep locally, not deployed)
+# build output
+# dependencies
+# environment variables
+# generated types
+# jetbrains setting folder
+# logs
+# macOS-specific files
+.DS_Store
+.astro/
 .cwv-history/
+.env
+.env.production
+.font-backup/
+.idea/
+.seo-reports/
+dist/
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*

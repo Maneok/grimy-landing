@@ -10,6 +10,7 @@
 # macOS-specific files
 .DS_Store
 .astro/
+.copy-reports/
 .cwv-history/
 .env
 .env.production

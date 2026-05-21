@@ -9,6 +9,7 @@
 # logs
 # macOS-specific files
 .DS_Store
+.a11y-reports/
 .astro/
 .copy-reports/
 .cwv-history/

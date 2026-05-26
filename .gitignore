@@ -16,6 +16,7 @@
 .env
 .env.production
 .font-backup/
+.geo-reports/
 .idea/
 .seo-reports/
 dist/

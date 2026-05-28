@@ -22,11 +22,11 @@ export default function TopNav() {
   };
 
   const links = [
-    ['Produit', '#produit'],
-    ['Vérification', '#screening'],
-    ['Lettre de mission', '#lettre'],
-    ['Tarifs', '#tarifs'],
-    ['FAQ', '#faq'],
+    ['Produit', '/#produit'],
+    ['Vérification', '/#screening'],
+    ['Lettre de mission', '/#lettre'],
+    ['Tarifs', '/#tarifs'],
+    ['FAQ', '/#faq'],
   ];
 
   return (

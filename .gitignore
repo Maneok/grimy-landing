@@ -11,6 +11,7 @@
 .DS_Store
 .a11y-reports/
 .astro/
+.content-gaps/
 .copy-reports/
 .cwv-history/
 .env

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+
+const services = [
+  { name: 'Application web (app.grimy.fr)', desc: 'Interface et tableau de bord' },
+  { name: 'API & traitements', desc: 'Scoring, enrichissement, alertes' },
+  { name: 'Authentification', desc: 'Connexion et gestion des comptes' },
+  { name: 'Base de données', desc: 'Stockage des données métier (UE)' },
+  { name: 'Signature électronique', desc: 'Envoi et signature des documents' },
+  { name: 'Sources réglementaires', desc: 'INPI, Pappers, BODACC, sanctions' },
+];
+---
+<BaseLayout title="Statut des services — GRIMY" description="État en temps réel des services GRIMY : application, API, authentification, base de données et signature électronique.">
+  <main class="max-w-3xl mx-auto px-6 py-20">
+    <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">Statut des services</h1>
+    <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">Disponibilité opérationnelle de la plateforme GRIMY.</p>
+
+    <div class="flex items-center gap-3 rounded-2xl border border-emerald-200 dark:border-emerald-500/20 bg-emerald-50 dark:bg-emerald-500/10 px-5 py-4 mb-10">
+      <span class="relative flex w-2.5 h-2.5">
+        <span class="absolute inset-0 rounded-full bg-emerald-500 live-pulse"></span>
+        <span class="relative inline-flex w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+      </span>
+      <span class="text-[15px] font-semibold text-emerald-800 dark:text-emerald-300">Tous les services sont opérationnels</span>
+    </div>
+
+    <ul class="space-y-3">
+      {services.map(s => (
+        <li class="flex items-center justify-between gap-4 rounded-xl border border-slate-200 dark:border-white/[.08] bg-white dark:bg-slate-900/60 px-5 py-4">
+          <div>
+            <p class="text-[15px] font-medium text-slate-900 dark:text-white">{s.name}</p>
+            <p class="text-[13px] text-slate-500 dark:text-slate-400">{s.desc}</p>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-[12.5px] font-semibold text-emerald-700 dark:text-emerald-400 whitespace-nowrap">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.25" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
+            Opérationnel
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-10 rounded-2xl border border-slate-200 dark:border-white/[.08] bg-slate-50 dark:bg-white/[.02] px-5 py-4">
+      <p class="text-[14px] text-slate-700 dark:text-slate-300"><strong>Objectif de disponibilité :</strong> 99,5 % par mois (99,9 % pour l'offre Cabinet+), hors maintenances planifiées, conformément à nos <a href="/cgv" class="text-indigo-600 hover:underline">Conditions Générales de Vente</a>.</p>
+    </div>
+
+    <p class="mt-6 text-[13px] text-slate-500 dark:text-slate-400">
+      Cette page reflète l'état opérationnel courant des services. En cas d'incident ou de maintenance planifiée, les cabinets concernés sont informés par email. Pour signaler un problème : <a href="mailto:contact@grimy.fr" class="text-indigo-600 hover:underline">contact@grimy.fr</a>.
+    </p>
+  </main>
+</BaseLayout>

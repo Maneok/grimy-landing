@@ -88,10 +88,10 @@ const faqItems = [
       "description": description,
       "offers": {
         "@type": "AggregateOffer",
-        "lowPrice": "19",
-        "highPrice": "199",
+        "lowPrice": "0",
+        "highPrice": "349",
         "priceCurrency": "EUR",
-        "offerCount": "3"
+        "offerCount": "4"
       }
     })} />
 
@@ -99,12 +99,19 @@ const faqItems = [
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "GRIMY SAS",
+      "name": "GRIMY",
+      "legalName": "Alexandre DAHAN (entreprise individuelle)",
       "url": url,
       "logo": `${url}/grimy-logo-light.png`,
+      "email": "contact@grimy.fr",
+      "vatID": "FR44947830014",
+      "taxID": "947830014",
       "sameAs": [],
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "Bât. C, 158 rue du Rouet",
+        "addressLocality": "Marseille",
+        "postalCode": "13008",
         "addressCountry": "FR"
       }
     })} />

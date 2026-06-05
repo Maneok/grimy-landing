@@ -126,12 +126,11 @@
           "Conformité LCB-FT complète (rien de bridé)",
           "INPI, Pappers, BODACC, Sanctions, Annuaire",
           "Risk scoring, GED, registre, journal d'audit",
-          "3 lettres de mission offertes par mois",
-          "(au-delà : 15€ par lettre)",
+          "Lettres de mission incluses (1 par dossier suivi)",
           "Signature électronique gratuite et illimitée",
-        ].map((f, i) => (
-          <li class={`flex items-start gap-2 leading-snug ${i === 5 ? 'text-slate-400 dark:text-slate-500 text-[11px] pl-5' : 'text-slate-600 dark:text-slate-300 text-[13px]'}`}>
-            {i !== 5 && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+        ].map((f) => (
+          <li class="flex items-start gap-2 leading-snug text-slate-600 dark:text-slate-300 text-[13px]">
+            <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
             <span>{f}</span>
           </li>
         ))}

@@ -71,7 +71,7 @@
       </div>
       <div class="min-h-[40px] mb-6">
         <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
-        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/jour par client suivi</p>
+        <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/mois par client suivi</p>
       </div>
 
       <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+"
@@ -83,7 +83,7 @@
       <ul class="space-y-2 flex-1">
         {[
           "2 000 clients en suivi LCB-FT",
-          "400 signatures incluses (0,80€/sig. supp.)",
+          "Signature électronique illimitée et gratuite",
           "Onboarding 2h en visio avec un EC",
           "Migration assistée de votre portefeuille",
           "Point annuel dédié (1h visio)",
@@ -126,12 +126,11 @@
           "Conformité LCB-FT complète (rien de bridé)",
           "INPI, Pappers, BODACC, Sanctions, Annuaire",
           "Risk scoring, GED, registre, journal d'audit",
-          "3 lettres de mission offertes par mois",
-          "(au-delà : 15€ par lettre)",
-          "6€ par signature électronique",
-        ].map((f, i) => (
-          <li class={`flex items-start gap-2 leading-snug ${[5,6].includes(i) ? 'text-slate-400 dark:text-slate-500 text-[11px] pl-5' : 'text-slate-600 dark:text-slate-300 text-[13px]'}`}>
-            {![5,6].includes(i) && <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>}
+          "Lettres de mission incluses (1 par dossier suivi)",
+          "Signature électronique gratuite et illimitée",
+        ].map((f) => (
+          <li class="flex items-start gap-2 leading-snug text-slate-600 dark:text-slate-300 text-[13px]">
+            <svg class="w-3.5 h-3.5 mt-[3px] shrink-0 text-emerald-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>
             <span>{f}</span>
           </li>
         ))}
@@ -151,13 +150,14 @@
         <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="99" data-annual="85" id="price-cabinet">85</span>
         <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
       </div>
-      <div class="min-h-[40px] mb-6 text-[11px] text-slate-500 dark:text-slate-500" id="billing-cabinet">
-        Facturation annuelle · 1 020 €/an
+      <div class="min-h-[40px] mb-6">
+        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
+        <p class="text-[11px] font-medium" style="color:var(--grimy-dark)">= 0,43€/mois par client suivi</p>
       </div>
 
       <a href="https://app.grimy.fr/auth"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
-        Essayer 30 jours sans engagement
+        Démarrer sans engagement
       </a>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-slate-700 dark:text-slate-200">Tout Essentiel, plus :</div>
@@ -165,7 +165,7 @@
         {[
           "200 clients en suivi LCB-FT",
           "Lettres de mission ILLIMITÉES",
-          "50 signatures incluses (1,50€/sig. supp.)",
+          "Signature électronique illimitée et gratuite",
           "Revue périodique automatisée",
           "Alertes temps réel (dirigeant, sanctions, BODACC)",
           "Enrichissement Pappers complet",
@@ -203,12 +203,12 @@
       </div>
       <div class="min-h-[40px] mb-6">
         <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
-        <p class="text-[11px] text-[#00C896] font-semibold">= 0,19€/jour par client suivi</p>
+        <p class="text-[11px] text-[#00C896] font-semibold">= 0,19€/mois par client suivi</p>
       </div>
 
       <a href="https://app.grimy.fr/auth"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
-        Essayer 30 jours sans engagement
+        Démarrer sans engagement
       </a>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-[#00C896]">Tout Cabinet, plus :</div>
@@ -216,7 +216,7 @@
         {[
           "800 clients en suivi LCB-FT",
           "Multi-utilisateurs avec rôles (Admin / Collab.)",
-          "150 signatures incluses (1€/sig. supp.)",
+          "Signature électronique illimitée et gratuite",
           "Module Gouvernance & Contrôle qualité",
           "Diagnostic 360° du cabinet",
           "Tableau de bord cockpit avec KPIs",
@@ -231,6 +231,11 @@
       <div class="mt-auto pt-4 text-[11px] text-slate-500 dark:text-slate-500"></div>
     </div>
   </div>
+
+  <!-- Note de transparence tarifaire — par EC + signatures incluses -->
+  <p class="text-center text-[12px] leading-relaxed text-slate-500 dark:text-slate-400 max-w-2xl mx-auto mb-10 reveal">
+    Tarifs indiqués <strong>par expert-comptable</strong>, pour le 1ᵉʳ EC — la facturation est <strong>dégressive dès le 2ᵉ EC</strong> (tarification graduée). <strong>Signatures électroniques incluses</strong>, sans surcoût ni limite, dans toutes les offres.
+  </p>
 
   <!-- Pied de grille — liste d'attente premium (inchangé) -->
   <div class="text-center mb-16 py-5 px-6 rounded-2xl border border-dashed border-slate-200 dark:border-white/[.08] bg-slate-50/50 dark:bg-white/[.02] reveal">

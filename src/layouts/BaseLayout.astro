@@ -6,10 +6,19 @@ import TopNav from '../components/interactive/TopNav.tsx';
 interface Props {
   title: string;
   description?: string;
+  ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description = 'GRIMY — La conformité LCB-FT moderne pour les professions assujetties françaises.' } = Astro.props;
+const {
+  title,
+  description = 'GRIMY — La conformité LCB-FT moderne pour les professions assujetties françaises.',
+  ogImage = '/og-grimy.png',
+  noindex = false,
+} = Astro.props;
 const url = 'https://grimy.fr';
+const canonical = new URL(Astro.url.pathname, url).href;
+const ogImageUrl = new URL(ogImage, url).href;
 ---
 
 <html lang="fr">
@@ -17,14 +26,33 @@ const url = 'https://grimy.fr';
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/grimy-favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/grimy-favicon-32.png" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="GRIMY" />
+    <meta property="og:locale" content="fr_FR" />
     <meta property="og:title" content={title} />
-    <link rel="canonical" href={`${url}${Astro.url.pathname}`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
-    <meta name="robots" content="index, follow" />
     <script is:inline>
       const theme = localStorage.getItem('grimy-theme');
       if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {

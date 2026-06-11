@@ -194,7 +194,7 @@ export default function LettreDemo() {
             </button>
             <button className="w-full flex items-center gap-3 p-3.5 rounded-xl mint-glow text-white font-semibold transition group" style={{ background: 'linear-gradient(135deg, var(--grimy-dark), var(--grimy))' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-white/20"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
-              <div className="flex-1 text-left"><div className="text-[14px]">Signature en ligne</div><div className="text-[10.5px] text-white/80">Yousign &middot; DocuSign &middot; horodaté eIDAS</div></div>
+              <div className="flex-1 text-left"><div className="text-[14px]">Signature électronique</div><div className="text-[10.5px] text-white/80">Incluse &middot; horodatée eIDAS &middot; valeur légale</div></div>
               <ArrowIcon />
             </button>
           </div>

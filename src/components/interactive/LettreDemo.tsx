@@ -182,17 +182,17 @@ export default function LettreDemo() {
           </div>
 
           <div className="space-y-2.5 mt-5">
-            <button aria-label="Exporter en Word" className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-white/[.08] bg-white dark:bg-white/[.02] hover:border-[var(--grimy-dark)] dark:hover:border-[var(--grimy)] transition group">
+            <button className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-white/[.08] bg-white dark:bg-white/[.02] hover:border-[var(--grimy-dark)] dark:hover:border-[var(--grimy)] transition group">
               <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: '#2B579A', color: '#fff' }}><span className="text-[15px] font-black">W</span></div>
               <div className="flex-1 text-left"><div className="text-[14px] font-semibold text-slate-900 dark:text-white">Word</div><div className="text-[10.5px] text-slate-500 dark:text-slate-400">Modifiable &middot; 12 pages &middot; 348 Ko</div></div>
               <ArrowIcon />
             </button>
-            <button aria-label="Exporter en PDF" className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-white/[.08] bg-white dark:bg-white/[.02] hover:border-[var(--grimy-dark)] dark:hover:border-[var(--grimy)] transition group">
+            <button className="w-full flex items-center gap-3 p-3.5 rounded-xl border border-slate-200 dark:border-white/[.08] bg-white dark:bg-white/[.02] hover:border-[var(--grimy-dark)] dark:hover:border-[var(--grimy)] transition group">
               <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={{ background: '#DC2626', color: '#fff' }}><span className="text-[10.5px] font-black">PDF</span></div>
               <div className="flex-1 text-left"><div className="text-[14px] font-semibold text-slate-900 dark:text-white">PDF</div><div className="text-[10.5px] text-slate-500 dark:text-slate-400">Verrouillé &middot; prêt à imprimer</div></div>
               <ArrowIcon />
             </button>
-            <button aria-label="Signature en ligne" className="w-full flex items-center gap-3 p-3.5 rounded-xl mint-glow text-white font-semibold transition group" style={{ background: 'linear-gradient(135deg, var(--grimy-dark), var(--grimy))' }}>
+            <button className="w-full flex items-center gap-3 p-3.5 rounded-xl mint-glow text-white font-semibold transition group" style={{ background: 'linear-gradient(135deg, var(--grimy-dark), var(--grimy))' }}>
               <div className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 bg-white/20"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
               <div className="flex-1 text-left"><div className="text-[14px]">Signature en ligne</div><div className="text-[10.5px] text-white/80">Yousign &middot; DocuSign &middot; horodaté eIDAS</div></div>
               <ArrowIcon />

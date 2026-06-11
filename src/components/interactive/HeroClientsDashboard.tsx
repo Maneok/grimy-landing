@@ -241,6 +241,7 @@ export default function HeroClientsDashboard() {
                             <div className="flex items-center gap-2 min-w-0">
                               <span
                                 className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${statusDot[c.status]}`}
+                                role="img"
                                 aria-label={`Statut : ${c.status}`}
                                 title={c.status}
                               />

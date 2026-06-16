@@ -3,6 +3,7 @@ import '../styles/global.css';
 
 // Static components (zero JS)
 import Hero from '../components/static/Hero.astro';
+import ProcessFrieze from '../components/static/ProcessFrieze.astro';
 import TrustMarquee from '../components/static/TrustMarquee.astro';
 import LettreSection from '../components/static/LettreSection.astro';
 import FeatureGrid from '../components/static/FeatureGrid.astro';
@@ -161,6 +162,8 @@ const faqItems = [
         <Hero>
           <HeroClientsDashboard client:media="(min-width: 1024px)" />
         </Hero>
+
+        <ProcessFrieze />
 
         <TrustMarquee />
 

@@ -692,3 +692,72 @@ tr.row-hover:hover::after { opacity: 1; }
     contain-intrinsic-size: 1px 720px;
   }
 }
+
+/* ============================================================
+   Process frieze — dispositif LCB-FT de bout en bout (CSS-only, GPU)
+   Le contenu est visible par défaut (sûr sans JS / pour les crawlers) ;
+   l'entrée est rejouée une fois quand .in-view est ajouté au survol du
+   viewport (IntersectionObserver inline dans le composant).
+   ============================================================ */
+@keyframes frieze-pop {
+  from { opacity: 0; transform: translate3d(0, 16px, 0) scale(.96); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+@keyframes frieze-draw {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes frieze-sweep {
+  0%   { background-position: 120% 0; }
+  100% { background-position: -20% 0; }
+}
+
+.frieze-scroller::-webkit-scrollbar { display: none; }
+
+.frieze.in-view .frieze-node {
+  animation: frieze-pop .55s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay: calc(var(--i, 0) * .1s + .15s);
+}
+
+.frieze-line-fill { transform: scaleX(1); transform-origin: left center; }
+.frieze.in-view .frieze-line-fill {
+  animation: frieze-draw 1.5s cubic-bezier(.2,.7,.2,1) .15s both;
+  will-change: transform;
+}
+
+.frieze-line-sweep {
+  background: linear-gradient(90deg, transparent 40%, rgba(255,255,255,.6) 50%, transparent 60%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  background-position: 120% 0;
+  opacity: 0;
+}
+.frieze.in-view .frieze-line-sweep {
+  opacity: 1;
+  animation: frieze-sweep 3.4s linear 1.8s infinite;
+}
+
+.frieze-icon {
+  transition: transform .25s cubic-bezier(.2,.7,.2,1), box-shadow .25s ease,
+              background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+.frieze-node:hover .frieze-icon {
+  transform: translateY(-3px);
+  background: var(--grimy-dark);
+  color: #fff;
+  border-color: var(--grimy-dark);
+  box-shadow: 0 12px 26px -10px color-mix(in oklab, var(--grimy) 60%, transparent);
+}
+
+/* Le balayage lumineux force un repaint à chaque frame : on le coupe en
+   mobile pour garder le thread principal libre (cf. autres animations). */
+@media (max-width: 1023px) {
+  .frieze-line-sweep { animation: none !important; opacity: 0 !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .frieze.in-view .frieze-node,
+  .frieze.in-view .frieze-line-fill { animation: none !important; }
+  .frieze-node { opacity: 1 !important; transform: none !important; }
+  .frieze-line-fill { transform: scaleX(1) !important; }
+  .frieze-line-sweep { animation: none !important; opacity: 0 !important; }
+}

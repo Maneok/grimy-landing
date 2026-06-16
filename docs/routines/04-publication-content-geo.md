@@ -41,17 +41,23 @@ DATAFORSEO_PASSWORD=<api-password-dataforseo>
 
 ### 3. Garde-fou coût
 
-DataForSEO facture à l'appel. Plafonds DURS de cette routine :
+DataForSEO facture à l'appel mais les coûts sont minimes (≈ $0.01–0.015 / appel
+Labs). **Budget non plafonné côté compte** ; on garde tout de même un cap
+anti-emballement :
 
-- **≤ 15 appels DataForSEO par run** (≈ 1 article × quelques endpoints + marge).
-- Endpoints autorisés (les moins chers, en mode `live`) :
-  - `POST /v3/dataforseo_labs/google/keyword_overview/live` (volume + difficulté)
-  - `POST /v3/dataforseo_labs/google/related_keywords/live` (variantes sémantiques)
-  - `POST /v3/serp/google/organic/live/advanced` (lire le SERP réel de la requête cible — **lecture seule**, pour comprendre l'intention dominante)
+- **≤ 50 appels DataForSEO par run** (protection runaway, pas contrainte budget).
+- Endpoints autorisés (mode `live`, marché FR) :
+  - `POST /v3/dataforseo_labs/google/keyword_suggestions/live` — **endpoint
+    pivot** : découvre le long-tail porteur de volume autour d'un seed.
+  - `POST /v3/dataforseo_labs/google/keyword_overview/live` — volume +
+    `keyword_difficulty` + CPC + intention sur une liste de mots-clés.
+  - `POST /v3/dataforseo_labs/google/related_keywords/live` — variantes
+    « also rank for » (complément ; remonte peu sur termes très nichés).
+  - `POST /v3/serp/google/organic/live/advanced` — lire le SERP réel pour
+    comprendre l'angle/format dominant (**lecture seule**).
 - Localisation : `location_name: "France"`, `language_name: "French"`.
 - Si `DATAFORSEO_LOGIN`/`PASSWORD` absents ou si un appel renvoie HTTP 401/402
-  (crédit épuisé) → **exit gracieux**, issue idempotente `routine-failure`
-  « routine-4: DataForSEO indisponible », **aucun** article généré.
+  → **exit gracieux**, issue idempotente `routine-failure`, **0 article**.
 
 ---
 
@@ -109,24 +115,40 @@ de PR). La boucle est déjà à jour.
 
 ---
 
-## PHASE 3 — RECHERCHE MOTS-CLÉS (DataForSEO, ≤ 15 appels)
+## PHASE 3 — RECHERCHE MOTS-CLÉS (DataForSEO)
 
-Pour la `query` retenue :
+> ⚠️ **Enseignement validé par mesure réelle (2026-06-16, voir Annexe A).**
+> Les requêtes long-tail exactes de la routine #5 (ex. « logiciel LCB-FT pour
+> expert-comptable ») ont un **volume quasi nul** dans l'index DataForSEO. Cibler
+> ces strings à la lettre = articles que personne ne cherche. La stratégie
+> gagnante : remonter au **terme-tête porteur** (ex. `lcb-ft` = 5 400/mois,
+> KD 2 ; `tracfin` = 14 800/mois, KD 8 ; `kyc` = 6 600/mois, KD 5) et **couvrir
+> le long-tail sémantiquement à l'intérieur de l'article**.
 
-1. `keyword_overview` → volume de recherche, `keyword_difficulty`, CPC.
-   - Si volume = 0 ET difficulté nulle → mot-clé fantôme : **dé-prioriser**,
-     commenter l'issue (« volume nul confirmé via DataForSEO, intérêt SEO
-     faible — à arbitrer manuellement ») et reprendre Phase 2 sur la suivante
-     (max 2 reprises pour rester sous le cap d'appels).
-2. `related_keywords` → récupérer 5–10 variantes sémantiques et questions
-   associées (matière première des sous-titres H2/H3 et de la FAQ).
-3. `serp/google/organic/live/advanced` → lire les 10 premiers résultats réels
-   pour comprendre l'**angle dominant** (guide ? définition ? how-to ?) et le
-   **format** attendu. **Lecture seule** : on s'en inspire, on ne copie pas, on
-   ne cite aucun domaine concurrent dans l'article.
+Procédure pour l'issue retenue :
 
-Consigner (en mémoire, pas dans un fichier committé) : mot-clé principal,
-3–5 mots-clés secondaires, intention dominante, format cible.
+1. **Dériver 1–3 seeds** à partir de la `query` (ex. query « registre LCB-FT
+   obligatoire » → seeds `lcb-ft`, `registre lcb-ft`, `obligations lcb-ft`).
+2. `keyword_suggestions` sur chaque seed → récupérer les variantes avec
+   `search_volume > 0`. **C'est ici qu'on trouve le mot-clé principal réel** :
+   la variante au meilleur couple (volume élevé × KD bas) qui reste fidèle à
+   l'intention de l'issue.
+3. `keyword_overview` sur le mot-clé principal retenu + 5–10 secondaires →
+   confirmer volume, `keyword_difficulty`, CPC (un CPC élevé = fort intent
+   commercial, ex. `logiciel lcb-ft` CPC ≈ 64 $) et `search_intent`.
+4. `serp/google/organic/live/advanced` sur le mot-clé principal → lire les 10
+   premiers résultats pour caler l'**angle** (définition / guide / how-to) et le
+   **format**. **Lecture seule** ; ne jamais copier ni citer un domaine
+   concurrent dans l'article.
+
+Règles d'arbitrage :
+- Si **tous** les seeds dérivés sont à volume nul → l'article garde quand même
+  une valeur **GEO** (citation IA sur question de niche) : autorisé, mais
+  signaler « volume SEO faible, valeur surtout GEO » dans la PR.
+- Privilégier KD ≤ 30 (terrain réaliste pour un domaine jeune).
+
+Consigner (en mémoire, pas dans un fichier committé) : mot-clé principal réel,
+volume, KD, 3–5 secondaires, intention, format cible.
 
 ---
 
@@ -247,3 +269,53 @@ faire (aucune issue éligible) → **silence**.
 - Dépasser 15 appels DataForSEO / run.
 - Imprimer, logger ou committer `DATAFORSEO_LOGIN` / `DATAFORSEO_PASSWORD`.
 - Inventer un chiffre réglementaire ou un article de loi.
+
+---
+
+## ANNEXE A — Benchmark DataForSEO validé (mesure réelle 2026-06-16)
+
+Premier appel réel à l'API (compte connecté, marché France/français). Sert de
+**baseline** : la routine doit faire mieux que de cibler des strings à volume nul.
+
+### Termes-tête (cibles prioritaires — fort volume, faible difficulté)
+
+| Mot-clé | Volume/mois | KD | CPC ($) | Lecture |
+|---------|------------:|---:|--------:|---------|
+| expert comptable | 49 500 | 84 | 8.73 | Trop concurrentiel (head générique) |
+| tracfin | 14 800 | 8 | 0 | ⭐ Volume énorme, KD très bas |
+| kyc | 6 600 | 5 | 7.56 | ⭐ Volume + intent B2B |
+| lcb-ft | 5 400 | 2 | 4.46 | ⭐ Cœur de cible, KD quasi nul |
+| blanchiment | 3 600 | 20 | 0.81 | Bon volume, intent informationnel |
+| logiciel expert comptable | 720 | 62 | 9.20 | Intent commercial, KD élevé |
+| logiciel lcb-ft | 50 | — | 64.22 | Volume faible mais **CPC 64 $** = intent achat maximal |
+
+### Long-tail porteur (via `keyword_suggestions` seed `lcb-ft`, top extraits)
+
+| Mot-clé | Volume | KD |
+|---------|-------:|---:|
+| formation lcb-ft | 390 | 0 |
+| lcb-ft def / définition | 320 / 170 | 0–3 |
+| obligation(s) lcb-ft | 210 | 16–18 |
+| réglementation lcb-ft | 140 | 4–16 |
+| dispositif lcb-ft | 110 | 2 |
+| analyste lcb-ft | 170 | 0 |
+
+### Requêtes long-tail de la routine #5 → **volume nul** dans l'index
+
+« logiciel LCB-FT pour expert-comptable », « outil anti-blanchiment cabinet
+comptable », « registre LCB-FT obligatoire expert-comptable », etc. →
+`keyword_overview` ne renvoie **aucune** donnée (0 item). À traiter comme
+sous-sections sémantiques d'articles construits autour des termes-tête, pas
+comme titres d'articles autonomes.
+
+### Conclusion stratégique pour la routine
+
+1. **Articles-piliers** sur `lcb-ft`, `tracfin`, `kyc`, `déclaration de soupçon`
+   (volume réel + KD bas) — c'est là que se gagne la visibilité.
+2. À l'intérieur, **couvrir le long-tail** de la routine #5 en H2/H3 + FAQ
+   (intention exacte des experts-comptables → citation GEO).
+3. Garder une page « logiciel LCB-FT » orientée **conversion** (CPC 64 $ =
+   intent achat), même à faible volume.
+
+> Coûts observés : ~$0.01–0.015 par appel Labs. Un run complet (suggestions +
+> overview + SERP) ≈ $0.05–0.10. Négligeable.

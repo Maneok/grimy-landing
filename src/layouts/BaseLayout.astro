@@ -8,6 +8,7 @@ interface Props {
   description?: string;
   ogImage?: string;
   noindex?: boolean;
+  ogType?: 'website' | 'article';
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   description = 'GRIMY — La conformité LCB-FT moderne pour les professions assujetties françaises.',
   ogImage = '/og-grimy-v2.png',
   noindex = false,
+  ogType = 'website',
 } = Astro.props;
 const url = 'https://grimy.fr';
 const canonical = new URL(Astro.url.pathname, url).href;
@@ -36,7 +38,7 @@ const ogImageUrl = new URL(ogImage, url).href;
     <meta name="theme-color" content="#0F172A" media="(prefers-color-scheme: dark)" />
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content="GRIMY" />
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:title" content={title} />
@@ -59,6 +61,9 @@ const ogImageUrl = new URL(ogImage, url).href;
         document.documentElement.classList.add('dark');
       }
     </script>
+
+    <!-- Per-page head injection (JSON-LD, article meta, etc.) -->
+    <slot name="head" />
   </head>
   <body class="text-slate-900 dark:text-slate-100 overflow-x-hidden bg-white dark:bg-slate-950">
     <TopNav client:load />

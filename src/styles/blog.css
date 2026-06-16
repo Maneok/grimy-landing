@@ -1,0 +1,291 @@
+/* ============================================================
+   GRIMY Blog — système visuel dédié (brand green #00C896)
+   Utilisé par /blog et /blog/[slug]. Indépendant de
+   @tailwindcss/typography pour un contrôle total et zéro
+   régression sur les pages légales.
+   ============================================================ */
+
+/* --- Sélection de texte brandée (#43) --- */
+.blog-scope ::selection {
+  background: hsl(164 100% 39% / 0.22);
+  color: inherit;
+}
+
+/* --- Hero / fond pointillé subtil (#17) --- */
+.blog-hero-grid {
+  background-image: radial-gradient(hsl(215 20% 50% / 0.14) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 40%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, #000 40%, transparent 75%);
+}
+.blog-hero-glow {
+  background: radial-gradient(60% 80% at 50% -10%, hsl(164 100% 39% / 0.18), transparent 70%);
+}
+
+/* --- Carte article : lift au survol (#7, #8) --- */
+.post-card {
+  transition: transform var(--duration-normal, 250ms) var(--ease-out, cubic-bezier(.22,1,.36,1)),
+    box-shadow var(--duration-normal, 250ms) var(--ease-out, cubic-bezier(.22,1,.36,1)),
+    border-color var(--duration-normal, 250ms) ease;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -18px hsl(164 60% 25% / 0.45), 0 4px 12px -6px rgba(0,0,0,.1);
+  border-color: hsl(164 100% 39% / 0.55);
+}
+.post-card:hover .post-card-arrow { transform: translateX(4px); }
+.post-card-arrow { transition: transform var(--duration-normal, 250ms) var(--ease-out); }
+
+/* Liseré d'accent qui se révèle au survol (#8) */
+.post-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #00C896, #00A077);
+  opacity: 0;
+  transition: opacity var(--duration-normal, 250ms) ease;
+}
+.post-card:hover::before { opacity: 1; }
+
+/* --- Vignette de couverture générée (pas d'images) (#6) --- */
+.post-cover {
+  background:
+    radial-gradient(120% 120% at 0% 0%, hsl(164 100% 39% / 0.28), transparent 55%),
+    linear-gradient(135deg, hsl(222 47% 11%), hsl(222 45% 18%));
+  position: relative;
+  overflow: hidden;
+}
+.post-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* --- Puces de tag (#9, #25) --- */
+.tag-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  padding: 0.18rem 0.6rem;
+  border-radius: 9999px;
+  color: hsl(164 100% 26%);
+  background: hsl(164 60% 95%);
+  border: 1px solid hsl(164 100% 39% / 0.25);
+}
+.dark .tag-chip {
+  color: hsl(160 100% 70%);
+  background: hsl(164 60% 15%);
+  border-color: hsl(160 100% 45% / 0.25);
+}
+
+/* --- Monogramme auteur (#12, #24) --- */
+.author-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px; height: 28px;
+  border-radius: 9999px;
+  font-size: 11px; font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #00C896, #00A077);
+  box-shadow: 0 2px 6px hsl(164 60% 30% / 0.4);
+}
+
+/* --- Barre de progression de lecture (#19) --- */
+#read-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  z-index: 60;
+  background: linear-gradient(90deg, #00C896, #00E8AA);
+  box-shadow: 0 0 10px hsl(164 100% 39% / 0.6);
+  transition: width 80ms linear;
+}
+
+/* ============================================================
+   .blog-prose — corps d'article (remplace prose)
+   ============================================================ */
+.blog-prose {
+  font-size: 1.075rem;
+  line-height: 1.78;
+  color: hsl(215 18% 30%);
+}
+.dark .blog-prose { color: hsl(215 20% 72%); }
+
+.blog-prose > * + * { margin-top: 1.4em; }
+
+/* Paragraphes */
+.blog-prose p { margin-block: 1.15em; }
+
+/* Lettrine sur le 1er paragraphe (#27) */
+.blog-prose > p:first-of-type::first-letter {
+  float: left;
+  font-weight: 800;
+  font-size: 3.4rem;
+  line-height: 0.82;
+  padding: 0.05em 0.12em 0 0;
+  color: #00A077;
+}
+.dark .blog-prose > p:first-of-type::first-letter { color: #00E8AA; }
+
+/* Titres (#28, #29) */
+.blog-prose h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-top: 2.4em;
+  margin-bottom: 0.7em;
+  padding-top: 0.9em;
+  color: hsl(222 47% 11%);
+  border-top: 1px solid hsl(214 20% 88%);
+  scroll-margin-top: 5rem; /* (#44) ancres */
+}
+.blog-prose h2::before {
+  content: "";
+  display: block;
+  width: 38px; height: 3px;
+  border-radius: 3px;
+  margin-bottom: 0.7rem;
+  background: linear-gradient(90deg, #00C896, #00A077);
+}
+.dark .blog-prose h2 { color: #fff; border-top-color: hsl(217 33% 22%); }
+
+.blog-prose h3 {
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 1.8em;
+  margin-bottom: 0.5em;
+  color: hsl(222 47% 14%);
+  scroll-margin-top: 5rem;
+}
+.dark .blog-prose h3 { color: hsl(213 31% 92%); }
+
+/* Liens animés (#30) */
+.blog-prose a {
+  color: #00A077;
+  font-weight: 500;
+  text-decoration: none;
+  background-image: linear-gradient(#00C896, #00C896);
+  background-size: 0% 2px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--duration-normal, 250ms) var(--ease-out);
+}
+.blog-prose a:hover { background-size: 100% 2px; }
+.dark .blog-prose a { color: #00E8AA; }
+
+/* Emphase forte (#34) */
+.blog-prose strong { color: hsl(222 47% 14%); font-weight: 700; }
+.dark .blog-prose strong { color: #fff; }
+
+/* Listes à puces — marqueur vert maison (#31) */
+.blog-prose ul { list-style: none; padding-left: 0; margin-block: 1.2em; }
+.blog-prose ul > li {
+  position: relative;
+  padding-left: 1.7rem;
+  margin-block: 0.55em;
+}
+.blog-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0.62em;
+  width: 7px; height: 7px;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #00C896, #00A077);
+}
+
+/* Listes ordonnées (#32) */
+.blog-prose ol { list-style: none; counter-reset: li; padding-left: 0; margin-block: 1.2em; }
+.blog-prose ol > li {
+  position: relative;
+  padding-left: 2.4rem;
+  margin-block: 0.7em;
+  counter-increment: li;
+}
+.blog-prose ol > li::before {
+  content: counter(li);
+  position: absolute;
+  left: 0; top: 0.05em;
+  width: 1.6rem; height: 1.6rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 0.78rem; font-weight: 700;
+  color: hsl(164 100% 26%);
+  background: hsl(164 60% 95%);
+  border: 1px solid hsl(164 100% 39% / 0.3);
+  border-radius: 9999px;
+}
+.dark .blog-prose ol > li::before {
+  color: hsl(160 100% 70%);
+  background: hsl(164 60% 15%);
+  border-color: hsl(160 100% 45% / 0.3);
+}
+
+/* Citations / encadrés (#33, #36) */
+.blog-prose blockquote {
+  margin-block: 1.6em;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #00C896;
+  border-radius: 0 0.75rem 0.75rem 0;
+  background: hsl(164 60% 95% / 0.6);
+  color: hsl(215 18% 28%);
+  font-style: normal;
+}
+.dark .blog-prose blockquote {
+  background: hsl(164 60% 15% / 0.4);
+  color: hsl(215 20% 75%);
+}
+.blog-prose blockquote p { margin: 0; }
+
+/* Filet horizontal (#35) */
+.blog-prose hr {
+  border: 0;
+  height: 1px;
+  margin-block: 2.4em;
+  background: linear-gradient(90deg, transparent, hsl(214 20% 70%), transparent);
+}
+.dark .blog-prose hr {
+  background: linear-gradient(90deg, transparent, hsl(217 33% 30%), transparent);
+}
+
+/* Code inline + bloc (#38) */
+.blog-prose code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  padding: 0.12em 0.4em;
+  border-radius: 0.4rem;
+  background: hsl(40 12% 90%);
+  color: hsl(222 47% 20%);
+}
+.dark .blog-prose code { background: hsl(217 33% 22%); color: hsl(213 31% 88%); }
+.blog-prose pre {
+  margin-block: 1.6em;
+  padding: 1.1rem 1.25rem;
+  border-radius: 0.9rem;
+  overflow-x: auto;
+  background: hsl(222 47% 11%);
+  border: 1px solid hsl(217 33% 22%);
+}
+.blog-prose pre code { background: transparent; color: hsl(213 31% 90%); padding: 0; }
+
+/* Tableaux */
+.blog-prose table { width: 100%; border-collapse: collapse; margin-block: 1.6em; font-size: 0.95rem; }
+.blog-prose th, .blog-prose td { padding: 0.6rem 0.8rem; border-bottom: 1px solid hsl(214 20% 85%); text-align: left; }
+.blog-prose th { font-weight: 700; color: hsl(222 47% 14%); }
+.dark .blog-prose th, .dark .blog-prose td { border-bottom-color: hsl(217 33% 22%); }
+.dark .blog-prose th { color: #fff; }
+
+/* Lien d'ancrage doux (#44) */
+html { scroll-behavior: smooth; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .post-card, .post-card-arrow, #read-progress { transition: none; }
+}

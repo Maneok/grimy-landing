@@ -8,42 +8,56 @@ const steps = [
     n: '01',
     title: 'Entrée en relation',
     desc: "Identification, bénéficiaires effectifs et screening complet à partir d'un SIREN.",
+    badge: '3 s',
+    href: '#produit',
     icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>',
   },
   {
     n: '02',
     title: 'Évaluation du risque',
     desc: 'Scoring multi-axes et niveau de vigilance calculé automatiquement.',
+    badge: 'auto',
+    href: '#screening',
     icon: '<path d="M2 13a10 10 0 0 1 20 0"/><line x1="12" y1="13" x2="16.5" y2="9.5"/><circle cx="12" cy="13" r="1.4" fill="currentColor" stroke="none"/>',
   },
   {
     n: '03',
     title: 'Lettre de mission',
     desc: 'Rédaction guidée, clauses réglementaires et signature en ligne.',
+    badge: '3 clics',
+    href: '#lettre',
     icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
   },
   {
     n: '04',
     title: 'Collecte des pièces',
     desc: 'Portail de dépôt sécurisé et GED classée par client.',
+    badge: '0 saisie',
+    href: '#plateforme',
     icon: '<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
   },
   {
     n: '05',
     title: 'Vigilance continue',
     desc: 'Revue périodique, re-screening et re-scoring de la relation.',
+    badge: 'auto',
+    href: '#plateforme',
     icon: '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
   },
   {
     n: '06',
     title: 'Registre & déclarations',
     desc: "Registre des alertes LCB-FT et déclaration de soupçon Tracfin.",
+    badge: '1 clic',
+    href: '#plateforme',
     icon: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 11h8M8 15h5"/>',
   },
   {
     n: '07',
-    title: 'Gouvernance & contrôle',
-    desc: "Cartographie des risques et préparation au contrôle de l'Ordre.",
+    title: 'Gouvernance & qualité',
+    desc: 'Cartographie des risques, manuel de procédures et score de maturité.',
+    badge: 'IA',
+    href: '#plateforme',
     icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
   },
 ];
@@ -59,7 +73,7 @@ const inset = '7.1428%'; // ½ de jalon (1/14) → relie le centre des icônes
     <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16 reveal">
       <div class="text-[12px] font-semibold uppercase tracking-[.18em] mb-3" style="color:var(--grimy-dark)">Conformité, gestion &amp; gain de temps</div>
       <h2 class="wordmark text-[clamp(34px,4.6vw,52px)] leading-[1.04] tracking-[-.04em] text-slate-900 dark:text-white text-balance">
-        Du premier client <span class="text-slate-400 dark:text-slate-500">au contrôle de l'Ordre.</span>
+        Du premier client <span class="text-slate-400 dark:text-slate-500">au dossier irréprochable.</span>
       </h2>
       <p class="mt-5 text-[16px] leading-[1.55] text-slate-600 dark:text-slate-300">
         GRIMY va <strong class="font-semibold text-slate-800 dark:text-slate-100">bien au-delà de la lutte anti-blanchiment</strong> : il centralise et automatise tout votre dispositif — identification &amp; vigilance LCB-FT, lettre de mission, collecte des pièces, registre Tracfin, gouvernance et qualité (NPMQ). Vous pilotez votre conformité au même endroit et vous gagnez des heures sur chaque dossier.
@@ -72,18 +86,20 @@ const inset = '7.1428%'; // ½ de jalon (1/14) → relie le centre des icônes
         <!-- ligne de liaison (décorative) -->
         <div class="frieze-line absolute top-7 -translate-y-1/2 h-[2px] z-0" aria-hidden="true" style={`left:${inset};right:${inset}`}>
           <div class="absolute inset-0 rounded-full bg-slate-200 dark:bg-white/10"></div>
-          <div class="frieze-line-fill absolute inset-0 rounded-full" style="background:linear-gradient(90deg, var(--grimy) 0%, var(--grimy-dark) 100%)"></div>
-          <div class="frieze-line-sweep absolute inset-0 rounded-full"></div>
+          <div class="frieze-line-fill absolute inset-0 rounded-full"></div>
         </div>
 
         {steps.map((s, i) => (
-          <li class="frieze-node group relative z-10 shrink-0 w-[156px] lg:w-auto lg:grow lg:basis-0 snap-center flex flex-col items-center text-center px-2 lg:px-3" style={`--i:${i}`}>
-            <div class="frieze-icon w-14 h-14 rounded-2xl grid place-items-center bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-white/10 shadow-sm" style="color:var(--grimy-dark)">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon}></svg>
-            </div>
-            <div class="num mt-4 text-[11px] font-bold tracking-[.2em] text-slate-500 dark:text-slate-400">{s.n}</div>
-            <h3 class="mt-1 text-[14.5px] font-bold text-slate-900 dark:text-white leading-tight tracking-[-.01em]">{s.title}</h3>
-            <p class="mt-1.5 text-[12px] leading-[1.45] text-slate-500 dark:text-slate-400 max-w-[168px]">{s.desc}</p>
+          <li class="frieze-node group relative z-10 shrink-0 w-[156px] lg:w-auto lg:grow lg:basis-0 snap-center flex flex-col" style={`--i:${i}`}>
+            <a href={s.href} aria-label={`${s.title} — découvrir`} class="flex flex-col items-center text-center grow px-2 lg:px-3 no-underline rounded-2xl outline-none focus-visible:[outline:2px_solid_var(--grimy-dark)] focus-visible:[outline-offset:6px]">
+              <div class="frieze-icon relative w-14 h-14 rounded-2xl grid place-items-center bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-white/10 shadow-sm" style="color:var(--grimy-dark)">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon}></svg>
+                <span aria-hidden="true" class="absolute -top-2 -right-2 px-1.5 py-[1px] rounded-full text-[9px] font-bold uppercase tracking-[.06em] leading-[1.5] whitespace-nowrap shadow-sm" style="background:var(--grimy-soft); color:var(--grimy-dark)">{s.badge}</span>
+              </div>
+              <div class="num mt-4 text-[11px] font-bold tracking-[.2em] text-slate-500 dark:text-slate-400">{s.n}</div>
+              <h3 class="mt-1 text-[14.5px] font-bold text-slate-900 dark:text-white leading-tight tracking-[-.01em]">{s.title}</h3>
+              <p class="mt-1.5 text-[12px] leading-[1.45] text-slate-500 dark:text-slate-400 max-w-[168px]">{s.desc}</p>
+            </a>
           </li>
         ))}
       </ol>

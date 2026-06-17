@@ -73,6 +73,9 @@
         <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/mois par client suivi</p>
       </div>
 
+      <!-- Aligne la hauteur avec le compte à rebours de Cabinet Pro -->
+      <div class="min-h-[48px] mb-6" aria-hidden="true"></div>
+
       <a href="mailto:contact@grimy.fr?subject=Démo Cabinet+"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
         Demander une démo
@@ -112,6 +115,9 @@
       <div class="min-h-[40px] mb-6 text-[11px] text-slate-500 dark:text-slate-500">
         Pas de carte bancaire requise.
       </div>
+
+      <!-- Aligne la hauteur avec le compte à rebours de Cabinet Pro -->
+      <div class="min-h-[48px] mb-6" aria-hidden="true"></div>
 
       <a href="https://app.grimy.fr/auth"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-emerald-500 text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 hover:bg-emerald-100 dark:hover:bg-emerald-500/20">
@@ -153,6 +159,9 @@
         <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
         <p class="text-[11px] font-medium" style="color:var(--grimy-dark)">= 0,43€/mois par client suivi</p>
       </div>
+
+      <!-- Aligne la hauteur avec le compte à rebours de Cabinet Pro -->
+      <div class="min-h-[48px] mb-6" aria-hidden="true"></div>
 
       <a href="https://app.grimy.fr/auth"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
@@ -196,18 +205,36 @@
       <h3 class="min-h-[36px] text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Cabinet Pro</h3>
       <p class="min-h-[56px] text-[13px] text-slate-600 dark:text-slate-400 leading-snug mb-6">Pour les cabinets avec collaborateurs</p>
 
-      <div class="min-h-[80px] flex items-baseline gap-1 leading-none">
+      <div class="min-h-[80px] flex items-baseline gap-2 leading-none">
         <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
         <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
+        <span class="text-[22px] font-semibold leading-none line-through decoration-2 text-slate-300 dark:text-slate-600 num" title="Prix public — hors offre de lancement"><span id="pro-anchor">199</span>€</span>
       </div>
       <div class="min-h-[40px] mb-6">
         <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
-        <p class="text-[11px] text-[#00C896] font-semibold">= 0,19€/mois par client suivi</p>
+        <p class="text-[11px] text-[#00C896] font-semibold" id="pro-save">Prix public 199€ · −25 % lancement, soit 600 € économisés/an</p>
+      </div>
+
+      <!-- Compte à rebours — offre de lancement fondateur (ancre + urgence) -->
+      <div class="min-h-[48px] mb-6" id="pro-countdown" data-start="2026-06-10T00:00:00" data-deadline="2026-07-01T00:00:00">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-[#00C896]/[0.08] border border-[#00C896]/25">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00C896] live-pulse shrink-0"></span>
+          <span class="text-[10.5px] font-semibold uppercase tracking-wide text-[#00A077] dark:text-[#00E8AA] whitespace-nowrap">Fin de l'offre</span>
+          <span class="ml-auto num font-mono text-[12.5px] font-bold text-slate-800 dark:text-white whitespace-nowrap tabular-nums" aria-hidden="true">
+            <span id="cd-d">13</span><span class="text-slate-400 dark:text-slate-500 font-normal">j</span>
+            <span id="cd-h">00</span><span class="text-slate-400 dark:text-slate-500 font-normal">h</span>
+            <span id="cd-m">00</span><span class="text-slate-400 dark:text-slate-500 font-normal">m</span>
+            <span id="cd-s">00</span><span class="text-slate-400 dark:text-slate-500 font-normal">s</span>
+          </span>
+        </div>
+        <div class="mt-1.5 h-1 rounded-full bg-slate-200/70 dark:bg-white/10 overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-[#00C896] to-[#00E8AA] transition-[width] duration-1000 ease-linear" id="cd-bar" style="width:60%"></div>
+        </div>
       </div>
 
       <a href="https://app.grimy.fr/auth"
         class="w-full mb-6 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
-        Démarrer sans engagement
+        <span>Profiter de l'offre de lancement</span>
       </a>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-[#00C896]">Tout Cabinet, plus :</div>
@@ -285,5 +312,51 @@
         ? `Facturation annuelle · ${p.annualTotal} €/an`
         : `Facturation mensuelle · ${p.monthlyTotal} €/an`;
     });
+
+    // Cabinet Pro — offre de lancement : ancre « prix public » + économies réalisées
+    const proAnchor = document.getElementById('pro-anchor');
+    const proSave = document.getElementById('pro-save');
+    if (proAnchor) proAnchor.textContent = isAnnual ? '199' : '239';
+    if (proSave) proSave.textContent = isAnnual
+      ? 'Prix public 199€ · −25 % lancement, soit 600 € économisés/an'
+      : 'Prix public 239€ · −25 % lancement, soit 60 € économisés/mois';
   }
+
+  // ── Compte à rebours « offre de lancement fondateur » ───────────────────
+  // Échéance réelle et fixe : à dépasser/prolonger par l'équipe GRIMY.
+  // Quand l'offre expire, le minuteur disparaît et le prix de lancement reste.
+  (function initLaunchCountdown() {
+    const root = document.getElementById('pro-countdown');
+    if (!root) return;
+    const start = new Date(root.dataset.start).getTime();
+    const deadline = new Date(root.dataset.deadline).getTime();
+    const elD = document.getElementById('cd-d');
+    const elH = document.getElementById('cd-h');
+    const elM = document.getElementById('cd-m');
+    const elS = document.getElementById('cd-s');
+    const bar = document.getElementById('cd-bar');
+    const pad = (n) => String(n).padStart(2, '0');
+    let timer;
+    function tick() {
+      const now = Date.now();
+      const diff = deadline - now;
+      if (!Number.isFinite(diff) || diff <= 0) {
+        // Offre terminée : on vide le bloc mais on conserve sa hauteur
+        // (min-h-[48px] mb-6) pour garder les cartes alignées.
+        root.innerHTML = '';
+        if (timer) clearInterval(timer);
+        return;
+      }
+      if (elD) elD.textContent = pad(Math.floor(diff / 86400000));
+      if (elH) elH.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+      if (elM) elM.textContent = pad(Math.floor((diff % 3600000) / 60000));
+      if (elS) elS.textContent = pad(Math.floor((diff % 60000) / 1000));
+      if (bar && deadline > start) {
+        const pct = Math.max(0, Math.min(100, ((deadline - now) / (deadline - start)) * 100));
+        bar.style.width = pct.toFixed(1) + '%';
+      }
+    }
+    tick();
+    timer = setInterval(tick, 1000);
+  })();
 </script>

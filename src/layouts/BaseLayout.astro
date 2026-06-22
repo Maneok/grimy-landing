@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   noindex?: boolean;
   ogType?: 'website' | 'article';
+  breadcrumb?: boolean;
 }
 
 const {
@@ -17,10 +18,42 @@ const {
   ogImage = '/og-grimy-v2.png',
   noindex = false,
   ogType = 'website',
+  breadcrumb = true,
 } = Astro.props;
 const url = 'https://grimy.fr';
 const canonical = new URL(Astro.url.pathname, url).href;
 const ogImageUrl = new URL(ogImage, url).href;
+
+// Schema.org : WebPage par défaut pour toute page basée sur ce layout.
+// Résout l'absence de JSON-LD sur les pages secondaires (cgu, cgv, rgpd,
+// mentions-legales, a-propos, conformite, securite, statut).
+const pageName = title.replace(/\s*—\s*GRIMY\.?\s*$/, '').trim() || title;
+const webPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: pageName,
+  description,
+  url: canonical,
+  inLanguage: 'fr-FR',
+  isPartOf: { '@type': 'WebSite', name: 'GRIMY.', url },
+  primaryImageOfPage: { '@type': 'ImageObject', url: ogImageUrl },
+  publisher: {
+    '@type': 'Organization',
+    name: 'GRIMY',
+    url,
+    logo: { '@type': 'ImageObject', url: `${url}/grimy-logo-light.png` },
+  },
+};
+// Fil d'Ariane simple (Accueil > page). Désactivable via breadcrumb={false}
+// pour les pages qui fournissent leur propre BreadcrumbList (ex. blog).
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Accueil', item: `${url}/` },
+    { '@type': 'ListItem', position: 2, name: pageName, item: canonical },
+  ],
+};
 ---
 
 <html lang="fr">
@@ -61,6 +94,12 @@ const ogImageUrl = new URL(ogImage, url).href;
         document.documentElement.classList.add('dark');
       }
     </script>
+
+    <!-- JSON-LD : WebPage + fil d'Ariane (schema.org) -->
+    <script type="application/ld+json" set:html={JSON.stringify(webPageLd)} />
+    {breadcrumb && (
+      <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
+    )}
 
     <!-- Per-page head injection (JSON-LD, article meta, etc.) -->
     <slot name="head" />

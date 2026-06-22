@@ -52,7 +52,7 @@ const breadcrumbLd = {
 };
 ---
 
-<BaseLayout title={`${post.data.title} — GRIMY`} description={post.data.description} ogType="article">
+<BaseLayout title={`${post.data.title} — GRIMY`} description={post.data.description} ogType="article" breadcrumb={false}>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(articleLd)} />
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(breadcrumbLd)} />
 

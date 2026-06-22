@@ -1,40 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <url>
-    <loc>https://grimy.fr/</loc>
-    <lastmod>2026-05-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://grimy.fr/cgu</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://grimy.fr/cgv</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://grimy.fr/rgpd</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-
-  <url>
-    <loc>https://grimy.fr/mentions-legales</loc>
-    <lastmod>2026-04-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.3</priority>
-  </url>
-
+<!--
+  Ce fichier reflète le sitemap généré par @astrojs/sitemap
+  (sitemap-index.xml -> sitemap-0.xml) afin de rester cohérent avec
+  les URL canoniques (trailing slash). Le sitemap de référence déclaré
+  dans robots.txt reste https://grimy.fr/sitemap-index.xml.
+  À mettre à jour lors de l'ajout/suppression d'une page.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://grimy.fr/</loc></url>
+  <url><loc>https://grimy.fr/a-propos/</loc></url>
+  <url><loc>https://grimy.fr/blog/</loc></url>
+  <url><loc>https://grimy.fr/blog/logiciel-lcb-ft-expert-comptable/</loc></url>
+  <url><loc>https://grimy.fr/cgu/</loc></url>
+  <url><loc>https://grimy.fr/cgv/</loc></url>
+  <url><loc>https://grimy.fr/conformite/</loc></url>
+  <url><loc>https://grimy.fr/mentions-legales/</loc></url>
+  <url><loc>https://grimy.fr/rgpd/</loc></url>
+  <url><loc>https://grimy.fr/securite/</loc></url>
+  <url><loc>https://grimy.fr/statut/</loc></url>
 </urlset>

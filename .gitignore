@@ -13,6 +13,7 @@
 .astro/
 .copy-reports/
 .cwv-history/
+.email-reports/
 .env
 .env.production
 .font-backup/

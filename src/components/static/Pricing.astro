@@ -58,6 +58,7 @@
 
     <!-- 1 — CABINET (le moins cher, à gauche) -->
     <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <span class="absolute top-4 right-4 z-10 inline-flex items-center rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-300/70 dark:bg-amber-500/15 dark:text-amber-300 dark:ring-amber-400/30 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide chip-pop">7 jours gratuits</span>
       <div class="min-h-[28px] mb-4">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-orange-50 text-orange-700 dark:bg-orange-500/10 dark:text-orange-400">✦ Cabinets indépendants</span>
       </div>
@@ -69,7 +70,7 @@
         <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
       </div>
       <div class="min-h-[40px] mb-6">
-        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400" id="billing-cabinet">Facturation annuelle · 1 020 €/an</p>
         <p class="text-[11px] font-medium" style="color:var(--grimy-dark)">= 0,43€/mois par client suivi</p>
       </div>
 
@@ -77,10 +78,11 @@
       <div class="min-h-[48px] mb-6" aria-hidden="true"></div>
 
       <a href="https://app.grimy.fr/auth"
-        class="w-full mb-3 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
+        class="w-full mb-3 inline-flex items-center justify-center gap-1.5 text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-slate-700 text-slate-900 dark:border-slate-400 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/[.05]">
         Essayer gratuitement
+        <svg class="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
-      <p class="mb-6 text-center text-[11.5px] font-medium text-slate-500 dark:text-slate-400">7 jours d'essai gratuit · 0 € aujourd'hui</p>
+      <p class="mb-6 text-center text-[11.5px] text-slate-500 dark:text-slate-400"><span class="font-semibold text-[#00A077] dark:text-[#00E8AA]">0 € aujourd'hui</span> · sans engagement, résiliable à tout moment</p>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-slate-700 dark:text-slate-200">Tout ce qu'il faut pour être conforme :</div>
       <ul class="space-y-2 flex-1">
@@ -106,6 +108,7 @@
 
     <!-- 2 — CABINET PRO (vedette) -->
     <div class="reveal group relative flex flex-col h-full rounded-2xl border-2 border-[#00C896] bg-gradient-to-b from-emerald-50/30 to-white dark:from-emerald-950/30 dark:to-slate-900 p-7 pt-9 animate-float-subtle shadow-[0_0_0_1px_rgba(0,200,150,0.1),0_8px_32px_rgba(0,200,150,0.12)] hover:shadow-[0_0_0_2px_rgba(0,200,150,0.2),0_16px_48px_rgba(0,200,150,0.25)] transition-shadow duration-500 z-10">
+      <span class="absolute top-4 right-4 z-20 inline-flex items-center rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-300/70 dark:bg-amber-500/15 dark:text-amber-300 dark:ring-amber-400/30 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide chip-pop">7 jours gratuits</span>
       <!-- Badge flottant LE PLUS CHOISI -->
       <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
         <div class="relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-gradient-to-r from-[#00C896] to-[#00E8AA] text-white text-[11px] font-bold tracking-wider shadow-lg shadow-emerald-500/30 overflow-hidden whitespace-nowrap">
@@ -124,10 +127,10 @@
       <div class="min-h-[80px] flex items-baseline gap-2 leading-none">
         <span class="text-[56px] font-bold tracking-tight text-slate-900 dark:text-white" data-monthly="179" data-annual="149" id="price-pro">149</span>
         <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
-        <span class="text-[22px] font-semibold leading-none line-through decoration-2 text-slate-300 dark:text-slate-600 num" title="Prix public — hors offre de lancement"><span id="pro-anchor">199</span>€</span>
+        <span class="text-[22px] font-semibold leading-none line-through decoration-2 text-slate-400 dark:text-slate-500 num" title="Prix public — hors offre de lancement"><span id="pro-anchor">199</span>€</span>
       </div>
       <div class="min-h-[40px] mb-6">
-        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400" id="billing-pro">Facturation annuelle · 1 788 €/an</p>
         <p class="text-[11px] text-[#00C896] font-semibold" id="pro-save">Prix public 199€ · −25 % lancement, soit 600 € économisés/an</p>
       </div>
 
@@ -149,10 +152,11 @@
       </div>
 
       <a href="https://app.grimy.fr/auth"
-        class="w-full mb-3 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
+        class="w-full mb-3 inline-flex items-center justify-center gap-1.5 text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 bg-[#00C896] hover:bg-[#00B085] text-white shadow-md shadow-emerald-500/20">
         <span>Essayer gratuitement</span>
+        <svg class="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
-      <p class="mb-6 text-center text-[11.5px] font-semibold text-[#00A077] dark:text-[#00E8AA]">7 jours d'essai gratuit · 0 € aujourd'hui</p>
+      <p class="mb-6 text-center text-[11.5px] text-slate-500 dark:text-slate-400"><span class="font-semibold text-[#00A077] dark:text-[#00E8AA]">0 € aujourd'hui</span> · sans engagement, résiliable à tout moment</p>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-[#00C896]">Tout Cabinet, plus :</div>
       <ul class="space-y-2 flex-1">
@@ -176,6 +180,7 @@
 
     <!-- 3 — CABINET+ (le plus complet, à droite — ancre prix) -->
     <div class="reveal group relative flex flex-col h-full rounded-2xl border border-slate-200/60 dark:border-white/[.06] bg-white dark:bg-slate-900/60 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <span class="absolute top-4 right-4 z-10 inline-flex items-center rounded-full bg-amber-100 text-amber-800 ring-1 ring-amber-300/70 dark:bg-amber-500/15 dark:text-amber-300 dark:ring-amber-400/30 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide chip-pop">7 jours gratuits</span>
       <div class="min-h-[28px] mb-4">
         <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap bg-purple-50 text-purple-700 dark:bg-purple-500/10 dark:text-purple-400">💎 Cabinets établis</span>
       </div>
@@ -189,7 +194,7 @@
         <span class="text-[14px] font-medium text-slate-500 dark:text-slate-400 whitespace-nowrap">€ HT/mois</span>
       </div>
       <div class="min-h-[40px] mb-6">
-        <p class="text-[11px] text-slate-500 dark:text-slate-500" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400" id="billing-plus">Facturation annuelle · 3 588 €/an</p>
         <p class="text-[11px] text-violet-600 dark:text-violet-400 font-medium">= 0,15€/mois par client suivi</p>
       </div>
 
@@ -197,10 +202,11 @@
       <div class="min-h-[48px] mb-6" aria-hidden="true"></div>
 
       <a href="https://app.grimy.fr/auth"
-        class="w-full mb-3 inline-flex items-center justify-center text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
+        class="w-full mb-3 inline-flex items-center justify-center gap-1.5 text-center text-[13px] font-semibold rounded-xl transition px-4 leading-tight h-12 border border-violet-400 text-violet-700 hover:bg-violet-50 dark:border-violet-600 dark:text-violet-300 dark:hover:bg-violet-950/30">
         Essayer gratuitement
+        <svg class="w-4 h-4 shrink-0 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
       </a>
-      <p class="mb-6 text-center text-[11.5px] font-medium text-violet-600 dark:text-violet-400">7 jours d'essai gratuit · 0 € aujourd'hui</p>
+      <p class="mb-6 text-center text-[11.5px] text-slate-500 dark:text-slate-400"><span class="font-semibold text-[#00A077] dark:text-[#00E8AA]">0 € aujourd'hui</span> · sans engagement, résiliable à tout moment</p>
 
       <div class="min-h-[32px] mb-4 text-[13px] font-semibold text-slate-700 dark:text-slate-200">Tout Cabinet Pro, plus :</div>
       <ul class="space-y-2 flex-1">

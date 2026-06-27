@@ -66,7 +66,7 @@ export default function TopNav() {
             Connexion
           </a>
           <a href="https://app.grimy.fr/auth" className="text-[14px] font-semibold text-white px-4 py-2 rounded-lg btn-magnetic">
-            Démarrer
+            Essayer gratuitement
           </a>
         </div>
       </div>

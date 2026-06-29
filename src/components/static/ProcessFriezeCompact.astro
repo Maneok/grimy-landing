@@ -1,44 +1,96 @@
 ---
-// OPTION A — Frise « teaser » condensée.
-// Version allégée de ProcessFrieze.astro : une seule bande horizontale,
-// 7 jalons en libellés courts (sans descriptions ni gros en-tête), placée
-// juste après le Hero pour orienter avant le détail (sections 01→04).
-// Réversible : pour revenir à l'ancienne frise, re-pointer l'import dans
-// src/pages/index.astro vers ProcessFrieze.astro. Zéro JS.
+// OPTION A (v2) — Frise « teaser » condensée AVEC icônes minimalistes + animations.
+// Une seule bande horizontale, 7 jalons : petite icône ligne + numéro + libellé
+// court (pas de descriptions ni gros en-tête). Placée juste après le Hero pour
+// orienter avant le détail (sections 01→04). Réutilise le moteur d'animation
+// existant (.frieze / .frieze-node / .frieze-line-fill dans global.css) :
+// entrée échelonnée + ligne « néon » qui se dessine, halo au survol, le tout
+// 100 % CSS et neutralisé par prefers-reduced-motion. Réversible : re-pointer
+// l'import dans src/pages/index.astro vers ProcessFrieze.astro.
 const steps = [
-  { n: '01', title: 'Entrée en relation', href: '#produit' },
-  { n: '02', title: 'Évaluation du risque', href: '#screening' },
-  { n: '03', title: 'Lettre de mission', href: '#lettre' },
-  { n: '04', title: 'Collecte des pièces', href: '#plateforme' },
-  { n: '05', title: 'Vigilance continue', href: '#plateforme' },
-  { n: '06', title: 'Registre & déclarations', href: '#plateforme' },
-  { n: '07', title: 'Gouvernance & qualité', href: '#plateforme' },
+  {
+    n: '01', title: 'Entrée en relation', href: '#produit',
+    icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/>',
+  },
+  {
+    n: '02', title: 'Évaluation du risque', href: '#screening',
+    icon: '<path d="M2 13a10 10 0 0 1 20 0"/><line x1="12" y1="13" x2="16.5" y2="9.5"/><circle cx="12" cy="13" r="1.4" fill="currentColor" stroke="none"/>',
+  },
+  {
+    n: '03', title: 'Lettre de mission', href: '#lettre',
+    icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>',
+  },
+  {
+    n: '04', title: 'Collecte des pièces', href: '#plateforme',
+    icon: '<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+  },
+  {
+    n: '05', title: 'Vigilance continue', href: '#plateforme',
+    icon: '<polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>',
+  },
+  {
+    n: '06', title: 'Registre & déclarations', href: '#plateforme',
+    icon: '<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M8 11h8M8 15h5"/>',
+  },
+  {
+    n: '07', title: 'Gouvernance & qualité', href: '#plateforme',
+    icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>',
+  },
 ];
+const inset = '7.1428%'; // ½ de jalon (1/14) → relie le centre des icônes
 ---
-<section id="process" class="relative max-w-[1200px] mx-auto px-6 pt-10 pb-12 sm:pt-12 sm:pb-14 scroll-mt-24">
-  <p class="text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[.16em] mb-7 sm:mb-9">
-    <span class="text-slate-400 dark:text-slate-500">Bien plus qu'un outil anti-blanchiment&nbsp;—&nbsp;</span><span style="color:var(--grimy-dark)">tout le cycle LCB-FT, de bout en bout</span>
-  </p>
+<section id="process" class="relative max-w-[1200px] mx-auto px-6 pt-10 pb-12 sm:pt-12 sm:pb-16 scroll-mt-24">
+  <!-- halo mint discret -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+    style="background:radial-gradient(560px 200px at 50% 6%, color-mix(in oklab, var(--grimy) 8%, transparent), transparent 70%)"></div>
 
-  <div class="-mx-6 px-6 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-    <ol class="flex items-center w-max lg:w-full">
-      {steps.map((s, i) => (
-        <>
-          {i > 0 && (
-            <li aria-hidden="true" class="shrink-0 w-6 lg:w-auto lg:grow h-px mx-1 bg-slate-200 dark:bg-white/10"></li>
-          )}
-          <li class="shrink-0">
-            <a
-              href={s.href}
-              class="group flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f172a] px-3 py-1.5 shadow-sm no-underline whitespace-nowrap transition-all hover:-translate-y-px hover:shadow-md outline-none focus-visible:[outline:2px_solid_var(--grimy-dark)] focus-visible:[outline-offset:3px]"
-              style="--tw-border-opacity:1"
-            >
-              <span class="text-[11px] font-bold tracking-[.06em] leading-none shrink-0" style="color:var(--grimy-dark)">{s.n}</span>
-              <span class="text-[13px] font-semibold leading-none text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">{s.title}</span>
+  <div class="relative">
+    <p class="text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[.16em] mb-8 sm:mb-10 reveal">
+      <span class="text-slate-400 dark:text-slate-500">Bien plus qu'un outil anti-blanchiment&nbsp;—&nbsp;</span><span style="color:var(--grimy-dark)">tout le cycle LCB-FT, de bout en bout</span>
+    </p>
+
+    <div class="frieze-scroller -mx-6 px-6 lg:mx-0 lg:px-0 py-3 overflow-x-auto lg:overflow-x-visible snap-x snap-mandatory lg:snap-none [scrollbar-width:none]">
+      <ol id="process-frieze-compact" class="frieze frieze-track relative flex gap-0 w-max lg:w-full">
+        <!-- ligne de liaison animée (néon) -->
+        <div class="frieze-line absolute top-6 -translate-y-1/2 h-[2px] z-0" aria-hidden="true" style={`left:${inset};right:${inset}`}>
+          <div class="absolute inset-0 rounded-full bg-slate-200 dark:bg-white/10"></div>
+          <div class="frieze-line-fill absolute inset-0 rounded-full"></div>
+        </div>
+
+        {steps.map((s, i) => (
+          <li class="frieze-node group relative z-10 shrink-0 w-[128px] lg:w-auto lg:grow lg:basis-0 snap-center flex flex-col" style={`--i:${i}`}>
+            <a href={s.href} aria-label={`${s.title} — découvrir`} class="flex flex-col items-center text-center grow px-1.5 no-underline rounded-2xl outline-none focus-visible:[outline:2px_solid_var(--grimy-dark)] focus-visible:[outline-offset:5px]">
+              <div class="frieze-icon w-12 h-12 rounded-2xl grid place-items-center bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-white/10 shadow-sm" style="color:var(--grimy-dark)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={s.icon}></svg>
+              </div>
+              <div class="num mt-3 text-[10px] font-bold tracking-[.22em] text-slate-400 dark:text-slate-500">{s.n}</div>
+              <h3 class="mt-1 text-[12.5px] font-semibold text-slate-700 dark:text-slate-200 leading-tight tracking-[-.01em]">{s.title}</h3>
             </a>
           </li>
-        </>
-      ))}
-    </ol>
+        ))}
+      </ol>
+    </div>
   </div>
 </section>
+
+<script>
+  // Rejoue l'entrée (dessin de la ligne + apparition échelonnée) une fois à
+  // l'entrée dans le viewport. Contenu visible par défaut si JS absent.
+  const frieze = document.getElementById('process-frieze-compact');
+  if (frieze) {
+    if (!('IntersectionObserver' in window)) {
+      frieze.classList.add('in-view');
+    } else {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            frieze.classList.add('in-view');
+            io.disconnect();
+            break;
+          }
+        }
+      }, { threshold: 0.15 });
+      io.observe(frieze);
+    }
+  }
+</script>

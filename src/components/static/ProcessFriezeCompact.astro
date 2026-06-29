@@ -1,0 +1,44 @@
+---
+// OPTION A — Frise « teaser » condensée.
+// Version allégée de ProcessFrieze.astro : une seule bande horizontale,
+// 7 jalons en libellés courts (sans descriptions ni gros en-tête), placée
+// juste après le Hero pour orienter avant le détail (sections 01→04).
+// Réversible : pour revenir à l'ancienne frise, re-pointer l'import dans
+// src/pages/index.astro vers ProcessFrieze.astro. Zéro JS.
+const steps = [
+  { n: '01', title: 'Entrée en relation', href: '#produit' },
+  { n: '02', title: 'Évaluation du risque', href: '#screening' },
+  { n: '03', title: 'Lettre de mission', href: '#lettre' },
+  { n: '04', title: 'Collecte des pièces', href: '#plateforme' },
+  { n: '05', title: 'Vigilance continue', href: '#plateforme' },
+  { n: '06', title: 'Registre & déclarations', href: '#plateforme' },
+  { n: '07', title: 'Gouvernance & qualité', href: '#plateforme' },
+];
+---
+<section id="process" class="relative max-w-[1200px] mx-auto px-6 pt-10 pb-12 sm:pt-12 sm:pb-14 scroll-mt-24">
+  <p class="text-center text-[11px] sm:text-[12px] font-semibold uppercase tracking-[.16em] mb-7 sm:mb-9">
+    <span class="text-slate-400 dark:text-slate-500">Bien plus qu'un outil anti-blanchiment&nbsp;—&nbsp;</span><span style="color:var(--grimy-dark)">tout le cycle LCB-FT, de bout en bout</span>
+  </p>
+
+  <div class="-mx-6 px-6 lg:mx-0 lg:px-0 overflow-x-auto lg:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <ol class="flex items-center w-max lg:w-full">
+      {steps.map((s, i) => (
+        <>
+          {i > 0 && (
+            <li aria-hidden="true" class="shrink-0 w-6 lg:w-auto lg:grow h-px mx-1 bg-slate-200 dark:bg-white/10"></li>
+          )}
+          <li class="shrink-0">
+            <a
+              href={s.href}
+              class="group flex items-center gap-2 rounded-full border border-slate-200 dark:border-white/10 bg-white dark:bg-[#0f172a] px-3 py-1.5 shadow-sm no-underline whitespace-nowrap transition-all hover:-translate-y-px hover:shadow-md outline-none focus-visible:[outline:2px_solid_var(--grimy-dark)] focus-visible:[outline-offset:3px]"
+              style="--tw-border-opacity:1"
+            >
+              <span class="text-[11px] font-bold tracking-[.06em] leading-none shrink-0" style="color:var(--grimy-dark)">{s.n}</span>
+              <span class="text-[13px] font-semibold leading-none text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">{s.title}</span>
+            </a>
+          </li>
+        </>
+      ))}
+    </ol>
+  </div>
+</section>
